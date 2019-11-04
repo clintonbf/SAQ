@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome to SAQ!</title>
+        <title>SAQ's Flying Buttresses</title>
+        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
-        <a href="login.html">login here, YO!</a>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <div id="header" height=100>
+            <table>
+                <tr>
+                    <td>Home</td>
+                    <td>Browse chairs</td>
+                    <td>Subscribe!</td>
+                    <td>About SAQ</td>
+                    <td><a href="login.html">Login</a></td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div id="splash_area">
+            <img id="main">
+            
+            <script>
+                function load_image(){
+                    let screen_width = window.innerWidth;
+                    let screen_height = window.innerHeight;
+
+                    document.getElementById("main").src = "images/cat_chair_right.jpg";
+                    document.getElementById("main").width = 600;
+                    document.getElementById("main").height = 400;
+                    document.getElementById("main").style.left = 400 + "px";
+                }
+
+                load_image();
+            </script>        
+        </div>
+
+        <div id="footer">
+            <p> Just some text</p>
+        </div>
     </body>
 </html>
