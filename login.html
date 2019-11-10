@@ -12,21 +12,6 @@
             https://firebase.google.com/docs/web/setup#available-libraries -->
             <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 
-        <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
-            authDomain: "saq-fb.firebaseapp.com",
-            databaseURL: "https://saq-fb.firebaseio.com",
-            projectId: "saq-fb",
-            storageBucket: "saq-fb.appspot.com",
-            messagingSenderId: "351007329675",
-            appId: "1:351007329675:web:241d7fd4d85e789830b38e"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        </script>
-
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
 
@@ -76,7 +61,16 @@
           // The start method will wait until the DOM is loaded.
             ui.start('#firebaseui-auth-container', uiConfig);
         </script>
+ 
+   
 
+
+        <div id="DB_stuff">
+          <span id="data">
+
+          
+          </span>
+        </div>
         
     </body>
 </html>
