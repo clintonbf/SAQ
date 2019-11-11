@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--suppress JSUnresolvedLibraryURL -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>File for entering couches</title>
+    </head>
+    <body>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.jse"></script>
+
+        <!-- define Firestore stuff and initialize DB-->
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
+                authDomain: "saq-fb.firebaseapp.com",
+                databaseURL: "https://saq-fb.firebaseio.com",
+                projectId: "saq-fb",
+                storageBucket: "saq-fb.appspot.com",
+                messagingSenderId: "351007329675",
+                appId: "1:351007329675:web:241d7fd4d85e789830b38e"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            var the_db = firebase.firestore();
+
+            //Define chair object
+            function Chair(name, price, stars, comfort_options, picture){
+                this.name = name;
+                this.price = price;
+                this.stars = stars;
+                this.comfort_options = {
+                    firmness: comfort_options[0],
+                    back_support: comfort_options[1],
+                    arms: comfort_options[2]
+                };
+                this.picture = picture;
+            }
+
+            // Insert a chair
+            function insert_chair(add_chair, id){
+                the_db.collection("Chairs").doc("chair" + id).set({
+                    name: add_chair.name,
+                    price: add_chair.price,
+                    rating: add_chair.stars,
+                    firmness: add_chair.comfort_options.firmness,
+                    back_support: add_chair.comfort_options.back_support,
+                    arms: add_chair.comfort_options.arms
+                })
+                    .then(function() {
+                        console.log("Added chair " + add_chair.name);
+                    })
+                    .catch(function(error) {
+                        console.log("Error adding student");
+                    });
+            }
+
+            // Insert all chairs
+            let chair_array = [];
+            chair_array.push(new Chair("the Clint", 525, 3, [3, true, false], ''));
+            chair_array.push(new Chair("the Fahad", 800, 5, [1, true, true], ''));
+            chair_array.push(new Chair("the Em", 1250, 4, [6, true, true], ''));
+            chair_array.push(new Chair("the Neda", 3200, 5, [6, true, true], ''));
+            chair_array.push(new Chair("the Sam", 800, 3, [9, false, false], ''));
+            chair_array.push(new Chair("the Chris", 1000, 3, [10, true, true], ''));
+
+            for (let i = 0; i < chair_array.length; i++) {
+                insert_chair(chair_array[i], i);
+            }
+        </script>
+
+    </body>
+
+</html>
