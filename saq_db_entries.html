@@ -31,7 +31,8 @@
             var the_db = firebase.firestore();
 
             //Define chair object
-            function Chair(name, price, comfort_options, ratings, picture){
+            function Chair(id, name, price, comfort_options, ratings, picture){
+                this.id = id;
                 this.name = name;
                 this.price = price;
                 this.comfort_options = {
@@ -43,9 +44,15 @@
                 this.picture = picture;
             }
 
+            //Define the sales object
+            function Sale(transaction_id) {
+
+            }
+
             // Insert a chair
             function insert_chair(add_chair, id){
-                the_db.collection("Chairs").doc("chair" + id).set({
+                the_db.collection("Chairs").doc("chair_" + id).set({
+                    id: id,
                     name: add_chair.name,
                     price: add_chair.price,
                     firmness: add_chair.comfort_options.firmness,
@@ -62,14 +69,13 @@
             }
 
             // Insert all chairs
-            // Chair name, cost, [comfort], [ratings], image
             let chair_array = [];
-            chair_array.push(new Chair("the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], ''));
-            chair_array.push(new Chair("the Fahad", 800, [1, true, true], [3, 3, 3], ''));
-            chair_array.push(new Chair("the Em", 1250, [6, true, true], [5, 5], ''));
-            chair_array.push(new Chair("the Neda", 3200, [6, true, true], [5], ''));
-            chair_array.push(new Chair("the Sam", 800, [9, false, false], [3, 5], ''));
-            chair_array.push(new Chair("the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], ''));
+            chair_array.push(new Chair(1, "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], ''));
+            chair_array.push(new Chair(2, "the Fahad", 800, [1, true, true], [3, 3, 3], ''));
+            chair_array.push(new Chair(3, "the Em", 1250, [6, true, true], [5, 5], ''));
+            chair_array.push(new Chair(4, "the Neda", 3200, [6, true, true], [5], ''));
+            chair_array.push(new Chair(5, "the Sam", 800, [9, false, false], [3, 5], ''));
+            chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], ''));
 
             for (let i = 0; i < chair_array.length; i++) {
                 insert_chair(chair_array[i], i);
