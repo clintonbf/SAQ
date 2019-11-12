@@ -45,8 +45,10 @@
             }
 
             //Define the sales object
-            function Sale(transaction_id) {
-
+            function Sale(transaction_id, sold_chair, buyer) {
+                this.transaction_id = transaction_id;
+                this.chair = sold_chair;
+                this.buyer = buyer;
             }
 
             // Insert a chair
