@@ -53,6 +53,29 @@
                 this.sale_date = date;
             }
 
+            //Define the subscription-user object
+            function User(user_id, name, surname) {
+                this.user_id = user_id;
+                this.name = name;
+                this.surname = surname;
+
+                this.tried_chairs = [ //Want an array of dictionaries
+                    chair_id = null,
+                    date_acquired = null,
+                    date_returned = null
+                ];
+
+                // try_chair(chair_id, date): { // Not sure how to pass arguments to JS object methods....
+                try_chair: {
+                    this.tried_chairs.chair_id = chair_id;
+                    this.date_acquired = date;
+                }
+            }
+
+            function try_chair() // I think this is used as a method to interact with the object
+
+
+
             // INSERTION FUNCTIONS
             // Insert a chair
             function insert_chair(add_chair, id){
