@@ -7,12 +7,13 @@
     </head>
     <body>
 
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 
         <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
+        <script src="firebase_config.js"></script>
         <!-- define Firestore stuff and initialize DB-->
         <script>
             // Your web app's Firebase configuration
@@ -25,6 +26,7 @@
                 messagingSenderId: "351007329675",
                 appId: "1:351007329675:web:241d7fd4d85e789830b38e"
             };
+
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
 
@@ -48,7 +50,7 @@
             //Define the sales object
             function Sale(transaction_id, sold_chair, buyer, date) {
                 this.transaction_id = transaction_id;
-                this.chair = sold_chair;
+                this.chair = sold_chair;  // Chair object
                 this.buyer = buyer;
                 this.sale_date = date;
             }
@@ -72,14 +74,16 @@
                 }
             }
 
-            function try_chair() // I think this is used as a method to interact with the object
+            function try_chair() {
+
+            }// I think this is used as a method to interact with the object
 
 
 
             // INSERTION FUNCTIONS
             // Insert a chair
             function insert_chair(add_chair, id){
-                the_db.collection("Chairs").doc("chair_" + id).set({
+               the_db.collection("Chairs").doc("chair").set({
                     id: id,
                     name: add_chair.name,
                     price: add_chair.price,
@@ -88,8 +92,21 @@
                     arms: add_chair.comfort_options.arms,
                     ratings: add_chair.ratings
                 })
+                .then(function() {
+                    console.log("Added chair " + add_chair.name);
+                })
+                .catch(function(error) {
+                    console.log("Error adding student: " + error);
+                });
+            }
+
+            // A function to demonstrate how merge works
+            function add_office_chair(chair){
+                the_db.collection("Chairs").doc(chair.chair_id).set({
+                   office: true
+                },{merge:true}) // <--------------- the money line
                     .then(function() {
-                        console.log("Added chair " + add_chair.name);
+                        console.log("Added chair " + chair.name);
                     })
                     .catch(function(error) {
                         console.log("Error adding student: " + error);
@@ -132,7 +149,6 @@
                 }
             }
 
-
             // Insert some sales
             function insert_sales() {
                 let sale_array = [];
@@ -147,7 +163,7 @@
             }
 
             insert_chairs();
-            insert_chairs();
+            insert_sales();
 
         </script>
     </body>
