@@ -26,7 +26,7 @@
             var dbRef = db.collection(collection).get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
                         var para = document.createElement("p");
-                        para.innerHTML = doc.data().name;
+                        para.innerHTML = doc.data().price;
                         document.getElementById("chairOne").appendChild(para);
                     // let displayChair = document.getElementById("chairOne").innerHTML= doc.data().name;
                 })
