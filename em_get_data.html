@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A test for DB gets</title>
+</head>
+<body>
+    <!-- init firebase mega thing-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <!-- init firestore -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <!-- init SAQ firebase -->
+    <script src="firebase_config.js"></script>
+
+
+<div id = "chairOne"><p>Chair</p></div>
+    <script>
+    // init firestore
+        var db = firebase.firestore();
+
+        document.getElementById("chairOne").addEventListener("click", function() { 
+            GetList("Chairs");
+        })
+
+        function GetList(collection) {
+            var dbRef = db.collection(collection).get().then(function(querySnapshot){
+                querySnapshot.forEach(function(doc){
+                        var para = document.createElement("p");
+                        para.innerHTML = doc.data().price;
+                        document.getElementById("chairOne").appendChild(para);
+                    // let displayChair = document.getElementById("chairOne").innerHTML= doc.data().name;
+                })
+            })
+        }
+
+    </script>
+
+</body>
