@@ -1,0 +1,43 @@
+.simpleUnderline{
+    text-decoration: none;
+    border-bottom: 1.5px solid white;
+    padding: 5px;
+    margin: 20px;
+    color: white;
+}
+
+.containerRight{
+    width: 50%;
+    padding-right: 5px;
+    margin-left: auto;
+    background-color: #6B6B6C;;
+    
+}
+
+.hPadding{
+    padding-top: 15px;
+}
+
+.circle{
+    position: absolute;
+    width: 42px;
+    height: 44px;
+    left: 252px;
+    top: 17px;
+    
+    background: #C4C4C4;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 300;
+}
+
+.neutralChair {
+    position: absolute;
+    width: 406px;
+    height: 425px;
+    left: -15px;
+    top: 333px;
+
+    background-image: "images/neutral_chair.jpeg";
+    z-index: -1;
+}

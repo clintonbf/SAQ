@@ -1,49 +1,54 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>SAQ's Flying Buttresses</title>
-        <meta name="viewport" content="width=device-width", initial-scale="1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css\style.css" rel="stylesheet">
 
-    <body>
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    <div class = "container.container" style = "background-color: gray;">
+        <table>
+        <tr>
+        <td><div><h1><u class="simpleUnderline"> SAQ Site </u></h1></td></div>
+        <td></td>
+        <td class="circle"><h3><a href="login.html">Login</a></h3></td>
+        </tr>
+        </table>
+        <br>
+        <form>
+        <div class="container"><input type="search">
+            <button type="submit">Go</button>
+        </div>
+        <br>
+        </form>
+    </div>
 
-        <div id="header" height=100>
-            <table>
-                <tr>
-                    <td>Home</td>
-                    <td>Browse chairs</td>
-                    <td>Subscribe!</td>
-                    <td>About SAQ</td>
-                    <td><a href="login.html">Login</a></td>
-                </tr>
-            </table>
+    
+    <img src="images\chair_blue_bookshelf.jpeg" class="img-fluid" alt="Responsive image">
 
+    <img class="neutralChair" src="images\home_page\neutral_chair.jpeg" alt = "Responsive image">
+
+    <div class="containerRight" style = "background-color: grey;">
+        <h4 class="hPadding"><u class="simpleUnderline">Shop By Brand</u></h4>
+        <br>
+    </div>
+    <br>
+
+    <div class="containerRight" style = "background-color: grey;">
+            <h4 class="hPadding"><u class="simpleUnderline">Shop By Price</u></h4>
+            <br>
+    </div>
+    <br>
+    <div class="containerRight" style = "background-color: grey;">
+            <h4 class="hPadding"><u class="simpleUnderline">Shop By Comfort</u></h4>
+            <br>
         </div>
 
-        <div id="splash_area">
-            <img id="main">
-            
-            <script>
-                function load_image(){
-                    let screen_width = window.innerWidth;
-                    let screen_height = window.innerHeight;
 
-                    document.getElementById("main").src = "images/cat_chair_right.jpg";
-                    document.getElementById("main").width = 600;
-                    document.getElementById("main").height = 400;
-                    document.getElementById("main").style.left = 400 + "px";
-                }
-
-                load_image();
-            </script>        
-        </div>
-
-        <div id="footer">
-            <p> Just some text</p>
-        </div>
-    </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>
