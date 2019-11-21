@@ -14,19 +14,20 @@
 
 
 <div id = "chairOne"><p>Chair</p></div>
+
     <script>
     // init firestore
         var db = firebase.firestore();
         document.getElementById("chairOne").addEventListener("click", function() { 
-            GetList("Chairs");
+            GetList("Chair");
         })
         function GetList(collection) {
             var dbRef = db.collection(collection).get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){
-                        var para = document.createElement("p");
+                        let para = document.createElement("p");
                         para.innerHTML = doc.data().price;
                         document.getElementById("chairOne").appendChild(para);
-                        let displayPrice = document.getElementById("chairOne").innerHTML= doc.data().name;
+                        // let displayPrice = document.getElementById("chairOne").innerHTML= doc.data().name;
                 })
             })
         }
