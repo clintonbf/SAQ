@@ -18,21 +18,114 @@
         <table>
             <tr>
                 <td>
-                    <table id="picture">
-                            <tr><td><img id="pic"></td></tr>
+                    <table class="picture">
+                            <tr><td><img id="clint_pic" length="50" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
-                    <table id="chair_info">
-                        <tr><td id="chair_name"></td></tr>
-                        <tr><td id="comfort_options"></td></tr>
-                        <tr><td id="price"></td><td id="rating"></td></tr>
+                    <table class= "chair_info">
+                        <tr><td id="clint_name"></td></tr>
+                        <tr><td id="clint_comfort_options"></td></tr>
+                        <tr><td id="clint_price"></td><td id="clint_rating"></td></tr>
                     </table>
                 </td>
-
             </tr>
         </table>
+    </div>
 
+    <div id="fahad">
+        <table>
+            <tr>
+                <td>
+                    <table class="picture">
+                        <tr><td><img id="fahad_pic" length="50" width="100"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table class= "chair_info">
+                        <tr><td id="fahad_name"></td></tr>
+                        <tr><td id="fahad_comfort_options"></td></tr>
+                        <tr><td id="fahad_price"></td><td id="fahad_rating"></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="em">
+        <table>
+            <tr>
+                <td>
+                    <table class="picture">
+                        <tr><td><img id="em_pic" length="50" width="100"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table class= "chair_info">
+                        <tr><td id="em_name"></td></tr>
+                        <tr><td id="em_comfort_options"></td></tr>
+                        <tr><td id="em_price"></td><td id="em_rating"></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="neda">
+        <table>
+            <tr>
+                <td>
+                    <table class="picture">
+                        <tr><td><img id="neda_pic" length="50" width="100"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table class= "chair_info">
+                        <tr><td id="neda_name"></td></tr>
+                        <tr><td id="neda_comfort_options"></td></tr>
+                        <tr><td id="neda_price"></td><td id="neda_rating"></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="sam">
+        <table>
+            <tr>
+                <td>
+                    <table class="picture">
+                        <tr><td><img id="sam_pic" length="50" width="100"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table class= "chair_info">
+                        <tr><td id="sam_name"></td></tr>
+                        <tr><td id="sam_comfort_options"></td></tr>
+                        <tr><td id="sam_price"></td><td id="sam_rating"></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="chris">
+        <table>
+            <tr>
+                <td>
+                    <table class="picture">
+                        <tr><td><img id="chris_pic" length="50" width="100"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table class= "chair_info">
+                        <tr><td id="chris_name"></td></tr>
+                        <tr><td id="chris_comfort_options"></td></tr>
+                        <tr><td id="chris_price"></td><td id="chris_rating"></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <script>var the_db = firebase.firestore();</script>
@@ -45,10 +138,13 @@
                 if (doc.exists){
                     let ratings =  doc.data().ratings;
                     let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
-
                     //id, name, price, comfort_options, ratings, picture
-                    //THIS ISN'T WORKING; THE OBJECT WON'T RETURN// return new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
-                    return "booger";
+                    let chair = new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
+
+                    document.getElementById('chair_name').innerHTML = chair.name;
+                    document.getElementById('price').innerHTML = "$" + chair.price;
+                    document.getElementById('rating').innerHTML = chair.ratings;
+                    document.getElementById('pic').src = chair.picture;
                 }
                 else {
                     console.log("Didn't work");
@@ -58,14 +154,29 @@
             });
         }
 
-        // Code to insert chair info into web-page
-        let the_clint = get_single_chair("chair_0");
+        function display_catalog() {
+            let db_ref = the_db.collection("Chairs");
 
-        document.getElementById('chair_name').innerHTML = the_clint;
-        // document.getElementById('chair_name').innerHTML = the_clint.name;
-        // document.getElementById('price').innerHTML = "$" + the_clint.price;
-        // document.getElementById('rating').innerHTML = the_clint.ratings;
-        // document.getElementById('pic').src = the_clint.picture;
+            db_ref.get().then(function(catalog) {
+               // Create a div area and put the chair into it
+               catalog.forEach(function(doc){
+                   // Create the div tag. Append it to the document body
+                   let div_tag = document.createElement("div");
+                   document.body.appendChild(div_tag);
+
+                   let table_1 = document.createElement("table");
+                   document.body.div_tag.appendChild(table_1);
+                   document.body.div_tag.table_1.appendChild(document.createElement("tr"))
+
+
+
+               })
+            }).catch(function(error) {
+                console.log("Error displaying all items");
+            });
+        }
+        // Code to insert chair info into web-page
+        get_single_chair("chair_0");
     </script>
 
 </body>
