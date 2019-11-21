@@ -34,7 +34,7 @@
             var the_db = firebase.firestore();
 
             //Define chair object
-            function Chair(id, name, price, comfort_options, ratings, picture){
+            function Chair(id, name, price, comfort_options, rating, picture){
                 this.id = id;
                 this.name = name;
                 this.price = price;
@@ -43,7 +43,7 @@
                     back_support: comfort_options[1],
                     arms: comfort_options[2]
                 };
-                this.ratings = ratings;  // an array
+                this.rating = ratings;  // an array
                 this.picture = picture;
             }
 
@@ -90,7 +90,8 @@
                     firmness: add_chair.comfort_options.firmness,
                     back_support: add_chair.comfort_options.back_support,
                     arms: add_chair.comfort_options.arms,
-                    ratings: add_chair.ratings
+                    ratings: add_chair.ratings,
+                    picture: add_chair.picture
                 })
                 .then(function() {
                     console.log("Added chair " + add_chair.name);
@@ -137,7 +138,7 @@
             // Insert all chairs
             function insert_chairs() {
                 let chair_array = [];
-                let chair_path = "images/chair_images/"
+                let chair_path = "images/chair_images/";
                 chair_array.push(new Chair(1, "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint'));
                 chair_array.push(new Chair(2, "the Fahad", 800, [1, true, true], [3, 3, 3], chair_path + 'the_fahad'));
                 chair_array.push(new Chair(3, "the Em", 1250, [6, true, true], [5, 5], chair_path + 'the_em'));

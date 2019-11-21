@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View our catalogue</title>
+
+    <!-- init firebase mega thing-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <!-- init firestore -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <!-- init SAQ firebase -->
+    <script src="firebase_config.js"></script>
+    <!-- init SAQ objects -->
+    <script src="SAQ_objects.js"></script>
+</head>
+<body>
+    <div id="clint">
+        <table>
+            <tr>
+                <td>
+                    <table id="picture">
+                            <tr><td id="pic"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table id="chair_info">
+                        <tr><td id="chair_name"></td></tr>
+                        <tr><td id="comfort_options"></td></tr>
+                        <tr><td id="price"></td><td id="rating"></td></tr>
+                    </table>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <script>var the_db = firebase.firestore();</script>
+    <script>
+        // Get a chair from the DB
+        function get_chair_single_chair(chair_id) {
+            let db_ref = the_db.collection("Chairs").doc(chair_id);
+
+            db_ref.get().then(function(doc){
+                if (doc.exists){
+                    //id, name, price, comfort_options, ratings, picture
+                    let chair = new Chair(doc.data().id, doc.data().name, doc.data().comfort_options, doc.data().ratings, doc.data().picture);
+                    return chair;
+                }
+                else {
+                    console.log("Didn't work");
+                }
+            }).catch(function(error) {
+                console.log("Threw error " + error);
+            });
+        }
+    </script>
+
+    <script>
+        // Code to insert chair info into web-page
+        let the_clint = get_chair_single_chair("chair_01");
+        document.getElementById('pic').src = the_clint.picture;
+        document.getElementById('chair_name').innerHTML = the_clint.name;
+        document.getElementById('price').innerHTML = "$" + the_clint.price;
+        document.getElementById('rating').innerHTML = the_clint.ratings;
+    </script>
+
+</body>
+</html>

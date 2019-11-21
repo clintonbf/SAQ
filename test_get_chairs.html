@@ -47,8 +47,11 @@
 
                 db_ref.get().then(function(docs) {
                     docs.forEach(function(doc) {
+                        //Create a <p> to hold the Chair and add it to the DOM
                         let p_tag = document.createElement("p");
                         document.body.appendChild(p_tag);
+
+                        //Create a text node to to hold the chair name and append that to the newly-created <p>
                         let node = document.createTextNode(doc.data().name);
                         p_tag.appendChild(node)
                     })
