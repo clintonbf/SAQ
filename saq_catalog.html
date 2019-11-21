@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <table id="picture">
-                            <tr><td id="pic"></td></tr>
+                            <tr><td><img id="pic"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -38,14 +38,16 @@
     <script>var the_db = firebase.firestore();</script>
     <script>
         // Get a chair from the DB
-        function get_chair_single_chair(chair_id) {
+        function get_single_chair(chair_id) {
             let db_ref = the_db.collection("Chairs").doc(chair_id);
 
             db_ref.get().then(function(doc){
                 if (doc.exists){
+                    let ratings =  doc.data().ratings;
+                    let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
+
                     //id, name, price, comfort_options, ratings, picture
-                    let chair = new Chair(doc.data().id, doc.data().name, doc.data().comfort_options, doc.data().ratings, doc.data().picture);
-                    return chair;
+                    return new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
                 }
                 else {
                     console.log("Didn't work");
@@ -54,15 +56,14 @@
                 console.log("Threw error " + error);
             });
         }
-    </script>
 
-    <script>
         // Code to insert chair info into web-page
-        let the_clint = get_chair_single_chair("chair_01");
-        document.getElementById('pic').src = the_clint.picture;
+        let the_clint = get_single_chair("chair_0");
+
         document.getElementById('chair_name').innerHTML = the_clint.name;
         document.getElementById('price').innerHTML = "$" + the_clint.price;
         document.getElementById('rating').innerHTML = the_clint.ratings;
+        document.getElementById('pic').src = the_clint.picture;
     </script>
 
 </body>

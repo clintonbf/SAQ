@@ -1,7 +1,5 @@
 //Define chair object
 function Chair(id, name, price, comfort_options, ratings, picture){
-    console.log("inside other constructor")
-
     this.id = id;
     this.name = name;
     this.price = price;
