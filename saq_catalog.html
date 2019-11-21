@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                            <tr><td><img id="clint_pic" length="50" width="100"></td></tr>
+                            <tr><td><img id="clint_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -38,7 +38,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                        <tr><td><img id="fahad_pic" length="50" width="100"></td></tr>
+                        <tr><td><img id="fahad_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -57,7 +57,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                        <tr><td><img id="em_pic" length="50" width="100"></td></tr>
+                        <tr><td><img id="em_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -76,7 +76,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                        <tr><td><img id="neda_pic" length="50" width="100"></td></tr>
+                        <tr><td><img id="neda_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -95,7 +95,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                        <tr><td><img id="sam_pic" length="50" width="100"></td></tr>
+                        <tr><td><img id="sam_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -114,7 +114,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                        <tr><td><img id="chris_pic" length="50" width="100"></td></tr>
+                        <tr><td><img id="chris_pic" height="100" width="100"></td></tr>
                     </table>
                 </td>
                 <td>
@@ -130,6 +130,39 @@
 
     <script>var the_db = firebase.firestore();</script>
     <script>
+        // Get a prefix based on the chair name
+        function get_prefix(chair_name) {
+            if (chair_name === 'the Clint') {
+                return 'clint_';
+            }
+            else if (chair_name === 'the Fahad') {
+                return 'fahad_';
+            }
+            else if (chair_name === 'the Em') {
+                return 'em_';
+            }
+            else if (chair_name === 'the Neda') {
+                return 'neda_';
+            }
+            else if (chair_name === 'the Sam') {
+                return 'sam_';
+            }
+            else if (chair_name === 'the Chris') {
+                return 'chris_';
+            }
+        }
+
+        // Calculate an average
+        function calculate_average(arr) {
+            let sum = 0;
+
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+
+            return Math.floor(sum/arr.length);
+        }
+
         // Get a chair from the DB
         function get_single_chair(chair_id) {
             let db_ref = the_db.collection("Chairs").doc(chair_id);
@@ -155,28 +188,26 @@
         }
 
         function display_catalog() {
-            let db_ref = the_db.collection("Chairs");
+            let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
 
             db_ref.get().then(function(catalog) {
                // Create a div area and put the chair into it
                catalog.forEach(function(doc){
-                   // Create the div tag. Append it to the document body
-                   let div_tag = document.createElement("div");
-                   document.body.appendChild(div_tag);
+                   let name = doc.data().name;
+                   let prefix = get_prefix(name);
 
-                   let table_1 = document.createElement("table");
-                   document.body.div_tag.appendChild(table_1);
-                   document.body.div_tag.table_1.appendChild(document.createElement("tr"))
-
-
-
+                   document.getElementById(prefix + "name").innerHTML = name;
+                   document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
+                   document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
+                   document.getElementById(prefix + "pic").src = doc.data().picture;
                })
             }).catch(function(error) {
                 console.log("Error displaying all items");
             });
         }
         // Code to insert chair info into web-page
-        get_single_chair("chair_0");
+        // get_single_chair("chair_0");
+        display_catalog();
     </script>
 
 </body>
