@@ -53,7 +53,7 @@ function insert_chair(add_chair, id){
         });
 }
 
-//Implement insert_chair for all chairs
+//Initialize Firestore with chairs
 function insert_chairs() {
     let chair_array = [];
     let chair_path = "images/chair_images/";
@@ -86,7 +86,7 @@ function insert_sale(sale) {
         });
 }
 
-// Implement insert_sale() for all sales
+// Initialize Firestore with sales
 function insert_sales() {
     let sale_array = [];
     sale_array.push(new Sale(generate_trans_id(), "the Clint", "Boogie Woogie", "Oct 14, 2019"));
