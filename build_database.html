@@ -80,7 +80,7 @@
 
             // INSERTION FUNCTIONS
             // Insert a chair
-            function insert_chair(add_chair, id){
+            function insert_chair_to_firestore(add_chair, id){
                the_db.collection("Chairs").doc("chair_" + id).set({
                     id: id,
                     name: add_chair.name,
@@ -134,7 +134,7 @@
 
             // INSERTION IMPLEMENTATIONS
             // Insert all chairs
-            function insert_chairs() {
+            function create_chairs_array() {
                 let chair_array = [];
                 let chair_path = "images/chair_images/";
                 chair_array.push(new Chair('chair_01', "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint.jpg'));

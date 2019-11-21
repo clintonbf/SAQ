@@ -34,8 +34,8 @@ function delete_chair_record(db_ref, chair){
 
 //Code for building the Chairs collection
 // Insert a chair
-function insert_chair(add_chair, id){
-    the_db.collection("Chairs").doc("chair_" + id).set({
+function insert_chair_to_firestore(add_chair, id, collection_name){
+    the_db.collection(collection_name).doc("chair_" + id).set({
         id: id,
         name: add_chair.name,
         price: add_chair.price,
@@ -53,8 +53,8 @@ function insert_chair(add_chair, id){
         });
 }
 
-//Initialize Firestore with chairs
-function insert_chairs() {
+//Create an array of Chairs
+function create_chairs_array() {
     let chair_array = [];
     let chair_path = "images/chair_images/";
     chair_array.push(new Chair('chair_01', "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint.jpg'));
@@ -64,8 +64,15 @@ function insert_chairs() {
     chair_array.push(new Chair(5, "the Sam", 800, [9, false, false], [3, 5], chair_path + 'the_sam.jpg'));
     chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], chair_path + 'the_chris.jpg'));
 
-    for (let i = 0; i < chair_array.length; i++) {
-        insert_chair(chair_array[i], i);
+    return chair_array;
+}
+
+//Initialize Firestore with chairs
+function initialize_chair_collection(collection_name) {
+    let chair_collection = create_chairs_array();
+
+    for (let i = 0; i < chair_collection.length; i++) {
+        insert_chair_to_firestore(chair_collection[i], i, collection_name);
     }
 }
 
