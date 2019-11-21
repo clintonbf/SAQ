@@ -47,7 +47,8 @@
                     let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
 
                     //id, name, price, comfort_options, ratings, picture
-                    return new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
+                    //THIS ISN'T WORKING; THE OBJECT WON'T RETURN// return new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
+                    return "booger";
                 }
                 else {
                     console.log("Didn't work");
@@ -60,10 +61,11 @@
         // Code to insert chair info into web-page
         let the_clint = get_single_chair("chair_0");
 
-        document.getElementById('chair_name').innerHTML = the_clint.name;
-        document.getElementById('price').innerHTML = "$" + the_clint.price;
-        document.getElementById('rating').innerHTML = the_clint.ratings;
-        document.getElementById('pic').src = the_clint.picture;
+        document.getElementById('chair_name').innerHTML = the_clint;
+        // document.getElementById('chair_name').innerHTML = the_clint.name;
+        // document.getElementById('price').innerHTML = "$" + the_clint.price;
+        // document.getElementById('rating').innerHTML = the_clint.ratings;
+        // document.getElementById('pic').src = the_clint.picture;
     </script>
 
 </body>
