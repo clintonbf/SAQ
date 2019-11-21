@@ -7,7 +7,7 @@
 }
 
 .containerRight{
-    width: 50%;
+    width: 55%;
     padding-right: 5px;
     margin-left: auto;
     background-color: #6B6B6C;;
@@ -21,7 +21,7 @@
 .circle{
     position: absolute;
     width: 42px;
-    height: 44px;
+    /* height: 44px; */
     left: 252px;
     top: 17px;
     
@@ -33,11 +33,27 @@
 
 .neutralChair {
     position: absolute;
-    width: 406px;
-    height: 425px;
+    width: 500px;
+    height: 525px;
     left: -15px;
     top: 333px;
 
     background-image: "images/neutral_chair.jpeg";
     z-index: -1;
+}
+
+.login {
+    color: grey;
+    background: white;
+    position: absolute;
+    top:5%;
+    right: 10%;
+    border: thick solid black;
+    border-radius: 100px;
+    padding: 20px;
+}
+
+a {
+    text-decoration-line: none;
+    color: white;
 }
