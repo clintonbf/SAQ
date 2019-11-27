@@ -82,3 +82,26 @@ h1.OurSite {
     text-align: center;
 }
 
+.chairDisplay{
+
+}
+
+.chair_info {
+    font-size: large;
+    color: whitesmoke;
+    font-family: "Corbel";
+    font: bold;
+
+}
+
+.chairBox {
+    background-color: lightslategrey;
+    padding: 10px;
+    border: 5px solid whitesmoke;
+
+}
+
+.picture {
+
+}
+
