@@ -16,7 +16,7 @@
     padding-right: 5px;
     margin-left: auto;
     background-color: #6B6B6C;
-    
+    box-shadow: 5px 10px #888888;
 }
 
 .hPadding {
@@ -31,8 +31,6 @@
     top: -1.95%;
     opacity: 60%;
     height: 800px;
-
-    background-image: "images/neutral_chair.jpeg";
     z-index: -1;
 }
 
@@ -40,25 +38,28 @@
     /*position: relative;*/
     width: 135px;
     height: 135px;
-    padding-right: 5px;
+    padding-top: 45px;
     margin-left: auto;
 
     text-align: center;
+    text-anchor: middle;
+    text-shadow: #6B6B6C;
+    font-size: x-large;
 
 
-
-
-    background: #C4C4C4;
-    border: 1px solid #000000;
+    background: whitesmoke;
+    border: 1px solid whitesmoke;
     border-radius: 300px;
     box-sizing: border-box;
 
-
 }
 
-a {
-    text-decoration-line: none;
-    color: white;
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color: whitesmoke;
+}
+h1.OurSite {
+    font-family: Sylfaen;
 }
 
 
