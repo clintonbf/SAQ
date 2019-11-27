@@ -19,8 +19,9 @@
     // init firestore
         var db = firebase.firestore();
         document.getElementById("chairOne").addEventListener("click", function() { 
-            GetList("Chair");
+            GetList("Chairs");
         })
+
         function GetList(collection) {
             var dbRef = db.collection(collection).get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc){

@@ -6,54 +6,59 @@
     color: white;
 }
 
-.containerRight{
+.shopByDiv {
+    position: relative;
+    top: 200px;
+}
+
+.containerRight {
     width: 55%;
     padding-right: 5px;
     margin-left: auto;
-    background-color: #6B6B6C;;
+    background-color: #6B6B6C;
     
 }
 
-.hPadding{
+.hPadding {
     padding-top: 15px;
 }
 
-.circle{
-    position: absolute;
-    width: 42px;
-    /* height: 44px; */
-    left: 252px;
-    top: 17px;
-    
-    background: #C4C4C4;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 300;
-}
 
 .neutralChair {
     position: absolute;
-    width: 500px;
-    height: 525px;
-    left: -15px;
-    top: 333px;
+    left: -4%;
+    right: -20.53%;
+    top: -1.95%;
+    opacity: 60%;
+    height: 800px;
 
     background-image: "images/neutral_chair.jpeg";
     z-index: -1;
 }
 
 .login {
-    color: grey;
-    background: white;
-    position: absolute;
-    top:5%;
-    right: 10%;
-    border: thick solid black;
-    border-radius: 100px;
-    padding: 20px;
+    /*position: relative;*/
+    width: 135px;
+    height: 135px;
+    padding-right: 5px;
+    margin-left: auto;
+
+    text-align: center;
+
+
+
+
+    background: #C4C4C4;
+    border: 1px solid #000000;
+    border-radius: 300px;
+    box-sizing: border-box;
+
+
 }
 
 a {
     text-decoration-line: none;
     color: white;
 }
+
+
