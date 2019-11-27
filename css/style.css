@@ -18,6 +18,11 @@
     background-color: #6B6B6C;
     box-shadow: 5px 10px #888888;
 }
+.containerR{
+    width: 55%;
+    padding-right: 5px;
+    margin-left: auto;
+}
 
 .hPadding {
     padding-top: 15px;
@@ -60,6 +65,20 @@ a:hover, a:visited, a:link, a:active {
 }
 h1.OurSite {
     font-family: Sylfaen;
+    color: whitesmoke;
+    padding-top: 10px;
 }
 
+.icon {
+    height: 50px;
+}
+
+#userInfo {
+    padding-top: 200px;
+    padding-bottom: 300px;
+}
+
+.userInfo {
+    text-align: center;
+}
 
