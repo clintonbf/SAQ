@@ -101,7 +101,15 @@ h1.OurSite {
 
 }
 
-.picture {
+.quickadd {
+    background-color: darkgrey;
+    padding: 5px;
+    box-shadow: gray;
+    border-radius: 3px;
+}
 
+.quickadd:hover {
+    color: lightblue;
+    cursor: pointer;
 }
 
