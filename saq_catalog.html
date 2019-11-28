@@ -15,7 +15,7 @@
     <script src="SAQ_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script>
         //Create a JSON array of all of the chair objects
@@ -24,14 +24,19 @@
     </script>
 </head>
 <body>
-<div class = "container.container" style = "background-color: gray; padding: 10px">
-    <div><h1 class= "OurSite"><img class="icon" src="images/home_page/iconchair.png" alt = "chair-icon">
-        Sit Your Ass Down </h1></div>
-    <form><div class="containerR"><input value = "Search"><button type="submit"> Go </button>
+<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
+    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
+        <h1 class="display-4" style="color: white;"> Site Title </h1></div>
+
+    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
+                                                               aria-describedby="search" placeholder="Search Catalouge">
+        <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+            <a href="userLogin.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
+        </div>
     </div></form></div>
 
-    <div id="clint" class="chairBox">
-        <table>
+    <div id="clint" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -50,8 +55,8 @@
         </table>
     </div>
 
-    <div id="fahad" class="chairBox">
-        <table>
+    <div id="fahad" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -70,8 +75,8 @@
         </table>
     </div>
 
-    <div id="em" class="chairBox">
-        <table>
+    <div id="em" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -90,8 +95,8 @@
         </table>
     </div>
 
-    <div id="neda" class="chairBox">
-        <table>
+    <div id="neda" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -111,8 +116,8 @@
         </table>
     </div>
 
-    <div id="sam" class="chairBox">
-        <table>
+    <div id="sam" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -131,12 +136,12 @@
         </table>
     </div>
 
-    <div id="chris" class="chairBox">
-    <table>
+    <div id="chris" class="container" style="background-color: black; padding: 5px; color:white;">
+    <table class="display-4" style = "font-size: large">
         <tr>
             <td>
                 <table class="picture">
-                    <tr><td><img id="chris_pic" height="100" width="100"></td></tr>
+                    <tr><td><img class = "img-fluid" id="chris_pic" height="100" width="100"></td></tr>
                 </table>
             </td>
             <td>
@@ -144,7 +149,7 @@
                     <tr><td id="chris_name"></td></tr>
                     <tr><td id="chris_comfort_options"></td></tr>
                     <tr><td id="chris_price"></td><td id="chris_rating"></td></tr>
-                    <tr><td><div class="quickAdd"> quick add </div></td></tr>
+                    <tr><td><div id = "chrisAdd" class="quickadd"> quick add </div></td></tr>
                 </table>
             </td>
         </tr>
@@ -155,6 +160,8 @@
 
     <script>var the_db = firebase.firestore();</script>
     <script>
+    let selectedChairs = [];
+    let cartCount = 0;
         // Get a prefix based on the chair name
         function get_prefix(chair_name) {
             if (chair_name === 'the Clint') {
@@ -263,6 +270,7 @@
         // get_single_chair("chair_0");
         display_catalog();
 
+
         function filter_by_price() {
             // Use JS to loop through the chairs_array
             // and set the CSS display:none property according to the filter-criteria and the element_id
@@ -274,9 +282,70 @@
 
 
         }
+
+
     </script>
 
+<script>
+    document.getElementById("clintAdd").addEventListener("click", function() {
+        AddChairClint("chair_0");
+    });
+    document.getElementById("fahadAdd").addEventListener("click", function() {
+        AddChairFahad("chair_1");
+    });
+    document.getElementById("emAdd").addEventListener("click", function() {
+        AddChair("chair_2");
+    });
+    document.getElementById("nedaAdd").addEventListener("click", function() {
+        AddChair("chair_3");
+    });
+    document.getElementById("samAdd").addEventListener("click", function() {
+        AddChair("chair_4");
+    });
+    document.getElementById("chrisAdd").addEventListener("click", function() {
+        AddChair("chair_5");
+    });
 
+
+    function AddChairClint(doc) {
+
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Clint" === doc.data().name) {
+                    selectedChairs.push(doc.data().id);
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart: " + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
+
+    function AddChairFahad(doc) {
+
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Fahad" === doc.data().name) {
+                    selectedChairs.push(doc.data().id);
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
+
+
+
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
