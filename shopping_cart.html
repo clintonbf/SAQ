@@ -6,7 +6,7 @@
     <script>
         //produce an array of chair objects in the users cart
         // let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
-        let cart_items = JSON.parse(localStorage.getItem('chairs'));
+        let cart_items = JSON.parse(localStorage.getItem('cart_items'));
     </script>
 </head>
 <body>
@@ -26,8 +26,7 @@
                 //Main table structure is now complete. Add all the relevant details in TDs
                 let td_name = document.createElement('td');
                 row.appendChild(td_name);
-                let cell_chair_name = cart_items[i].name;
-                td_name.innerHTML = cell_chair_name;
+                td_name.innerHTML = cart_items[i].name;
                 let cell_chair_price = cart_items[i].price;
                 let td_price = document.createElement('td');
                 row.appendChild(td_price);
@@ -65,6 +64,12 @@
 
         displayCartTotal();
     </script>
-    <input type="submit" value="Checkout">
+    <input type="button" value="Checkout" id="checkout">
+
+    <script>
+        document.getElementById("checkout").onclick = function() {
+
+        };
+    </script>
 </body>
 </html>
