@@ -28,7 +28,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                            <tr><td><img id="clint_pic" height="100" width="100"></td></tr>
+                        <tr><td><a href="chair_specific.html"><img id="clint_pic" height="100" width="100"></a></td></tr>
                     </table>
                 </td>
                 <td>
@@ -218,6 +218,18 @@
 
         // get_single_chair("chair_0");
         display_catalog();
+
+        function filter_by_price() {
+            // Use JS to loop through the chairs_array
+            // and set the CSS display:none property according to the filter-criteria and the element_id
+
+            let min_price = document.getElementById('min_price');
+            let max_price = document.getElementById('max_price');
+
+            //Set a CSS display property to hidden or visible
+
+
+        }
     </script>
 
 
