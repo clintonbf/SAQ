@@ -20,8 +20,8 @@
     <script>
         //Create a JSON array of all of the chair objects
         let chair_arr = create_chairs_array();
-        localStorage.setItem('chairs', JSON.stringify(chair_arr));
-        localStorage.setItem('cartItems', JSON.stringify(chair_arr)); //This is the JSON that will be passed along to the shopping_cart
+        //localStorage.setItem('chairs', JSON.stringify(chair_arr));
+
     </script>
 </head>
 <body>
@@ -158,8 +158,6 @@
     </table>
 </div>
 
-
-
     <script>var the_db = firebase.firestore();</script>
     <script>
     let selectedChairs = [];
@@ -281,10 +279,7 @@
             let max_price = document.getElementById('max_price');
 
             //Set a CSS display property to hidden or visible
-
-
         }
-
 
     </script>
 
@@ -409,6 +404,18 @@
         })
     }
 
+    function addChairToLocalStorage(chairName) {
+        //loop through the chairs array to find the chair
+        let theChair = undefined;
+
+        for (let i = 0; i < chair_arr.length; i++) {
+            if (chair_arr[i].name === chairName) {
+                theChair = chair_arr[i];
+            }
+        }
+
+        document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+    }
 
     }
 
