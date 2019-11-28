@@ -12,9 +12,16 @@
     <script src="firebase_config.js"></script>
     <!-- init SAQ objects -->
     <script src="SAQ_objects.js"></script>
+    <script src="SAQ_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        //Create a JSON array of all of the chair objects
+        let chair_arr = create_chairs_array();
+        localStorage.setItem('chairs', JSON.stringify(chair_arr));
+    </script>
 </head>
 <body>
 <div class = "container.container" style = "background-color: gray; padding: 10px">
