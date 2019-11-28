@@ -292,28 +292,22 @@
         AddChairClint("chair_0");
     });
     document.getElementById("fahadAdd").addEventListener("click", function() {
-        AddChairFahad("chair_1");
-    });
+        AddChairFahad("chair_1");});
     document.getElementById("emAdd").addEventListener("click", function() {
-        AddChair("chair_2");
-    });
+        AddChairEm("chair_2");});
     document.getElementById("nedaAdd").addEventListener("click", function() {
-        AddChair("chair_3");
-    });
+        AddChairNeda("chair_3");});
     document.getElementById("samAdd").addEventListener("click", function() {
-        AddChair("chair_4");
-    });
+        AddChairSam("chair_4");});
     document.getElementById("chrisAdd").addEventListener("click", function() {
-        AddChair("chair_5");
-    });
+        AddChairChris("chair_5");});
 
 
     function AddChairClint(doc) {
-
         var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Clint" === doc.data().name) {
-                    selectedChairs.push(doc.data().id);
+                    selectedChairs.push(doc.data());
                     console.log(selectedChairs);
                     cartCount ++;
                     document.getElementById('cart').innerHTML = "Cart: " + cartCount.toString();
@@ -331,7 +325,7 @@
         var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Fahad" === doc.data().name) {
-                    selectedChairs.push(doc.data().id);
+                    selectedChairs.push(doc.data());
                     console.log(selectedChairs);
                     cartCount ++;
                     document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
@@ -344,6 +338,75 @@
         })
     }
 
+
+    function AddChairEm(doc) {
+
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Em" === doc.data().name) {
+                    selectedChairs.push(doc.data());
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
+
+    function AddChairNeda(doc) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Neda" === doc.data().name) {
+                    selectedChairs.push(doc.data());
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
+
+    function AddChairSam(doc) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Sam" === doc.data().name) {
+                    selectedChairs.push(doc.data());
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
+
+    function AddChairChris(doc) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if ("the Chris" === doc.data().name) {
+                    selectedChairs.push(doc.data());
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
 
 
 </script>
