@@ -20,8 +20,7 @@
     <script>
         //Create a JSON array of all of the chair objects
         let chair_arr = create_chairs_array();
-        //localStorage.setItem('chairs', JSON.stringify(chair_arr));
-
+        localStorage.setItem('cart_items', JSON.stringify(chair_arr));
     </script>
 </head>
 <body>
@@ -31,7 +30,7 @@
 
     <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
                                                                aria-describedby="search" placeholder="Search Catalouge">
-        <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
     </div></form></div>
@@ -158,6 +157,8 @@
     </table>
 </div>
 
+
+
     <script>var the_db = firebase.firestore();</script>
     <script>
     let selectedChairs = [];
@@ -220,7 +221,7 @@
         }
 
         function display_catalog() {
-            let db_ref = the_db.collection("Chairs"); // ToDo <----- replace with live Collection
+            let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
 
             db_ref.get().then(function(catalog) {
                // Create a div area and put the chair into it
@@ -242,7 +243,7 @@
         display_catalog();
 
         function display_catalog_dynamic() {
-            let db_ref = the_db.collection("Chairs"); // ToDo <----- replace with live Collection
+            let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
 
             db_ref.get().then(function(catalog) {
                 // Create a div area and put the chair into it
@@ -279,7 +280,10 @@
             let max_price = document.getElementById('max_price');
 
             //Set a CSS display property to hidden or visible
+
+
         }
+
 
     </script>
 
@@ -300,7 +304,7 @@
 
 
     function AddChairClint(doc) {
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Clint" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -318,7 +322,7 @@
 
     function AddChairFahad(doc) {
 
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Fahad" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -337,7 +341,7 @@
 
     function AddChairEm(doc) {
 
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Em" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -354,7 +358,7 @@
     }
 
     function AddChairNeda(doc) {
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Neda" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -371,7 +375,7 @@
     }
 
     function AddChairSam(doc) {
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Sam" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -388,7 +392,7 @@
     }
 
     function AddChairChris(doc) {
-        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Chris" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -404,28 +408,12 @@
         })
     }
 
-    function addChairToLocalStorage(chairName) {
-        //loop through the chairs array to find the chair
-        let theChair = undefined;
-
-        for (let i = 0; i < chair_arr.length; i++) {
-            if (chair_arr[i].name === chairName) {
-                theChair = chair_arr[i];
-            }
-        }
-
-        document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
-    }
-
-    }
-
     document.getElementById("ourCart").addEventListener("click", function() {
         storeCart(selectedChairs);});
 
     function storeCart(array){
         localStorage.setItem('cartItems', JSON.stringify(array));
     }
-
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
