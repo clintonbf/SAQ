@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<div class = "jumbotron jumbotron-fluid" style = "background-color: gray">
-    <div><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
-        <h1 class="display-4" style="color: white; font: medium">Site Title </h1></div>
-    <form><div class ="form-group"><input type="email" class="form-control" id="searchbar"
-                                          aria-describedby="search" placeholder="Search Catalouge">
-    </div></form></div>
+<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px;">
+    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
+        <h1 class="display-4" style="color: white;">Site Title </h1></div>
+    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
+                                                               aria-describedby="search" placeholder="Search Catalouge">
+    </div></form>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 
@@ -27,7 +27,7 @@
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
 
-<h1 class="lead">Sign in to Flying Buttresses</h1>
+<h1 class="lead" style="color: white; padding: 5px">Sign in to Flying Buttresses</h1>
 <div id="firebaseui-auth-container" style = "padding: 10px"></div>
 
 <script>
@@ -68,7 +68,7 @@ var uiConfig = {
     // },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     // signInFlow: 'popup',
-    signInSuccessUrl: 'wazzup.html',
+    signInSuccessUrl: 'main.html',
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         /*firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -107,14 +107,10 @@ ui.start('#firebaseui-auth-container', uiConfig);
 //
 // // The start method will wait until the DOM is loaded.
 // ui.start('#firebaseui-auth-container', uiConfig);
+
+    // localStorage("User Name", "Name")
 </script>
-
-
-
-
-
-
-
-
+</div>
+<div class="container" style="padding: 20px; background-color: rgba(0,0,0,0.63); color: lightsteelblue" ; position="fixed-bottom"> website with chairs on it  </div>
 </body>
 </html>

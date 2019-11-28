@@ -15,7 +15,7 @@
     <script src="SAQ_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script>
         //Create a JSON array of all of the chair objects
@@ -24,13 +24,18 @@
     </script>
 </head>
 <body>
-<div class = "container.container" style = "background-color: gray; padding: 10px">
-    <div><h1 class= "OurSite"><img class="icon" src="images/home_page/iconchair.png" alt = "chair-icon">
-        Sit Your Ass Down </h1></div>
-    <form><div class="containerR"><input value = "Search"><button type="submit"> Go </button>
+<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; z-index: -1">
+    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
+        <h1 class="display-4" style="color: white;"> Site Title </h1></div>
+
+    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
+                                                               aria-describedby="search" placeholder="Search Catalouge">
+        <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 20px; position: absolute; left: 70%">
+            <a href="userLogin.html" style = "color: grey"> User </a></button><div></div>
+        </div>
     </div></form></div>
 
-    <div id="clint" class="chairBox">
+    <div id="clint" class="container">
         <table>
             <tr>
                 <td>
@@ -50,7 +55,7 @@
         </table>
     </div>
 
-    <div id="fahad" class="chairBox">
+    <div id="fahad" class="container">
         <table>
             <tr>
                 <td>
@@ -70,7 +75,7 @@
         </table>
     </div>
 
-    <div id="em" class="chairBox">
+    <div id="em" class="container">
         <table>
             <tr>
                 <td>
@@ -90,7 +95,7 @@
         </table>
     </div>
 
-    <div id="neda" class="chairBox">
+    <div id="neda" class="container">
         <table>
             <tr>
                 <td>
@@ -111,7 +116,7 @@
         </table>
     </div>
 
-    <div id="sam" class="chairBox">
+    <div id="sam" class="container">
         <table>
             <tr>
                 <td>
@@ -131,12 +136,12 @@
         </table>
     </div>
 
-    <div id="chris" class="chairBox">
+    <div id="chris" class="container">
     <table>
         <tr>
             <td>
                 <table class="picture">
-                    <tr><td><img id="chris_pic" height="100" width="100"></td></tr>
+                    <tr><td><img class = "img-fluid" id="chris_pic" height="100" width="100"></td></tr>
                 </table>
             </td>
             <td>
