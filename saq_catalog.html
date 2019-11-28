@@ -31,7 +31,7 @@
 
     <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
                                                                aria-describedby="search" placeholder="Search Catalouge">
-        <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
     </div></form></div>
@@ -429,7 +429,12 @@
 
     }
 
+    document.getElementById("ourCart").addEventListener("click", function() {
+        storeCart(selectedChairs);});
 
+    function storeCart(array){
+        localStorage.setItem('cartItems', JSON.stringify(array));
+    }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
