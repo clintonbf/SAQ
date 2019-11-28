@@ -30,7 +30,7 @@
                 let cell_chair_price = cart_items[i].price;
                 let td_price = document.createElement('td');
                 row.appendChild(td_price);
-                td_price.innerHTML = "$" + cell_chair_price;
+                td_price.innerHTML = "Total: $" + cell_chair_price;
             }
         }
 
@@ -67,8 +67,9 @@
     <input type="button" value="Checkout" id="checkout">
 
     <script>
+        //Handler for moving to checkout page
         document.getElementById("checkout").onclick = function() {
-
+            window.open('http://google.ca'); // Replace this with location to the checkout
         };
     </script>
 </body>

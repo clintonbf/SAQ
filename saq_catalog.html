@@ -31,7 +31,7 @@
 
     <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
                                                                aria-describedby="search" placeholder="Search Catalouge">
-        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+        <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
     </div></form></div>
@@ -222,7 +222,7 @@
         }
 
         function display_catalog() {
-            let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
+            let db_ref = the_db.collection("Chairs"); // ToDo <----- replace with live Collection
 
             db_ref.get().then(function(catalog) {
                // Create a div area and put the chair into it
@@ -244,7 +244,7 @@
         display_catalog();
 
         function display_catalog_dynamic() {
-            let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
+            let db_ref = the_db.collection("Chairs"); // ToDo <----- replace with live Collection
 
             db_ref.get().then(function(catalog) {
                 // Create a div area and put the chair into it
@@ -305,7 +305,7 @@
 
 
     function AddChairClint(doc) {
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Clint" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -323,7 +323,7 @@
 
     function AddChairFahad(doc) {
 
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Fahad" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -342,7 +342,7 @@
 
     function AddChairEm(doc) {
 
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Em" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -359,7 +359,7 @@
     }
 
     function AddChairNeda(doc) {
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Neda" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -376,7 +376,7 @@
     }
 
     function AddChairSam(doc) {
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Sam" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -393,7 +393,7 @@
     }
 
     function AddChairChris(doc) {
-        var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        var dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if ("the Chris" === doc.data().name) {
                     selectedChairs.push(doc.data());
@@ -409,23 +409,6 @@
         })
     }
 
-    function addChairToCartArray(chair_name) {
-        let dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                if (doc.data().name === chair_name) {
-                    selectedChairs.push(doc.data());
-                    console.log(selectedChairs);
-                    cartCount ++;
-                    document.getElementById('cart').innerHTML = "Cart: " + cartCount.toString();
-                    console.log("works");
-                }
-            })
-            //     .catch(function (error) {
-            //     console.log("Error displaying all items");
-            // })
-        })
-        ///ORRRRRR
-        // We have an array of all of the objects. Just query that. But beware of messing with Em's code, which works.
 
     }
 
