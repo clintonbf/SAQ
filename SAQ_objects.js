@@ -39,3 +39,8 @@ function User(user_id, name, surname) {
         this.date_acquired = date;
     }
 }
+
+
+
+
+

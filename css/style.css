@@ -9,17 +9,19 @@
 .shopByDiv {
     position: relative;
     top: 200px;
+    left: 99%;
 }
 
 .containerRight {
-    width: 55%;
-    padding-right: 5px;
-    margin-left: auto;
+    width: 99%;
+    padding-right: 10px;
+    margin: auto;
     background-color: #6B6B6C;
     box-shadow: 5px 10px #888888;
 }
+
 .containerR{
-    width: 55%;
+    width: 99%;
     padding-right: 5px;
     margin-left: auto;
 }
@@ -33,7 +35,7 @@
     position: absolute;
     left: -4%;
     right: -20.53%;
-    top: -1.95%;
+    top: 30%;
     opacity: 60%;
     height: 800px;
     z-index: -1;
@@ -82,23 +84,24 @@ h1.OurSite {
     text-align: center;
 }
 
-.chairDisplay{
-
-}
-
 .chair_info {
     font-size: large;
     color: whitesmoke;
     font-family: "Corbel";
     font: bold;
-
 }
 
 .chairBox {
     background-color: lightslategrey;
     padding: 10px;
     border: 5px solid whitesmoke;
+}
 
+.quickaddClint {
+    background-color: darkgrey;
+    padding: 5px;
+    box-shadow: gray;
+    border-radius: 3px;
 }
 
 .quickadd {
@@ -107,6 +110,7 @@ h1.OurSite {
     box-shadow: gray;
     border-radius: 3px;
 }
+
 
 .quickadd:hover {
     color: lightblue;
