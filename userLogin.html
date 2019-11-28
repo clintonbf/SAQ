@@ -111,7 +111,7 @@ ui.start('#firebaseui-auth-container', uiConfig);
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            localStorage.setItem("userName", JSON.stringify(user.displayName));
+            localStorage.setItem('userName', JSON.stringify(user.displayName));
         }
     })
 
