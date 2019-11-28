@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Your shopping cart</title>
     <script>
-        let chair_arr = JSON.parse(localStorage.getItem('chairs'));
+        let cart_items = JSON.parse(localStorage.getItem('shopping_cart')); //this should produce an array of chair objects
     </script>
 </head>
 <body>
@@ -12,7 +12,23 @@
     <p id="chair"></p>
 
     <script>
-        document.getElementById("chair").innerHTML = chair_arr[0]['name'];
+        function displayCart() {
+            for (let i = 0; i < cart_items.length; i++) {
+                let div_tag = document.createElement('div');
+                document.appendChild(div_tag);
+                let main_table = document.createElement('table');
+                document.appendChild(main_table);
+                let row = document.createElement('tr');
+                main_table.appendChild(row);
+
+                //Main table structure is now complete. Add all the relevant details in TDs
+                let cell_chair_name = cart_items[i].name;
+                let td_name = document.createElement('td');
+                row.appendChild(td_name);
+                let name_node = document.createTextNode(cell_chair_name);
+                td_name.appendChild(name_node);
+            }
+        }
     </script>
 </div>
 </body>
