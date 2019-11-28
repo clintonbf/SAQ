@@ -5,7 +5,6 @@
     <title>Your shopping cart</title>
     <script>
         //produce an array of chair objects in the users cart
-        // let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
         let cart_items = JSON.parse(localStorage.getItem('cartItems'));
     </script>
 </head>
@@ -69,7 +68,7 @@
     <script>
         //Handler for moving to checkout page
         document.getElementById("checkout").onclick = function() {
-            window.open('http://google.ca'); // Replace this with location to the checkout
+            window.open('usercheckout.html'); // Replace this with location to the checkout
         };
     </script>
 </body>
