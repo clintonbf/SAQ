@@ -24,19 +24,19 @@
     </script>
 </head>
 <body>
-<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; z-index: -1">
+<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
     <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
         <h1 class="display-4" style="color: white;"> Site Title </h1></div>
 
     <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
                                                                aria-describedby="search" placeholder="Search Catalouge">
         <br><div class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 20px; position: absolute; left: 70%">
-            <a href="userLogin.html" style = "color: grey"> User </a></button><div></div>
+            <a href="userLogin.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
     </div></form></div>
 
-    <div id="clint" class="container">
-        <table>
+    <div id="clint" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -55,8 +55,8 @@
         </table>
     </div>
 
-    <div id="fahad" class="container">
-        <table>
+    <div id="fahad" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -75,8 +75,8 @@
         </table>
     </div>
 
-    <div id="em" class="container">
-        <table>
+    <div id="em" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -95,8 +95,8 @@
         </table>
     </div>
 
-    <div id="neda" class="container">
-        <table>
+    <div id="neda" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -116,8 +116,8 @@
         </table>
     </div>
 
-    <div id="sam" class="container">
-        <table>
+    <div id="sam" class="container" style="background-color: black; padding: 5px; color:white;">
+        <table class="display-4" style = "font-size: large">
             <tr>
                 <td>
                     <table class="picture">
@@ -136,8 +136,8 @@
         </table>
     </div>
 
-    <div id="chris" class="container">
-    <table>
+    <div id="chris" class="container" style="background-color: black; padding: 5px; color:white;">
+    <table class="display-4" style = "font-size: large">
         <tr>
             <td>
                 <table class="picture">
@@ -149,7 +149,7 @@
                     <tr><td id="chris_name"></td></tr>
                     <tr><td id="chris_comfort_options"></td></tr>
                     <tr><td id="chris_price"></td><td id="chris_rating"></td></tr>
-                    <tr><td><div class="quickAdd"> quick add </div></td></tr>
+                    <tr><td><div id = "chrisAdd" class="quickadd"> quick add </div></td></tr>
                 </table>
             </td>
         </tr>
@@ -160,6 +160,8 @@
 
     <script>var the_db = firebase.firestore();</script>
     <script>
+    let selectedChairs = [];
+    let cartCount = 0;
         // Get a prefix based on the chair name
         function get_prefix(chair_name) {
             if (chair_name === 'the Clint') {
@@ -280,6 +282,51 @@
 
 
         }
+
+
+
+        document.getElementById("clintAdd").addEventListener("click", function() {
+            AddChair("chair_0");
+        });
+        document.getElementById("fahadAdd").addEventListener("click", function() {
+            AddChair("chair_1");
+    });
+        document.getElementById("emAdd").addEventListener("click", function() {
+            AddChair("chair_2");
+    });
+        document.getElementById("nedaAdd").addEventListener("click", function() {
+            AddChair("chair_3");
+    });
+        document.getElementById("samAdd").addEventListener("click", function() {
+            AddChair("chair_4");
+    });
+        document.getElementById("chrisAdd").addEventListener("click", function() {
+            AddChair("chair_5");
+    });
+
+            function AddChair(doc) {
+
+                var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+
+                        if ("chair_0" === doc.data()) {
+                            selectedChairs.push(doc.data().id);
+                            console.log(selectedChairs);
+                            cartCount ++;
+                            document.getElementById('cart').innerHTML = "Cart <br>" + cartCount.toString();
+                            console.log("works")
+                        }
+                    })
+                    //     .catch(function (error) {
+                    //     console.log("Error displaying all items");
+                    // })
+                })
+            }
+
+
+
+
+
     </script>
 
 
