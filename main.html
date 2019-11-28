@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
-    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon"><p class = "usergreeting" style="display: inline">Welcome</p>
+    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon"><p class = "usergreeting" id="EmRocks" style="display: inline">Welcome</p>
         <h1 class="display-4" style="color: white;"> Site Title </h1></div>
     <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
                                                                aria-describedby="search" placeholder="Search Catalouge">
@@ -33,12 +33,13 @@
 <script>
 
     function displayUser(){
-        let greetName = localStorage.getItem("userName");
-        console.log('greetName');
-        document.getElementById('usergreeting').innerHTML = "Welcome" + greetName.toString();
+        var usergreet = JSON.parse(localStorage.getItem('userName'));
+        console.log(usergreet);
+        document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
     }
 
     displayUser();
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
