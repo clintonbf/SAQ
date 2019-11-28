@@ -5,7 +5,8 @@
     <title>Title</title>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--    <link href="css/style.css" rel="stylesheet">-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -108,9 +109,14 @@ ui.start('#firebaseui-auth-container', uiConfig);
 // // The start method will wait until the DOM is loaded.
 // ui.start('#firebaseui-auth-container', uiConfig);
 
-    // localStorage("User Name", "Name")
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            localStorage.setItem("userName", JSON.stringify(user.displayName));
+        }
+    })
+
 </script>
 </div>
-<div class="container" style="padding: 20px; background-color: rgba(0,0,0,0.63); color: lightsteelblue" ; position="fixed-bottom"> website with chairs on it  </div>
+<div class="container" style="padding: 20px; background-color: rgba(0,0,0,0.63); color: lightsteelblue" position="fixed-bottom"> website with chairs on it  </div>
 </body>
 </html>
