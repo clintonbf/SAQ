@@ -4,32 +4,39 @@
     <meta charset="UTF-8">
     <title>Your shopping cart</title>
     <script>
-        let cart_items = JSON.parse(localStorage.getItem('shopping_cart')); //this should produce an array of chair objects
+        //produce an array of chair objects in the users cart
+        // let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
+        let cart_items = JSON.parse(localStorage.getItem('chairs'));
     </script>
 </head>
 <body>
-<div id="cart">
-    <p id="chair"></p>
-
     <script>
         function displayCart() {
             for (let i = 0; i < cart_items.length; i++) {
                 let div_tag = document.createElement('div');
-                document.appendChild(div_tag);
+                document.body.appendChild(div_tag);
                 let main_table = document.createElement('table');
-                document.appendChild(main_table);
+                main_table.setAttribute("border", "solid");
+                div_tag.appendChild(main_table);
                 let row = document.createElement('tr');
                 main_table.appendChild(row);
 
                 //Main table structure is now complete. Add all the relevant details in TDs
-                let cell_chair_name = cart_items[i].name;
                 let td_name = document.createElement('td');
                 row.appendChild(td_name);
-                let name_node = document.createTextNode(cell_chair_name);
-                td_name.appendChild(name_node);
+                let cell_chair_name = cart_items[i].name;
+                td_name.innerHTML = cell_chair_name;
+                let cell_chair_price = cart_items[i].price;
+                let td_price = document.createElement('td');
+                row.appendChild(td_price);
+                td_price.innerHTML = "$" + cell_chair_price;
             }
         }
+
+        displayCart();
     </script>
-</div>
+
+    <input type="submit" value="Checkout">
+
 </body>
 </html>
