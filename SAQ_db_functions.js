@@ -54,6 +54,7 @@ function insert_chair_to_firestore(add_chair, id, collection_name){
 }
 
 //Create an array of Chairs
+// Beware! This code is replicated in SAQ_functions.js. But, since imports are so difficult I've elected to keep it duplicated.
 function create_chairs_array() {
     let chair_array = [];
     let chair_path = "images/chair_images/";

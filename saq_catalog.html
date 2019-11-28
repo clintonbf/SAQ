@@ -12,9 +12,16 @@
     <script src="firebase_config.js"></script>
     <!-- init SAQ objects -->
     <script src="SAQ_objects.js"></script>
+    <script src="SAQ_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        //Create a JSON array of all of the chair objects
+        let chair_arr = create_chairs_array();
+        localStorage.setItem('chairs', JSON.stringify(chair_arr));
+    </script>
 </head>
 <body>
 <div class = "container.container" style = "background-color: gray; padding: 10px">
@@ -28,7 +35,7 @@
             <tr>
                 <td>
                     <table class="picture">
-                            <tr><td><img id="clint_pic" height="100" width="100"></td></tr>
+                        <tr><td><a href="chair_specific.html"><img id="clint_pic" height="100" width="100"></a></td></tr>
                     </table>
                 </td>
                 <td>
@@ -223,10 +230,11 @@
                 console.log("Error displaying all items");
             });
         }
-        // Code to insert chair info into web-page
+
         // get_single_chair("chair_0");
         display_catalog();
 
+<<<<<<< HEAD
         function display_catalog_dynamic() {
             let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
 
@@ -257,6 +265,19 @@
         display_catalog();
 
 
+=======
+        function filter_by_price() {
+            // Use JS to loop through the chairs_array
+            // and set the CSS display:none property according to the filter-criteria and the element_id
+
+            let min_price = document.getElementById('min_price');
+            let max_price = document.getElementById('max_price');
+
+            //Set a CSS display property to hidden or visible
+
+
+        }
+>>>>>>> 0dbd65fafa686a42d292fdcf1d69f88162c71884
     </script>
 
 

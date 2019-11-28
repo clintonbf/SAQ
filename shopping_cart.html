@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your shopping cart</title>
+    <script>
+        let chair_arr = JSON.parse(localStorage.getItem('chairs'));
+    </script>
+</head>
+<body>
+<div id="cart">
+    <p id="chair"></p>
+
+    <script>
+        document.getElementById("chair").innerHTML = chair_arr[0]['name'];
+    </script>
+</div>
+</body>
+</html>
