@@ -113,7 +113,8 @@ h1.OurSite {
 
 
 .quickadd:hover {
-    color: lightblue;
+    background-color: lightblue;
+    color: red;
     cursor: pointer;
 }
 
