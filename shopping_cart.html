@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Your shopping cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <script>
-        //produce an array of chair objects in the users cart
-        let cart_items = JSON.parse(localStorage.getItem('cartItems'));
+        let cart_items = JSON.parse(localStorage.getItem('cartItems')); //produce an array of chair objects in the users cart
     </script>
 </head>
 <body>
 <div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
-    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
+    <div class = "container"><img alt = "chair-icon" src="images/home_page/iconchair.png" style = "height: 50px">
         <h1 class="display-4" style="color: white;"> Site Title </h1></div>
 
-    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
-                                                               aria-describedby="search" placeholder="Search Catalouge">
-        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+    <form><div class ="form-group" style="padding: 5px"><input aria-describedby="search" class="form-control" id="searchbar"
+                                                               placeholder="Search Catalouge" type="email">
+        <br><div class="container" id = "ourCart" style = "background-color: grey;"><button class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%" type = "button">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
     </div></form></div>
@@ -73,10 +72,9 @@
 
             document.getElementById("cart_summary").appendChild(summary_table);
         }
-
         displayCartTotal();
     </script>
-    <input type="button" value="Checkout" id="checkout">
+    <input id="checkout" type="button" value="Checkout">
 
     <script>
         //Handler for moving to checkout page

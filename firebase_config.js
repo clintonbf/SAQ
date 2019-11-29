@@ -12,3 +12,24 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Initialize Authentication
+var uiConfig = {
+    signInSuccessUrl: 'main.html',
+    signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    tosUrl: '<your-tos-url>',
+    privacyPolicyUrl: '<your-privacy-policy-url>'
+};
+
+
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+// store user from authentication
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        localStorage.setItem('userName', JSON.stringify(user.displayName));
+    }
+});
+
+ui.start('#firebaseui-auth-container', uiConfig);
