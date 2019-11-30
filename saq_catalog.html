@@ -318,17 +318,17 @@
 
 <script>
     document.getElementById("clintAdd").addEventListener("click", function() {
-        AddChairClint("chair_0");});
+        AddChair("chair_0", 'the Clint');});
     document.getElementById("fahadAdd").addEventListener("click", function() {
-        AddChairFahad("chair_1");});
+        AddChairFahad("chair_1", 'the Fahad');});
     document.getElementById("emAdd").addEventListener("click", function() {
-        AddChairEm("chair_2");});
+        AddChairEm("chair_2", 'the Em');});
     document.getElementById("nedaAdd").addEventListener("click", function() {
-        AddChairNeda("chair_3");});
+        AddChairNeda("chair_3", 'the Neda');});
     document.getElementById("samAdd").addEventListener("click", function() {
-        AddChairSam("chair_4");});
+        AddChairSam("chair_4", 'the Sam');});
     document.getElementById("chrisAdd").addEventListener("click", function() {
-        AddChairChris("chair_5");});
+        AddChairChris("chair_5", 'the Chris');});
 
     function AddChair(doc, name) {
         let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
