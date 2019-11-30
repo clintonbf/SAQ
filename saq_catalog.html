@@ -318,19 +318,19 @@
 
 <script>
     document.getElementById("clintAdd").addEventListener("click", function() {
-        AddChair("chair_0", 'the Clint');});
+        addChair("chair_0", 'the Clint');});
     document.getElementById("fahadAdd").addEventListener("click", function() {
-        AddChairFahad("chair_1", 'the Fahad');});
+        addChair("chair_1", 'the Fahad');});
     document.getElementById("emAdd").addEventListener("click", function() {
-        AddChairEm("chair_2", 'the Em');});
+        addChair("chair_2", 'the Em');});
     document.getElementById("nedaAdd").addEventListener("click", function() {
-        AddChairNeda("chair_3", 'the Neda');});
+        addChair("chair_3", 'the Neda');});
     document.getElementById("samAdd").addEventListener("click", function() {
-        AddChairSam("chair_4", 'the Sam');});
+        addChair("chair_4", 'the Sam');});
     document.getElementById("chrisAdd").addEventListener("click", function() {
-        AddChairChris("chair_5", 'the Chris');});
+        addChair("chair_5", 'the Chris');});
 
-    function AddChair(doc, name) {
+    function addChair(doc, name) {
         let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 if (doc.data().name === name) {
