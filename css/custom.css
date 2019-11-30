@@ -1,8 +1,9 @@
 /*@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";*/
 
+
 .HeaderMain {
     /*jumbotron: jumbotron-fluid;*/
-    background-color: gray;
+    background-color: black;
     margin-bottom: 0;
 }
 
@@ -24,7 +25,8 @@
 
 .bot-div{
     padding: 20px;
-    background-color: rgba(0,0,0,0.63);
+    background-color: rgba(0, 0, 0, 0.88);
+    /*background-color: rgba(0,0,0,0.63);*/
     color: lightsteelblue;
     position: fixed;
     bottom: 0;
@@ -50,6 +52,26 @@ a {
 a:hover {
     text-decoration: none;
     color: whitesmoke;
+}
+
+.usergreeting {
+    position: absolute;
+    right: 10%;
+}
+
+.main-div {
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.main-div-text {
+    color:grey;
+    padding-top:20px;
+    font-size: x-large;
+}
+
+.grey {
+    color: #3c3f41;
 }
 
 

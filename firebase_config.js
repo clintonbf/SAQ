@@ -12,6 +12,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+const the_db = firebase.firestore();
 // Initialize Authentication
 var uiConfig = {
     signInSuccessUrl: 'main.html',
@@ -33,3 +34,5 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 ui.start('#firebaseui-auth-container', uiConfig);
+
+

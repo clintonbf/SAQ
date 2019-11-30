@@ -2,40 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View our catalogue</title>
-
-    <!-- init firebase mega thing-->
+    <title>View Our Catalogue</title>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-    <!-- init firestore -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <!-- init SAQ firebase -->
     <script src="firebase_config.js"></script>
-    <!-- init SAQ objects -->
     <script src="SAQ_objects.js"></script>
     <script src="SAQ_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="css/custom.css" rel="stylesheet">
     <script>
-        //Create a JSON array of all of the chair objects
         let chair_arr = create_chairs_array();
-        //localStorage.setItem('cart_items', JSON.stringify(chair_arr));
     </script>
 </head>
 <body>
-<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
-    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
-        <h1 class="display-4" style="color: white;"> Site Title </h1></div>
 
-    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
-                                                               aria-describedby="search" placeholder="Search Catalouge">
-        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="main.html">Home</a>
+    <a class="navbar-brand" href="shopping_cart.html">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="main.html">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="saq_catalog.html">Chairs</a>
+        </div>
+    </div>
+</nav>
+
+<img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
+<div class = "jumbotron jumbotron-fluid HeaderMain">
+    <a href="main.html" class="no-dec">
+        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
+            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
+            <h1 class="display-4 header-text"> Site Title </h1>
+        </div>
+    </a>
+</div>
+
+        <div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
-    </div></form></div>
 
-    <script>var the_db = firebase.firestore();</script>
     <script>
         let selectedChairs = [];
         let cartCount = 0;

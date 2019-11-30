@@ -106,3 +106,5 @@ function insert_sales() {
         insert_sale(sale_array[j]);
     }
 }
+
+
