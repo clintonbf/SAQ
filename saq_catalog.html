@@ -330,6 +330,22 @@
     document.getElementById("chrisAdd").addEventListener("click", function() {
         AddChairChris("chair_5");});
 
+    function AddChair(doc, name) {
+        let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                if (doc.data().name === name) {
+                    selectedChairs.push(doc.data());
+                    console.log(selectedChairs);
+                    cartCount ++;
+                    document.getElementById('cart').innerHTML = "Cart: " + cartCount.toString();
+                    console.log("works")
+                }
+            })
+            //     .catch(function (error) {
+            //     console.log("Error displaying all items");
+            // })
+        })
+    }
 
     function AddChairClint(doc) {
         var dbRef = the_db.collection("clints_work").get().then(function (querySnapshot) {
@@ -365,7 +381,6 @@
             // })
         })
     }
-
 
     function AddChairEm(doc) {
 
