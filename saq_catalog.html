@@ -279,8 +279,13 @@
                    let td_add = document.createElement("td");
                    tr_add.appendChild(td_add);
 
+                   let add_name = name.split(" ")[1];
+                   add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
+
+
                    let div_add = document.createElement("div");
                    div_add.setAttribute("id", name + "Add");
+                   console.log("Adding quick add thing: " + add_name + "Add");
                    div_add.setAttribute("class", "quickadd");
                    div_add.innerHTML = "quick add";
                    td_add.appendChild(div_add);
@@ -298,10 +303,6 @@
 
         display_catalog();
 
-
-        //display_catalog(); //Why this this called twice?
-
-
         function filter_by_price() {
             // Use JS to loop through the chairs_array
             // and set the CSS display:none property according to the filter-criteria and the element_id
@@ -313,8 +314,6 @@
 
 
         }
-
-
     </script>
 
 <script>
