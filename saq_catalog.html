@@ -98,7 +98,7 @@
 
         function addChair(doc, name) {
             let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
+                querySnapshot.forEach(function (doc) {
                 if (doc.data().name === name) {
                     selectedChairs.push(doc.data());
                     console.log(selectedChairs);
@@ -110,8 +110,8 @@
             //     .catch(function (error) {
             //     console.log("Error displaying all items");
             // })
-        })
-    }
+            })
+        }
 
         function display_catalog() {
             let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
