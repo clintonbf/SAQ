@@ -1,9 +1,37 @@
-function get_chair_collection(db_ref){
-    return db_ref.collection("Chairs");
+function Chair(id, name, price, comfort_options, ratings, picture) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.comfort_options = {
+        firmness: comfort_options[0],
+        back_support: comfort_options[1],
+        arms: comfort_options[2]
+    };
+    this.ratings = ratings;  // an array
+    this.picture = picture;
+    return this
 }
 
-function get_sales_collection(db_ref) {
-    return db_ref.collection("Sales");
+//Define the sales object
+function Sale(transaction_id, sold_chair, buyer, date) {
+    this.transaction_id = transaction_id;
+    this.chair = sold_chair;  // Chair object
+    this.buyer = buyer;
+    this.sale_date = date;
+}
+
+// Create an array of all the Chair objects. A quick, synchronized way to get all Chair data
+function create_chairs_array() {
+    let chair_array = [];
+    let chair_path = "images/chair_images/";
+    chair_array.push(new Chair('chair_01', "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint.jpg'));
+    chair_array.push(new Chair(2, "the Fahad", 800, [1, true, true], [3, 3, 3], chair_path + 'the_fahad.png'));
+    chair_array.push(new Chair(3, "the Em", 1250, [6, true, true], [5, 5], chair_path + 'the_em.jpeg'));
+    chair_array.push(new Chair(4, "the Neda", 3200, [6, true, true], [5], chair_path + 'the_neda.jpg'));
+    chair_array.push(new Chair(5, "the Sam", 800, [9, false, false], [3, 5], chair_path + 'the_sam.jpg'));
+    chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], chair_path + 'the_chris.jpg'));
+
+    return chair_array;
 }
 
 //Code for building the Chairs collection
