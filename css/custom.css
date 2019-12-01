@@ -75,13 +75,15 @@ a:hover {
 }
 
 .catalog-div {
-    background-color: grey;
-    padding: 5px;
+    background-color: whitesmoke;
+    padding: 15px;
     color:white;
+    border: black solid 10px;
 }
 
 .catalog-div-text {
-    font-size: large
+    font-size: large;
+    color: black;
 }
 
 .catalog-images {
@@ -90,7 +92,12 @@ a:hover {
 }
 
 .quick-add{
-    background-color: whitesmoke;
+    background-color: white;
+    width: 100px;
+    padding: 5px;
+    border: #3c3f41 solid 2px;
+    border-radius: 30px;
+    text-align: center;
 }
 
 
