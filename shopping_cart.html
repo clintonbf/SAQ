@@ -49,42 +49,56 @@
 </div>
     <script>
         // Display the shopping cart contents
+
+
+    function chairsInCart(chair_info, multiple_amount) {
+        let div_tag = document.createElement('div');
+        div_tag.setAttribute('class', 'cart-div');
+        document.body.appendChild(div_tag);
+        let main_table = document.createElement('table');
+        main_table.setAttribute("class", "cart-table");
+        div_tag.appendChild(main_table);
+        let row = document.createElement('tr');
+        main_table.appendChild(row);
+        row.setAttribute('class', 'cart-text');
+
+
+        //Main table structure is now complete. Add all the relevant details in TDs
+        let td_name = document.createElement('td');
+        row.appendChild(td_name);
+        td_name.innerHTML = chair_info.name;
+        td_name.setAttribute('class', 'cart-item');
+        let cell_chair_price = chair_info.price;
+        let td_price = document.createElement('td');
+        row.appendChild(td_price);
+        td_price.setAttribute('class', 'cart-price');
+        td_price.innerHTML = " $" + cell_chair_price;
+
+        let chair_count = document.createElement('td');
+        chair_count.innerHTML = multiple_amount.toString();
+        row.appendChild(chair_count);
+        }
+
         function displayCart() {
+            let multipleItems = 0;
             for (let i = 0; i < cart_items.length; i++) {
-                let div_tag = document.createElement('div');
-                div_tag.setAttribute('class', 'cart-div');
-                document.body.appendChild(div_tag);
-                let main_table = document.createElement('table');
-                main_table.setAttribute("class", "cart-table");
-                div_tag.appendChild(main_table);
-                let row = document.createElement('tr');
-                main_table.appendChild(row);
-                row.setAttribute('class', 'cart-text');
-
-
-                //Main table structure is now complete. Add all the relevant details in TDs
-                let td_name = document.createElement('td');
-                row.appendChild(td_name);
-                td_name.innerHTML = cart_items[i].name;
-                td_name.setAttribute('class', 'cart-item');
-                let cell_chair_price = cart_items[i].price;
-                let td_price = document.createElement('td');
-                row.appendChild(td_price);
-                td_price.setAttribute('class', 'cart-price')
-                td_price.innerHTML = " $" + cell_chair_price;
+                multipleItems = 0;
+                for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
+                    if (cart_items[i] === cart_items[j] && i !== j ) {
+                        multipleItems += 1; // add for each multiple
+                    }
+            } chairsInCart(cart_items[i], multipleItems);
             }
         }
 
         displayCart();
     </script>
-
 <!--    <div id="cart_summary">   </div>-->
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
-
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
-            <a id = "our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
-            <p id="cart-summary"> Total:  </p>
+            <a id ="our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
+            <a id="cart-summary"> Total:  </a>
         </button>
     </form>
 </nav>
@@ -92,19 +106,19 @@
         // Sum total price of all chairs in your cart
         function displayCartTotal() {
             let cartTotal = 0;
-            let itemCount = 1;
+            let itemCount = 0;
 
             for (let i = 0; i < cart_items.length; i++) {
                 cartTotal += cart_items[i].price;
-                itemCount +=i;
+                itemCount +=1;
             }
 
             // Print totals
             // let summary_table = document.createElement("table");
             // let summary_row = document.createElement("tr");
             // summary_table.appendChild(summary_row);
-
-
+            //
+            //
             // summary_row.appendChild(document.createElement(("td")));
 
             let total_field = document.getElementById("our-cart");
