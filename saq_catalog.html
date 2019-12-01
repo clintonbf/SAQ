@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>View Our Catalogue</title>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="firebase_config.js"></script>
     <script src="SAQ_objects.js"></script>
@@ -44,7 +45,6 @@
         </div>
     </a>
 </div>
-
         <div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
             <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
         </div>
@@ -137,13 +137,11 @@
 
                    //The following code is an attempt to auto-generate the HTML
                    let div_tag = document.createElement("div");
-                   div_tag.setAttribute("class", "container");
-                   div_tag.setAttribute("style", "background-color: black; padding: 5px; color:white;");
+                   div_tag.setAttribute("class", "container catalog-div");
                    document.body.appendChild(div_tag);
 
                    let table_parent = document.createElement("table");
-                   table_parent.setAttribute("class", "display-4");
-                   table_parent.setAttribute("style", "font-size: large");
+                   table_parent.setAttribute("class", "display-4 catalog-div-text");
                    div_tag.appendChild(table_parent);
 
                    let tr_parent = document.createElement("tr");
@@ -159,16 +157,14 @@
                    let td_child_1 = document.createElement('td');
                    tr_child_1.appendChild(td_child_1);
                    let chair_image = document.createElement("img");
-                   chair_image.setAttribute("class", "img-fluid");
-                   chair_image.setAttribute("height", "100");
-                   chair_image.setAttribute("width", "100");
+                   chair_image.setAttribute("class", "img-fluid catalog-images");
                    chair_image.setAttribute("id", prefix + "pic");
                    td_child_1.appendChild(chair_image);
 
                    let td_2 = document.createElement("td");
                    tr_parent.appendChild(td_2);
                    let table_child_2 = document.createElement("table");
-                   table_child_2.setAttribute("class", "chair_info");
+                   //table_child_2.setAttribute("class", "chair_info");
                    td_2.appendChild(table_child_2);
 
                    let specs = [prefix + "name", prefix + "comfort_options", prefix + "price", prefix + "rating"];
@@ -190,7 +186,7 @@
 
                    let div_add = document.createElement("div");
                    div_add.setAttribute("id", add_name + "Add");
-                   div_add.setAttribute("class", "quickadd");
+                   div_add.setAttribute("class", "quick-add");
                    div_add.innerHTML = "quick add";
                    td_add.appendChild(div_add);
 

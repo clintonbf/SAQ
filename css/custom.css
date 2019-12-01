@@ -74,6 +74,25 @@ a:hover {
     color: #3c3f41;
 }
 
+.catalog-div {
+    background-color: grey;
+    padding: 5px;
+    color:white;
+}
+
+.catalog-div-text {
+    font-size: large
+}
+
+.catalog-images {
+    height: 100px;
+    width: 100px;
+}
+
+.quick-add{
+    background-color: whitesmoke;
+}
+
 
 
 
