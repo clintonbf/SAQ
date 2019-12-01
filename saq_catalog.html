@@ -39,7 +39,8 @@
     <script>
         let selectedChairs = [];
         let cartCount = 0;
-        // Get a prefix based on the chair name
+        // Get a prefix based on the chair name. This is necessary for certain fields since they don't
+        // all share the same name structure
         function get_prefix(chair_name) {
             if (chair_name === 'the Clint') {
                 return 'clint_';
