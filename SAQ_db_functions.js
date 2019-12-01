@@ -108,14 +108,18 @@ function insert_sales() {
 }
 
 function displayUser(){
-    var usergreet = JSON.parse(localStorage.getItem('userName'));
+    let usergreet = JSON.parse(localStorage.getItem('userName'));
     console.log(usergreet);
     document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
-    document.getElementById('login-nav').innerHTML = usergreet;
+    document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
 
-document.getElementById("ourCart").addEventListener("click", function() {
-    storeCart(selectedChairs);});
-function storeCart(array){
-    localStorage.setItem('cartItems', JSON.stringify(array));
-}
+// document.getElementById("ourCart").addEventListener("click", function() {
+//     storeCart(selectedChairs);});
+//
+// function storeCart(array){
+//     localStorage.setItem('cartItems', JSON.stringify(array));
+//
+// }
+
+
