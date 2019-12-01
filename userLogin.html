@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" /> // bootstrap stylesheet
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script> // firebase
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
     <script src="firebase_config.js"></script>
-    <link href="css/custom.css" rel="stylesheet"> // our style
+    <script src="SAQ_db_functions.js"></script>
+    <link href="css/custom.css" rel="stylesheet">
 </head>
 <body>
-
-<div class = "jumbotron jumbotron-fluid">
-    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
-        <h1 class="display-4" style="color: white;">Site Title </h1></div>
-    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
-                                                               aria-describedby="search" placeholder="Search Catalouge">
-    </div></form>
-
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
-
-<h1 class="lead" style="color: white; padding: 5px">Sign in to Flying Buttresses</h1>
-<div id="firebaseui-auth-container" style = "padding: 10px"></div>
-
-</div>
-<div class="container" style="padding: 20px; background-color: rgba(0,0,0,0.63); color: lightsteelblue" position="fixed-bottom"> website with chairs on it  </div>
+    <div class = "jumbotron jumbotron-fluid HeaderMain">
+        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
+            <h1 class="display-4 header-text"> Site Title </h1>
+        </div>
+        <form>
+            <div class ="form-group pad-five">
+                <input type="email" class="form-control" id="searchbar"
+                   aria-describedby="search" placeholder="Search Catalouge">
+            </div>
+        </form>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+        <h1 class="lead headerText pad-five">Sign in to Flying Buttresses</h1>
+        <div id="firebaseui-auth-container" class="headerText pad-ten"></div>
+    </div>
+    <div class="container bot-div"> website with chairs on it  </div>
 </body>
 </html>

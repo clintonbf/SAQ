@@ -1,5 +1,105 @@
+/*@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";*/
+
+
 .HeaderMain {
-    background-color: gray;
-    margin-bottom: 0px;
+    /*jumbotron: jumbotron-fluid;*/
+    background-color: black;
+    margin-bottom: 0;
 }
+
+.chair-icon{
+    height: 50px
+}
+
+.header-text{
+    color: white;
+}
+
+.pad-five {
+    padding: 5px;
+}
+
+.pad-ten {
+    padding:10px;
+}
+
+.bot-div{
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.88);
+    /*background-color: rgba(0,0,0,0.63);*/
+    color: lightsteelblue;
+    position: fixed;
+    bottom: 0;
+}
+
+.cart-button {
+
+    position: absolute;
+    top: 16%;
+    left: 75%;
+    height: 50px;
+}
+
+.cart-button:hover {
+    cursor: grab;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+a:hover {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.usergreeting {
+    position: absolute;
+    right: 10%;
+}
+
+.main-div {
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.main-div-text {
+    color:grey;
+    padding-top:20px;
+    font-size: x-large;
+}
+
+.grey {
+    color: #3c3f41;
+}
+
+.catalog-div {
+    background-color: whitesmoke;
+    padding: 15px;
+    color:white;
+    border: black solid 10px;
+}
+
+.catalog-div-text {
+    font-size: large;
+    color: black;
+}
+
+.catalog-images {
+    height: 100px;
+    width: 100px;
+}
+
+.quick-add{
+    background-color: white;
+    width: 100px;
+    padding: 5px;
+    border: #3c3f41 solid 2px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+
+
 

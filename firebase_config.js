@@ -12,19 +12,18 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+var the_db = firebase.firestore();
 // Initialize Authentication
 var uiConfig = {
     signInSuccessUrl: 'main.html',
     signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     tosUrl: '<your-tos-url>',
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
-
-
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
+ui.start('#firebaseui-auth-container', uiConfig);
 // store user from authentication
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -32,4 +31,5 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
-ui.start('#firebaseui-auth-container', uiConfig);
+
+

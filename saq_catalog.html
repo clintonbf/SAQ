@@ -2,40 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View our catalogue</title>
-
-    <!-- init firebase mega thing-->
+    <title>View Our Catalogue</title>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-    <!-- init firestore -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <!-- init SAQ firebase -->
     <script src="firebase_config.js"></script>
-    <!-- init SAQ objects -->
-    <script src="SAQ_objects.js"></script>
-    <script src="SAQ_functions.js"></script>
+    <script src="SAQ_db_functions.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <script>
-        //Create a JSON array of all of the chair objects
-        let chair_arr = create_chairs_array();
-        //localStorage.setItem('cart_items', JSON.stringify(chair_arr));
-    </script>
+    <link href="css/custom.css" rel="stylesheet">
+<!--    <script>-->
+<!--        let chair_arr = create_chairs_array();-->
+<!--    </script>-->
 </head>
 <body>
-<div class = "jumbotron jumbotron-fluid" style = "background-color: gray; margin-bottom: 0px">
-    <div class = "container"><img style = "height: 50px" src="images/home_page/iconchair.png" alt = "chair-icon">
-        <h1 class="display-4" style="color: white;"> Site Title </h1></div>
 
-    <form><div class ="form-group" style="padding: 5px"><input type="email" class="form-control" id="searchbar"
-                                                               aria-describedby="search" placeholder="Search Catalouge">
-        <br><div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">
-            <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="main.html">Home</a>
+    <a id = "login-nav" class="navbar-brand" href="userLogin.html">Login</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="main.html">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="saq_catalog.html">Catalog</a>
         </div>
-    </div></form></div>
+    </div>
+</nav>
+<img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
+<div class = "jumbotron jumbotron-fluid HeaderMain">
+    <a href="main.html" class="no-dec">
+        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
+            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
+            <h1 class="display-4 header-text"> Site Title </h1>
+        </div>
+    </a>
+</div>
 
-    <script>var the_db = firebase.firestore();</script>
+
     <script>
         let selectedChairs = [];
         let cartCount = 0;
@@ -74,28 +83,28 @@
         }
 
         // Get a chair from the DB
-        function get_single_chair(chair_id) {
-            let db_ref = the_db.collection("Chairs").doc(chair_id);
-
-            db_ref.get().then(function(doc){
-                if (doc.exists){
-                    let ratings =  doc.data().ratings;
-                    let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
-                    //id, name, price, comfort_options, ratings, picture
-                    let chair = new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
-
-                    document.getElementById('chair_name').innerHTML = chair.name;
-                    document.getElementById('price').innerHTML = "$" + chair.price;
-                    document.getElementById('rating').innerHTML = chair.ratings;
-                    document.getElementById('pic').src = chair.picture;
-                }
-                else {
-                    console.log("Didn't work");
-                }
-            }).catch(function(error) {
-                console.log("Threw error " + error);
-            });
-        }
+        // function get_single_chair(chair_id) {
+        //     let db_ref = the_db.collection("Chairs").doc(chair_id);
+        //
+        //     db_ref.get().then(function(doc){
+        //         if (doc.exists){
+        //             let ratings =  doc.data().ratings;
+        //             let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
+        //             //id, name, price, comfort_options, ratings, picture
+        //             let chair = new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
+        //
+        //             document.getElementById('chair_name').innerHTML = chair.name;
+        //             document.getElementById('price').innerHTML = "$" + chair.price;
+        //             document.getElementById('rating').innerHTML = chair.ratings;
+        //             document.getElementById('pic').src = chair.picture;
+        //         }
+        //         else {
+        //             console.log("Didn't work");
+        //         }
+        //     }).catch(function(error) {
+        //         console.log("Threw error " + error);
+        //     });
+        // }
 
         function addChair(doc, name) {
             let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
@@ -125,13 +134,11 @@
 
                    //The following code is an attempt to auto-generate the HTML
                    let div_tag = document.createElement("div");
-                   div_tag.setAttribute("class", "container");
-                   div_tag.setAttribute("style", "background-color: black; padding: 5px; color:white;");
+                   div_tag.setAttribute("class", "container catalog-div");
                    document.body.appendChild(div_tag);
 
                    let table_parent = document.createElement("table");
-                   table_parent.setAttribute("class", "display-4");
-                   table_parent.setAttribute("style", "font-size: large");
+                   table_parent.setAttribute("class", "display-4 catalog-div-text");
                    div_tag.appendChild(table_parent);
 
                    let tr_parent = document.createElement("tr");
@@ -147,16 +154,14 @@
                    let td_child_1 = document.createElement('td');
                    tr_child_1.appendChild(td_child_1);
                    let chair_image = document.createElement("img");
-                   chair_image.setAttribute("class", "img-fluid");
-                   chair_image.setAttribute("height", "100");
-                   chair_image.setAttribute("width", "100");
+                   chair_image.setAttribute("class", "img-fluid catalog-images");
                    chair_image.setAttribute("id", prefix + "pic");
                    td_child_1.appendChild(chair_image);
 
                    let td_2 = document.createElement("td");
                    tr_parent.appendChild(td_2);
                    let table_child_2 = document.createElement("table");
-                   table_child_2.setAttribute("class", "chair_info");
+                   //table_child_2.setAttribute("class", "chair_info");
                    td_2.appendChild(table_child_2);
 
                    let specs = [prefix + "name", prefix + "comfort_options", prefix + "price", prefix + "rating"];
@@ -178,7 +183,7 @@
 
                    let div_add = document.createElement("div");
                    div_add.setAttribute("id", add_name + "Add");
-                   div_add.setAttribute("class", "quickadd");
+                   div_add.setAttribute("class", "quick-add");
                    div_add.innerHTML = "quick add";
                    td_add.appendChild(div_add);
 
@@ -221,13 +226,28 @@
 
 <script>
 
-    document.getElementById("ourCart").addEventListener("click", function() {
-        storeCart(selectedChairs);});
-    function storeCart(array){
-        localStorage.setItem('cartItems', JSON.stringify(array));
-    }
-
+//    document.getElementById("ourCart").addEventListener("click", function() {
+//        storeCart(selectedChairs);});
+//    function storeCart(array){
+//        localStorage.setItem('cartItems', JSON.stringify(array));
+//    }
+    displayUser();
 </script>
+
+<!--<div id = "ourCart" class="container" style = "background-color: grey;"><button type = "button" class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%">-->
+<!--    <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>-->
+<!--</div>-->
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+
+    <form class="form-inline">
+        <button class="btn btn-sm btn-outline-secondary" type="button">
+            <a class="navbar-brand" href="userShoppingCart.html" > Check Out</a>
+            <p id="cart"> Cart: 0 </p>
+        </button>
+
+    </form>
+</nav>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
