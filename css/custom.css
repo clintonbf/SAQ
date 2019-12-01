@@ -97,6 +97,26 @@ a:hover {
     text-align: center;
 }
 
+.cart-div {
+    height: 175px;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.cart-text{
+    font-size: large;
+}
+
+.cart-item {
+    padding: 20px;
+}
+
+.cart-price{
+    border: black solid 2px;
+    /*height: 10px;*/
+    padding: 10px;
+}
+
 
 
 

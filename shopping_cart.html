@@ -42,7 +42,8 @@
     <a href="main.html" class="no-dec">
         <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
             <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
-            <h1 class="display-4 header-text"> Site Title </h1>
+            <h1 class="display-4 header-text"> Your Cart  </h1>
+            <p id = 'item-count'> Items: 2 </p>
         </div>
     </a>
 </div>
@@ -51,51 +52,70 @@
         function displayCart() {
             for (let i = 0; i < cart_items.length; i++) {
                 let div_tag = document.createElement('div');
-                div_tag.setAttribute('class', 'main-div')
+                div_tag.setAttribute('class', 'cart-div');
                 document.body.appendChild(div_tag);
                 let main_table = document.createElement('table');
-                main_table.setAttribute("border", "solid");
+                main_table.setAttribute("class", "cart-table");
                 div_tag.appendChild(main_table);
                 let row = document.createElement('tr');
                 main_table.appendChild(row);
+                row.setAttribute('class', 'cart-text');
+
 
                 //Main table structure is now complete. Add all the relevant details in TDs
                 let td_name = document.createElement('td');
                 row.appendChild(td_name);
                 td_name.innerHTML = cart_items[i].name;
+                td_name.setAttribute('class', 'cart-item');
                 let cell_chair_price = cart_items[i].price;
                 let td_price = document.createElement('td');
                 row.appendChild(td_price);
-                td_price.innerHTML = "Total: $" + cell_chair_price;
+                td_price.setAttribute('class', 'cart-price')
+                td_price.innerHTML = " $" + cell_chair_price;
             }
         }
 
         displayCart();
     </script>
 
-    <div id="cart_summary">   </div>
+<!--    <div id="cart_summary">   </div>-->
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
 
+    <form class="form-inline">
+        <button class="btn btn-sm btn-outline-secondary" type="button">
+            <a id = "our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
+            <p id="cart-summary"> Total:  </p>
+        </button>
+    </form>
+</nav>
     <script>
         // Sum total price of all chairs in your cart
         function displayCartTotal() {
             let cartTotal = 0;
+            let itemCount = 1;
 
             for (let i = 0; i < cart_items.length; i++) {
                 cartTotal += cart_items[i].price;
+                itemCount +=i;
             }
 
             // Print totals
-            let summary_table = document.createElement("table");
-            let summary_row = document.createElement("tr");
-            summary_table.appendChild(summary_row);
+            // let summary_table = document.createElement("table");
+            // let summary_row = document.createElement("tr");
+            // summary_table.appendChild(summary_row);
 
-            summary_row.appendChild(document.createElement(("td")));
 
-            let total_field = document.createElement("td");
-            summary_row.appendChild(total_field);
+            // summary_row.appendChild(document.createElement(("td")));
+
+            let total_field = document.getElementById("our-cart");
             total_field.innerHTML = "$" + cartTotal.toString();
+            document.getElementById("cart-summary").appendChild(total_field);
+            let displayItemCount = document.getElementById("item-count");
+            displayItemCount.innerHTML = "Items:  " + itemCount.toString();
+            document.getElementById('item-count').appendChild(displayItemCount);
 
-            document.getElementById("cart_summary").appendChild(summary_table);
+
+
         }
         displayCartTotal();
     </script>
@@ -107,6 +127,9 @@
             window.open('usercheckout.html'); // Replace this with location to the checkout
         };
         displayUser();
-    </script> 
+    </script>
+
+
+
 </body>
 </html>
