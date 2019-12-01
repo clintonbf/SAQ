@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Building some sales</title>
+
+   <!-- <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="firebase_config.js"></script>
+    <script src="SAQ_db_functions.js"></script> -->
+    <script src="SAQ_functions.js"></script>
+</head>
+<body>
+    <script>
+        function Sale(buyer, date, total, chairs_arr) {
+            this.buyer = buyer;
+            this.date = date;
+            this.total = total;
+            this.chairs = chairs_arr;
+        }
+
+        function build_sales() {
+            let sale_arr = [];
+
+            let large_chair_array = create_chairs_array();
+
+            sale_arr.push(new Sale('Callie', new Date(), 800, large_chair_array[4]));
+            sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, [large_chair_array[0], large_chair_array[3]]));
+            sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, [large_chair_array[5]]));
+
+            return sale_arr;
+        }
+
+        function insert_sales() {
+            let sales_arr = build_sales();
+
+            for (let i = 0; i < sales_arr.length; i++) {
+                // insert_sale(sales_arr[i]);
+                console.log("BOO");
+            }
+
+        }
+
+        // insert_sales();
+        just_say_something();
+    </script>
+</body>
+</html>
