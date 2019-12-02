@@ -61,6 +61,11 @@ a:hover {
     padding: 10px;
 }
 
+.user-info-div{
+    background-color: whitesmoke;
+    height: 700px;
+}
+
 .main-div-text {
     color:grey;
     padding-top:20px;
@@ -116,6 +121,8 @@ a:hover {
     /*height: 10px;*/
     padding: 10px;
 }
+
+
 
 
 
