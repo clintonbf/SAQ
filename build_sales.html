@@ -56,6 +56,7 @@
 
             //call functions that insert the Sales
             for (let i = 0; i < sales_arr.length; i++) {
+                console.log("Prior to insertion, buyer is " + sales_arr[i].buyer);
                 insert_sale_to_firestore(sales_arr[i]);
             }
         }

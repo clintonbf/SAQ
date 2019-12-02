@@ -60,12 +60,10 @@ function initialize_chair_collection(collection_name) {
 //Code for building the Sales collection
 //Insert a sale
 function insert_sale_to_firestore(sale_obj) {
-    let buyer = sale_obj.name;
-
-    the_db.collection("Sales").doc(buyer).set({
-        chairs_purchased: sale_obj.purchased_chairs,
+    the_db.collection("Sales").doc(sale_obj.buyer).set({
+        chairs_purchased: sale_obj.chairs,
         purchase_date: sale_obj.date,
-        purchase_total: sale_obj.purchase_total
+        purchase_total: sale_obj.total
     })
         .then(function () {
             console.log("Added sale!");
