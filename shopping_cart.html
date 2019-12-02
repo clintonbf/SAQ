@@ -77,6 +77,12 @@
         let chair_count = document.createElement('td');
         chair_count.innerHTML = multiple_amount.toString();
         row.appendChild(chair_count);
+
+        let remove_chair = document.createElement('td');
+        remove_chair.setAttribute('class', 'remove');
+        remove_chair.innerHTML = "Remove";
+        row.appendChild(remove_chair);
+
         }
 
         function displayCart() {
@@ -84,21 +90,30 @@
             for (let i = 0; i < cart_items.length; i++) {
                 multipleItems = 0;
                 for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-                    if (cart_items[i] === cart_items[j] && i !== j ) {
+                    if (cart_items[i] === cart_items[j]) {
                         multipleItems += 1; // add for each multiple
+                        chairsInCart(cart_items[i], multipleItems);
                     }
-            } chairsInCart(cart_items[i], multipleItems);
+                }
             }
         }
 
         displayCart();
+
+    function removeChair() {
+        console.log("removed");
+    }
+    document.getElementsByClassName('remove').onclick = removeChair;
     </script>
+
+
 <!--    <div id="cart_summary">   </div>-->
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
+
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
             <a id ="our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
-            <a id="cart-summary"> Total:  </a>
+            <p id="cart-summary"> Total:  </p>
         </button>
     </form>
 </nav>
@@ -117,8 +132,8 @@
             // let summary_table = document.createElement("table");
             // let summary_row = document.createElement("tr");
             // summary_table.appendChild(summary_row);
-            //
-            //
+
+
             // summary_row.appendChild(document.createElement(("td")));
 
             let total_field = document.getElementById("our-cart");
@@ -126,20 +141,20 @@
             document.getElementById("cart-summary").appendChild(total_field);
             let displayItemCount = document.getElementById("item-count");
             displayItemCount.innerHTML = "Items:  " + itemCount.toString();
-            document.getElementById('item-count').appendChild(displayItemCount);
+            // document.getElementById('item-count').appendChild(displayItemCount);
 
 
 
         }
         displayCartTotal();
     </script>
-    <input id="checkout" type="button" value="Checkout">
+<!--    <input id="checkout" type="button" value="Checkout">-->
 
     <script>
         //Handler for moving to checkout page
-        document.getElementById("checkout").onclick = function() {
-            window.open('usercheckout.html'); // Replace this with location to the checkout
-        };
+        // document.getElementById("checkout").onclick = function() {
+        //     window.open('usercheckout.html'); // Replace this with location to the checkout
+        // };
         displayUser();
     </script>
 

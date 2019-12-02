@@ -23,11 +23,14 @@ var uiConfig = {
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
-ui.start('#firebaseui-auth-container', uiConfig);
+    ui.start('#firebaseui-auth-container', uiConfig);
 // store user from authentication
+
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         localStorage.setItem('userName', JSON.stringify(user.displayName));
+        localStorage.setItem('userEmail', JSON.stringify(user.email));
+        console.log(user.email);
     }
 });
 
