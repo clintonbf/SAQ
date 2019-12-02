@@ -20,7 +20,7 @@
         }
 
         //build an array of Sale objects
-        function build_sales() {
+        function build_sales_objects() {
             let sale_arr = [];
 
             let large_chair_array = create_chairs_array();
@@ -35,11 +35,11 @@
         //insert the Sales into the DB
         function insert_sales() {
             //build the sales objects
-            let sales_arr = build_sales();
+            let sales_arr = build_sales_objects();
 
             //call functions that insert the Sales
             for (let i = 0; i < sales_arr.length; i++) {
-                insert_sale(sales_arr[i]);
+                insert_sale_to_firestore(sales_arr[i]);
             }
         }
 

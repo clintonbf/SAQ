@@ -49,14 +49,6 @@ function Chair(id, name, price, comfort_options, ratings, picture) {
     return this
 }
 
-//Define the sales object
-function Sale(transaction_id, sold_chair, buyer, date) {
-    this.transaction_id = transaction_id;
-    this.chair = sold_chair;  // Chair object
-    this.buyer = buyer;
-    this.sale_date = date;
-}
-
 // Create an array of all the Chair objects. A quick, synchronized way to get all Chair data
 function create_chairs_array() {
     let chair_array = [];
@@ -103,7 +95,7 @@ function initialize_chair_collection(collection_name) {
 
 //Code for building the Sales collection
 //Insert a sale
-function insert_sale(sale_obj) {
+function insert_sale_to_firestore(sale_obj) {
     let buyer = sale_obj.name;
 
     the_db.collection("Sales").doc(buyer).set({
@@ -128,7 +120,7 @@ function insert_sales() {
     sale_array.push(new Sale(generate_trans_id(), "the Neda", "Sam", "Nov 31, 2019"));
 
     for (let j = 0; j < sale_array.length; j++) {
-        insert_sale(sale_array[j]);
+        insert_sale_to_firestore(sale_array[j]);
     }
 }
 

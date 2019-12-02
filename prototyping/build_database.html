@@ -113,7 +113,7 @@
             }
 
             //Insert a sale
-            function insert_sale(sale) {
+            function insert_sale_to_firestore(sale) {
                 the_db.collection("Sales").doc("sale_" + sale.transaction_id).set({
                     transaction_id: sale.transaction_id,
                     chair: sale.chair,
