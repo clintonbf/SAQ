@@ -13,6 +13,13 @@ function Chair(id, name, price, comfort_options, ratings, picture) {
     return this
 }
 
+function Sale(buyer, date, total, chairs_arr) {
+    this.buyer = buyer;
+    this.date = date;
+    this.total = total;
+    this.chairs = chairs_arr;  // This is a Firestore reference of the type: "Chairs/chair_x"
+}
+
 // Create an array of all the Chair objects. A quick, synchronized way to get all Chair data
 function create_chairs_array() {
     let chair_array = [];
@@ -48,16 +55,6 @@ function insert_chair_to_firestore(add_chair, id, collection_name){
         });
 }
 
-//Initialize Firestore with chairs
-function initialize_chair_collection(collection_name) {
-    let chair_collection = create_chairs_array();
-
-    for (let i = 0; i < chair_collection.length; i++) {
-        insert_chair_to_firestore(chair_collection[i], i, collection_name);
-    }
-}
-
-//Code for building the Sales collection
 //Insert a sale
 function insert_sale_to_firestore(sale_obj) {
     the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
@@ -73,18 +70,30 @@ function insert_sale_to_firestore(sale_obj) {
         });
 }
 
-// Initialize Firestore with sales
-function insert_sales() {
-    let sale_array = [];
-    sale_array.push(new Sale(generate_trans_id(), "the Clint", "Boogie Woogie", "Oct 14, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Clint", "GitMaster", "Oct 15, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Neda", "Neda", "Oct 31, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Neda", "Sam", "Nov 31, 2019"));
+//Create a set of mock-sales for bulk addition
+function build_sales_objects() {
+    let sale_arr = [];
 
-    for (let j = 0; j < sale_array.length; j++) {
-        insert_sale_to_firestore(sale_array[j]);
+    let large_chair_array = create_chairs_array();
+
+    sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
+    sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
+    sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
+
+    return sale_arr;
+}
+
+//insert the mock sales into the DB
+function insert_sales() {
+    //build the sales objects
+    let sales_arr = build_sales_objects();
+
+    //call functions that insert the Sales
+    for (let i = 0; i < sales_arr.length; i++) {
+        insert_sale_to_firestore(sales_arr[i]);
     }
 }
+
 
 function displayUser(){
     let usergreet = JSON.parse(localStorage.getItem('userName'));

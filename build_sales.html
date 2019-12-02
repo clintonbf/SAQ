@@ -29,41 +29,6 @@
         // OBJECT DEFINITIONS
         var the_db = firebase.firestore();
 
-        function Sale(buyer, date, total, chairs_arr) {
-            this.buyer = buyer;
-            this.date = date;
-            this.total = total;
-            this.chairs = chairs_arr;
-        }
-
-        //build an array of Sale objects
-        function build_sales_objects() {
-            let sale_arr = [];
-
-            let large_chair_array = create_chairs_array();
-
-            // sale_arr.push(new Sale('Callie', new Date(), 800, large_chair_array[4]));
-            // sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, [large_chair_array[0], large_chair_array[3]]));
-            // sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, [large_chair_array[5]]));
-
-            sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
-            sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
-            sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
-
-            return sale_arr;
-        }
-
-        //insert the Sales into the DB
-        function insert_sales() {
-            //build the sales objects
-            let sales_arr = build_sales_objects();
-
-            //call functions that insert the Sales
-            for (let i = 0; i < sales_arr.length; i++) {
-                insert_sale_to_firestore(sales_arr[i]);
-            }
-        }
-
         insert_sales();
     </script>
 </body>
