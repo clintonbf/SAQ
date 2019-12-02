@@ -5,15 +5,6 @@
     For DB functions to to SAQ_db_functions
  */
 
-function filter_chairs() {
-    // Use JS to loop through the chairs_array
-    // and set the CSS display:none property according to the filter-criteria and the element_id
-
-    //What are we filtering? Assume price for now
-    let min_price = document.getElementById('min_price');
-    let max_price = document.getElementById('max_price');
-}
-
 // Create an array of all the Chair objects. A quick, synchronized way to get all Chair data
 function create_chairs_array() {
     let chair_array = [];
@@ -26,4 +17,8 @@ function create_chairs_array() {
     chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], chair_path + 'the_chris.jpg'));
 
     return chair_array;
+}
+
+function just_say_something() {
+    console.log("Connected to SAQ_functions.js");
 }

@@ -1,35 +1,37 @@
-function get_chair_collection(db_ref){
-    return db_ref.collection("Chairs");
+//                                     OBJECTS
+function Chair(id, name, price, comfort_options, ratings, picture) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.comfort_options = {
+        firmness: comfort_options[0],
+        back_support: comfort_options[1],
+        arms: comfort_options[2]
+    };
+    this.ratings = ratings;  // an array
+    this.picture = picture;
+    return this
 }
 
-function get_sales_collection(db_ref) {
-    return db_ref.collection("Sales");
+function Sale(buyer, date, total, chairs_arr) {
+    this.buyer = buyer;
+    this.date = date;
+    this.total = total;
+    this.chairs = chairs_arr;  // This is a Firestore reference of the type: "Chairs/chair_x"
 }
 
-//Code to destroy database
-function destroy_database (db_ref) {
-    let chair_colctn = get_chair_collection(db_ref);
+// Create an array of all the Chair objects. A quick, synchronized way to get all Chair data
+function create_chairs_array() {
+    let chair_array = [];
+    let chair_path = "images/chair_images/";
+    chair_array.push(new Chair('chair_01', "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint.jpg'));
+    chair_array.push(new Chair(2, "the Fahad", 800, [1, true, true], [3, 3, 3], chair_path + 'the_fahad.png'));
+    chair_array.push(new Chair(3, "the Em", 1250, [6, true, true], [5, 5], chair_path + 'the_em.jpeg'));
+    chair_array.push(new Chair(4, "the Neda", 3200, [6, true, true], [5], chair_path + 'the_neda.jpg'));
+    chair_array.push(new Chair(5, "the Sam", 800, [9, false, false], [3, 5], chair_path + 'the_sam.jpg'));
+    chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], chair_path + 'the_chris.jpg'));
 
-    chair_colctn.get().then(function(docs) {
-        docs.forEach(function(doc) {
-            doc.delete().then(function() {
-                console.log("Deleted record for " + doc.data().name);
-            })
-        })
-    })
-        .catch(function(error) {
-            console.log("Threw error " + error);
-        });
-}
-
-function delete_chair_record(db_ref, chair){
-    let chair_collection = get_chair_collection(db_ref);
-
-    chair_collection.doc(chair).delete().then(function() {
-        console.log("Deleted " + chair);
-    }).catch(function(error) {
-        console.error("Whoops " + error);
-    });
+    return chair_array;
 }
 
 //Code for building the Chairs collection
@@ -53,59 +55,45 @@ function insert_chair_to_firestore(add_chair, id, collection_name){
         });
 }
 
-//Create an array of Chairs
-// Beware! This code is replicated in SAQ_functions.js. But, since imports are so difficult I've elected to keep it duplicated.
-// function create_chairs_array() {
-//     let chair_array = [];
-//     let chair_path = "images/chair_images/";
-//     chair_array.push(new Chair('chair_01', "the Clint", 525, [3, true, false], [1, 2, 1, 5, 5, 5, 4], chair_path + 'the_clint.jpg'));
-//     chair_array.push(new Chair(2, "the Fahad", 800, [1, true, true], [3, 3, 3], chair_path + 'the_fahad.png'));
-//     chair_array.push(new Chair(3, "the Em", 1250, [6, true, true], [5, 5], chair_path + 'the_em.jpeg'));
-//     chair_array.push(new Chair(4, "the Neda", 3200, [6, true, true], [5], chair_path + 'the_neda.jpg'));
-//     chair_array.push(new Chair(5, "the Sam", 800, [9, false, false], [3, 5], chair_path + 'the_sam.jpg'));
-//     chair_array.push(new Chair(6, "the Chris", 1000, [10, true, true], [1, 2, 3, 4, 5], chair_path + 'the_chris.jpg'));
-//
-//     return chair_array;
-// }
-
-//Initialize Firestore with chairs
-function initialize_chair_collection(collection_name) {
-    let chair_collection = create_chairs_array();
-
-    for (let i = 0; i < chair_collection.length; i++) {
-        insert_chair_to_firestore(chair_collection[i], i, collection_name);
-    }
-}
-
-//Code for building the Sales collection
 //Insert a sale
-function insert_sale(sale) {
-    the_db.collection("Sales").doc("sale_" + sale.transaction_id).set({
-        transaction_id: sale.transaction_id,
-        chair: sale.chair,
-        sold_to: sale.buyer,
-        sale_date: sale.sale_date
+function insert_sale_to_firestore(sale_obj) {
+    the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
+        chairs_purchased: sale_obj.chairs,
+        purchase_date: sale_obj.date,
+        purchase_total: sale_obj.total
     })
         .then(function () {
-            console.log("Added sale " + sale.transaction_id);
+            console.log("Added sale!");
         })
         .catch(function(error) {
             console.log("Error adding sale: " + error);
         });
 }
 
-// Initialize Firestore with sales
-function insert_sales() {
-    let sale_array = [];
-    sale_array.push(new Sale(generate_trans_id(), "the Clint", "Boogie Woogie", "Oct 14, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Clint", "GitMaster", "Oct 15, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Neda", "Neda", "Oct 31, 2019"));
-    sale_array.push(new Sale(generate_trans_id(), "the Neda", "Sam", "Nov 31, 2019"));
+//Create a set of mock-sales for bulk addition
+function build_sales_objects() {
+    let sale_arr = [];
 
-    for (let j = 0; j < sale_array.length; j++) {
-        insert_sale(sale_array[j]);
+    let large_chair_array = create_chairs_array();
+
+    sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
+    sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
+    sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
+
+    return sale_arr;
+}
+
+//insert the mock sales into the DB
+function insert_sales() {
+    //build the sales objects
+    let sales_arr = build_sales_objects();
+
+    //call functions that insert the Sales
+    for (let i = 0; i < sales_arr.length; i++) {
+        insert_sale_to_firestore(sales_arr[i]);
     }
 }
+
 
 function displayUser(){
     let usergreet = JSON.parse(localStorage.getItem('userName'));
@@ -113,14 +101,3 @@ function displayUser(){
     document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
     document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
-
-// document.getElementById("ourCart").addEventListener("click", function() {
-//     storeCart(selectedChairs);});
-//
-// function storeCart(array){
-//     localStorage.setItem('cartItems', JSON.stringify(array));
-//
-// }
-
-
-
