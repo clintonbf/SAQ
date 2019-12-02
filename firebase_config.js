@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 var the_db = firebase.firestore();
 // Initialize Authentication
 var uiConfig = {
-    signInSuccessUrl: 'main.html',
+    signInSuccessUrl: 'user_information.html',
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
@@ -31,8 +31,20 @@ firebase.auth().onAuthStateChanged(function (user) {
         localStorage.setItem('userName', JSON.stringify(user.displayName));
         localStorage.setItem('userEmail', JSON.stringify(user.email));
         console.log(user.email);
+    } else {
+        localStorage.removeItem('userName', JSON.stringify(user.displayName));
+        localStorage.removeItem('userEmail', JSON.stringify(user.email))
     }
+
 });
 
+function signOutUser(){
+    firebase.auth().signOut().then(function() {
+        localStorage.removeItem('userName', JSON.stringify(user.displayName));
+        localStorage.removeItem('userEmail', JSON.stringify(user.email))
+    }, function(error) {
+        // An error happened.
+    });
+}
 
-
+document.getElementById('signout').onclick = signOutUser();
