@@ -4,8 +4,16 @@
     margin-bottom: 0;
 }
 
-.chair-icon{
-    height: 50px
+body {
+    background-image: url('images\home_page\blueindexchair.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.transparent{
+    opacity: 60%;
+    z-index: -1;
 }
 
 .header-text{
@@ -27,6 +35,10 @@
     color: lightsteelblue;
     position: relative;
     bottom: 0;
+}
+
+.bot-div-color{
+    background-color: rgba(0, 0, 0, 0.88);
 }
 
 .cart-button {
@@ -74,6 +86,10 @@ a:hover {
 
 .grey {
     color: #3c3f41;
+}
+
+.background-grey {
+    background-color: #3c3f41;
 }
 
 .catalog-div {
@@ -146,6 +162,21 @@ a:hover {
     border: black solid 2px;
 }
 
+.price-div-text {
+    color:grey;
+    padding-top:20px;
+    font-size: x-large;
+    text-align: center;
+}
 
+.index-div{
+    padding: 20%;
+    background-color: #3c3f41;
+}
 
-
+.index-button{
+    position: fixed;
+    margin: auto;
+    color: black;
+    background-color: black;
+}
