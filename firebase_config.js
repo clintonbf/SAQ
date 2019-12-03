@@ -48,20 +48,20 @@ function userInfo(){
     document.getElementById('currentName').innerHTML = 'Username: ' + yourName;
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
-//
-// function displayCart() {
-//     let multipleItems = 1;
-//     for (let i = 0; i < cart_items.length; i++) {
-//         multipleItems = 1;
-//         for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-//             if ((cart_items[i] === cart_items[j])) {
-//                 console.log(multipleItems);
-//                 console.log(cart_items[i]);
-//                 chairsInCart(cart_items[i], multipleItems);
-//             }
-//         }
-//     }
-// }
+
+function displayCart() {
+    let multipleItems = 1;
+    for (let i = 0; i < cart_items.length; i++) {
+        multipleItems = 1;
+        for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
+            if ((cart_items[i] === cart_items[j])) {
+                console.log(multipleItems);
+                console.log(cart_items[i]);
+                chairsInCart(cart_items[i], multipleItems);
+            }
+        }
+    }
+}
 
 
 
