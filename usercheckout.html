@@ -13,7 +13,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <script src="firebase_config.js"></script>
+    <!-- <script src="firebase_config.js"></script> -->
     <script src="SAQ_db_functions.js"></script>
     <!-- Imports complete -->
     <title>Checkout Page</title>
@@ -66,8 +66,28 @@
             //produce an array of chair objects in the users cart
             //let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
             let cart_items = JSON.parse(localStorage.getItem('cartItems'));
-            console.log(cart_items)
-        </script>
+            console.log(cart_items);
+    </script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
+        authDomain: "saq-fb.firebaseapp.com",
+        databaseURL: "https://saq-fb.firebaseio.com",
+        projectId: "saq-fb",
+        storageBucket: "saq-fb.appspot.com",
+        messagingSenderId: "351007329675",
+        appId: "1:351007329675:web:241d7fd4d85e789830b38e"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // OBJECT DEFINITIONS
+      var the_db = firebase.firestore();
+
+    </script>
   </head>
   <body class="bg-light">
     <div class="container">
@@ -306,24 +326,56 @@
         <hr class="mb-4">
 
         <script>
-          function handleFinalPurchase() {
-            console.log("Entering sale!");
-
+          function confirmPurchase() {
             /*
             1. Write purchase to DB
             2. Redirect user to last_page.html
-
              */
-            location.href = "last_page.html"
+
+            //Create a sale object for writing to the DB
+            let total = 0;
+            let chair_ref_array = [];
+
+            for (let i = 0; i < cart_items.length; i++) {
+                total += cart_items[i].total;
+
+                if (cart_items[i].name.match(/Clint/) != null) {
+                  chair_ref_array.push("Chairs/chair_0");
+                }
+                else if(cart_items[i].name.match(/Fahad/) != null) {
+                  chair_ref_array.push("Chairs/chair_1");
+                }
+                else if(cart_items[i].name.match(/Em/) != null) {
+                  chair_ref_array.push("Chairs/chair_2");
+                }
+                else if(cart_items[i].name.match(/Neda/) != null) {
+                  chair_ref_array.push("Chairs/chair_3");
+                }
+                else if(cart_items[i].name.match(/Sam/) != null) {
+                  chair_ref_array.push("Chairs/chair_4");
+                }
+                else if(cart_items[i].name.match(/Chris/) != null) {
+                  chair_ref_array.push("Chairs/chair_5");
+                }
+
+            }
+
+            console.log("TOTAL IS " + total);
+            let sale = new Sale("Hobo", new Date(), total, chair_ref_array);  //'Hobo' is the purchaser until I get the user info...
+
+            //Write the sale to Firestore
+            // insert_sale_to_firestore(sale);
+
+            location.href = "last_page.html";
           }
         </script>
 
-
-        <button class="button" id="purchase_confirm">Continue to checkout</button>
-          <script>document.getElementById("purchase_confirm").onclick = handleFinalPurchase;</script>
-        <!-- <a href="last_page.html">Continue to checkout</a> -->
-
       </form>
+      <button class="button" id="purchase_confirm">Confirm purchase</button>
+      <script>document.getElementById("purchase_confirm").onclick = confirmPurchase;</script>
+      <!-- <a href="last_page.html">Continue to checkout</a> -->
+
+<!--      </form>-->
     </div>
   </div>
 
