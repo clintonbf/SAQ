@@ -271,3 +271,9 @@ function goToChairDetails(){
 function removeFeatureStorage(){
     localStorage.removeItem('goto');
 }
+
+function goToLogin() {
+    window.location.href="userLogin.html";
+}
+
+// document.getElementById('login-button').onclick=goToLogin;
