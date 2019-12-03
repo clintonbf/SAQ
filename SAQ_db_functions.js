@@ -303,110 +303,6 @@ function displayCartTotal() {
     displayItemCount.innerHTML = "Items:  " + itemCount.toString();
 }
 
-//Display catalog price low to high
-function catalogHighToLow() {
-    let db_ref = the_db.collection("clints_work").orderBy("price","desc"); // ToDo <----- replace with live Collection
-    db_ref.get().then(function (catalog) {
-        // Create a div area and put the chair into it
-        catalog.forEach(function (doc) {
-            let name = doc.data().name;
-            let prefix = get_prefix(name);
-            //The following code is an attempt to auto-generate the HTML
-            let div_tag = document.createElement("div");
-            div_tag.setAttribute("class", "container catalog-div");
-            div_tag.setAttribute("id", prefix +"goto");
-            document.body.appendChild(div_tag);
-            let table_parent = document.createElement("table");
-            table_parent.setAttribute("class", "display-4 catalog-div-text");
-            div_tag.appendChild(table_parent);
-            let tr_parent = document.createElement("tr");
-            table_parent.appendChild(tr_parent);
-            let td_1 = document.createElement("td");
-            tr_parent.appendChild(td_1);
-            let table_child_1 = document.createElement("table");
-            table_child_1.setAttribute("class", "picture");
-            td_1.appendChild(table_child_1);
-            let tr_child_1 = document.createElement("tr");
-            table_child_1.appendChild(tr_child_1);
-            let td_child_1 = document.createElement('td');
-            tr_child_1.appendChild(td_child_1);
-            let chair_image = document.createElement("img");
-            chair_image.setAttribute("class", "img-fluid catalog-images");
-            chair_image.setAttribute("id", prefix + "pic");
-            td_child_1.appendChild(chair_image);
-            let td_2 = document.createElement("td");
-            tr_parent.appendChild(td_2);
-            let table_child_2 = document.createElement("table");
-
-            //table_child_2.setAttribute("class", "chair_info");
-            td_2.appendChild(table_child_2);
-            let specs = [prefix + "name", prefix + "comfort_options", prefix + "price", prefix + "rating"];
-            for (let i = 0; i < specs.length; i++) {
-                let tr_spec = document.createElement("tr");
-                table_child_2.appendChild(tr_spec);
-                let td_spec = document.createElement("td");
-                td_spec.setAttribute("id", specs[i]);
-                tr_spec.appendChild(td_spec);
-            }
-            let tr_add = document.createElement("tr");
-            table_child_2.appendChild(tr_add);
-            let td_add = document.createElement("td");
-            tr_add.appendChild(td_add);
-            let add_name = name.split(" ")[1];
-            add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
-            let div_add = document.createElement("div");
-            div_add.setAttribute("id", add_name + "Add");
-            div_add.setAttribute("class", "quick-add");
-            div_add.innerHTML = "quick add";
-            td_add.appendChild(div_add);
-
-            // Filling table with information
-            document.getElementById(prefix + "name").innerHTML = name;
-            document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
-            document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
-            document.getElementById(prefix + "pic").src = doc.data().picture;
-        });
-        document.getElementById("clintAdd").addEventListener("click", function () {
-            addChair("chair_0", 'the Clint');
-        });
-        document.getElementById("fahadAdd").addEventListener("click", function () {
-            addChair("chair_1", 'the Fahad');
-        });
-        document.getElementById("emAdd").addEventListener("click", function () {
-            addChair("chair_2", 'the Em');
-        });
-        document.getElementById("nedaAdd").addEventListener("click", function () {
-            addChair("chair_3", 'the Neda');
-        });
-        document.getElementById("samAdd").addEventListener("click", function () {
-            addChair("chair_4", 'the Sam');
-        });
-        document.getElementById("chrisAdd").addEventListener("click", function () {
-            addChair("chair_5", 'the Chris');
-        });
-        document.getElementById("clint_pic").addEventListener("click", function(){
-            featureHandler("chair_0", "the Clint");
-        });
-        document.getElementById("fahad_pic").addEventListener("click", function(){
-            featureHandler("chair_1", "the Fahad");
-        });
-        document.getElementById("em_pic").addEventListener("click", function(){
-            featureHandler("chair_2", "the Em");
-        });
-        document.getElementById("neda_pic").addEventListener("click", function(){
-            featureHandler("chair_3", "the Neda");
-        });
-        document.getElementById("sam_pic").addEventListener("click", function(){
-            featureHandler("chair_4", "the Sam");
-        });
-        document.getElementById("chris_pic").addEventListener("click", function(){
-            featureHandler("chair_5", "the Chris");
-        });
-    }).catch(function (error) {
-        console.log("Error displaying all items, " + error);
-    });
-}
-
 //Add chair to cart
 function addChair(doc, name) {
     let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
@@ -448,8 +344,9 @@ function get_single_chair(chair_id) {
         });
 }
 
-function catalogLowToHigh() {
-    let db_ref = the_db.collection("clints_work").orderBy("price"); // ToDo <----- replace with live Collection
+
+function createDivs(order) {
+    let db_ref = the_db.collection("clints_work").orderBy("price", order); // ToDo <----- replace with live Collection
     db_ref.get().then(function (catalog) {
         // Create a div area and put the chair into it
         catalog.forEach(function (doc) {
@@ -458,7 +355,7 @@ function catalogLowToHigh() {
             //The following code is an attempt to auto-generate the HTML
             let div_tag = document.createElement("div");
             div_tag.setAttribute("class", "container catalog-div");
-            div_tag.setAttribute("id", prefix +"goto");
+            div_tag.setAttribute("id", prefix + "goto");
             document.body.appendChild(div_tag);
             let table_parent = document.createElement("table");
             table_parent.setAttribute("class", "display-4 catalog-div-text");
@@ -508,59 +405,67 @@ function catalogLowToHigh() {
             document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
             document.getElementById(prefix + "pic").src = doc.data().picture;
         });
-        document.getElementById("clintAdd").addEventListener("click", function () {
-            addChair("chair_0", 'the Clint');
-        });
-        document.getElementById("fahadAdd").addEventListener("click", function () {
-            addChair("chair_1", 'the Fahad');
-        });
-        document.getElementById("emAdd").addEventListener("click", function () {
-            addChair("chair_2", 'the Em');
-        });
-        document.getElementById("nedaAdd").addEventListener("click", function () {
-            addChair("chair_3", 'the Neda');
-        });
-        document.getElementById("samAdd").addEventListener("click", function () {
-            addChair("chair_4", 'the Sam');
-        });
-        document.getElementById("chrisAdd").addEventListener("click", function () {
-            addChair("chair_5", 'the Chris');
-        });
-        document.getElementById("clint_pic").addEventListener("click", function(){
-            featureHandler("chair_0", "the Clint");
-        });
-        document.getElementById("fahad_pic").addEventListener("click", function(){
-            featureHandler("chair_1", "the Fahad");
-        });
-        document.getElementById("em_pic").addEventListener("click", function(){
-            featureHandler("chair_2", "the Em");
-        });
-        document.getElementById("neda_pic").addEventListener("click", function(){
-            featureHandler("chair_3", "the Neda");
-        });
-        document.getElementById("sam_pic").addEventListener("click", function(){
-            featureHandler("chair_4", "the Sam");
-        });
-        document.getElementById("chris_pic").addEventListener("click", function(){
-            featureHandler("chair_5", "the Chris");
-        });
-    // }).catch(function (error) {
-    //     console.log("Error displaying all items, " + error);
     });
 }
 
+
+function createDivListener() {
+    document.getElementById("clintAdd").addEventListener("click", function () {
+        addChair("chair_0", 'the Clint');
+    });
+    document.getElementById("fahadAdd").addEventListener("click", function () {
+        addChair("chair_1", 'the Fahad');
+    });
+    document.getElementById("emAdd").addEventListener("click", function () {
+        addChair("chair_2", 'the Em');
+    });
+    document.getElementById("nedaAdd").addEventListener("click", function () {
+        addChair("chair_3", 'the Neda');
+    });
+    document.getElementById("samAdd").addEventListener("click", function () {
+        addChair("chair_4", 'the Sam');
+    });
+    document.getElementById("chrisAdd").addEventListener("click", function () {
+        addChair("chair_5", 'the Chris');
+    });
+    document.getElementById("clint_pic").addEventListener("click", function () {
+        featureHandler("chair_0", "the Clint");
+    });
+    document.getElementById("fahad_pic").addEventListener("click", function () {
+        featureHandler("chair_1", "the Fahad");
+    });
+    document.getElementById("em_pic").addEventListener("click", function () {
+        featureHandler("chair_2", "the Em");
+    });
+    document.getElementById("neda_pic").addEventListener("click", function () {
+        featureHandler("chair_3", "the Neda");
+    });
+    document.getElementById("sam_pic").addEventListener("click", function () {
+        featureHandler("chair_4", "the Sam");
+    });
+    document.getElementById("chris_pic").addEventListener("click", function () {
+        featureHandler("chair_5", "the Chris");
+    });
+
+}
+
+function catalogLowToHigh() {
+    createDivs();
+    setTimeout(function () {
+        createDivListener();
+    }, 1500);
+}
+
+function catalogHighToLow() {
+    createDivs("desc");
+    setTimeout(function () {
+        createDivListener();
+    }, 1500);
+}
 
 document.getElementById('our-cart').addEventListener("click", storeCart);
 function storeCart(){
     localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
 }
 
-// function goToChairDetails(){
-//     window.location.href = "chair.html";
-// }
-//
-// function featureHandler(chair_chosen, chair_chosen_name) {
-//     localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
-//     goToChairDetails();
-//
-// }
+
