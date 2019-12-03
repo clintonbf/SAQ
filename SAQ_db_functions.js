@@ -60,7 +60,8 @@ function insert_chair_to_firestore(add_chair, id, collection_name){
 
 //Insert a sale
 function insert_sale_to_firestore(sale_obj) {
-    the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
+    the_db.collection("Users").doc(sale_obj.buyer).collection("purchases").doc().set({
+    // the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
         chairs_purchased: sale_obj.chairs,
         purchase_date: sale_obj.date,
         purchase_total: sale_obj.total
@@ -82,6 +83,7 @@ function build_sales_objects() {
     sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
     sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
     sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
+    sale_arr.push(new Sale('Callie', new Date(2018, 3, 21), 1000, ["/Chairs/chair_5"]));
 
     return sale_arr;
 }
@@ -103,6 +105,28 @@ function displayUser(){
     console.log(usergreet);
     document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
     document.getElementById('login-nav').innerHTML = "" + usergreet;
+}
+
+//Retrieve a users purchase history from the Database
+function get_users_history(user){
+    let today = new Date();
+    let limit = today.subtract(30, 'days');
+
+    the_db.collection("Users").doc(user).collection("purchases").where("purchase_date", ">", limit)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              console.log(doc.data());
+            });
+        })
+    .catch(function(error) {
+        console.log("Error occurred: " + error);
+    });
+
+    let p_history = []; // This will be an array of Chair objects.... maybe
+
+    //Demonstrate a database query employing a WHERE clause
+
 }
 
 // Cart Functions
