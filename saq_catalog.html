@@ -48,6 +48,7 @@
 <script>
 let selectedChairs = [];
 let cartCount = 0;
+
         // Get a prefix based on the chair name
         // Get a prefix based on the chair name. This is necessary for certain fields since they don't
         // all share the same name structure
@@ -195,6 +196,9 @@ let cartCount = 0;
                 document.getElementById("chrisAdd").addEventListener("click", function () {
                     addChair("chair_5", 'the Chris');
                 });
+                document.getElementById("clint_pic").addEventListener("click", function(){
+                    handler("chair_0", "the Clint");
+                });
             }).catch(function (error) {
                 console.log("Error displaying all items, " + error);
             });
@@ -207,6 +211,18 @@ let cartCount = 0;
             let max_price = document.getElementById('max_price');
             //Set a CSS display property to hidden or visible
         }
+
+
+        function handler(chair_chosen, chair_chosen_name) {
+            localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
+            goToChairDetails();
+
+        }
+
+        function goToChairDetails(){
+            window.location.href = "chair.html";
+        }
+
     </script>
 
 

@@ -118,12 +118,17 @@ a:hover {
 
 .cart-price{
     border: black solid 2px;
-    /*height: 10px;*/
     padding: 10px;
 }
+
 .bgimg {
     background-image: url(images/home_page/chair_blue_bookshelf.jpeg);
 }
+
+.feature-image{
+    border: white solid 2px;
+}
+
 
 
 

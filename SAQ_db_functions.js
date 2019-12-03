@@ -150,3 +150,106 @@ function displayCart() {
         }
     }
 }
+
+
+
+function get_prefix(chair_name) {
+    if (chair_name === 'the Clint') {
+        return 'clint_';
+    }
+    else if (chair_name === 'the Fahad') {
+        return 'fahad_';
+    }
+    else if (chair_name === 'the Em') {
+        return 'em_';
+    }
+    else if (chair_name === 'the Neda') {
+        return 'neda_';
+    }
+    else if (chair_name === 'the Sam') {
+        return 'sam_';
+    }
+    else if (chair_name === 'the Chris') {
+        return 'chris_';
+    }
+}
+
+function calculate_average(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return Math.floor(sum/arr.length);
+}
+
+// to display a detailed individual chair
+function display_individual_chair(doc, name) {
+    console.log(doc);
+    console.log(name);
+    let deb_ref = the_db.collection("clints_work").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            if (doc.data().name === name) {
+                let name = doc.data().name;
+                let prefix = get_prefix(name);
+                //The following code is an attempt to auto-generate the HTML
+                let chair_image = document.createElement("img");
+                chair_image.setAttribute("class", "img-fluid");
+                chair_image.setAttribute("id", prefix + "pic");
+                document.getElementById("chair-feature-image").appendChild(chair_image);
+                let div_tag = document.createElement("div");
+                div_tag.setAttribute("class", "container catalog-div");
+                div_tag.setAttribute("id", prefix + "goto");
+                document.body.appendChild(div_tag);
+                let table_parent = document.createElement("table");
+                table_parent.setAttribute("class", "display-4 catalog-div-text");
+                div_tag.appendChild(table_parent);
+                let tr_parent = document.createElement("tr");
+                table_parent.appendChild(tr_parent);
+                let td_1 = document.createElement("td");
+                tr_parent.appendChild(td_1);
+                let table_child_1 = document.createElement("table");
+                table_child_1.setAttribute("class", "picture");
+                td_1.appendChild(table_child_1);
+                let tr_child_1 = document.createElement("tr");
+                table_child_1.appendChild(tr_child_1);
+                let td_child_1 = document.createElement('td');
+                tr_child_1.appendChild(td_child_1);
+                let td_2 = document.createElement("td");
+                tr_parent.appendChild(td_2);
+                let table_child_2 = document.createElement("table");
+                //table_child_2.setAttribute("class", "chair_info");
+                td_2.appendChild(table_child_2);
+                let specs = [prefix + "name", prefix + "comfort_options", prefix + "price", prefix + "rating"];
+                for (let i = 0; i < specs.length; i++) {
+                    let tr_spec = document.createElement("tr");
+                    table_child_2.appendChild(tr_spec);
+                    let td_spec = document.createElement("td");
+                    td_spec.setAttribute("id", specs[i]);
+                    tr_spec.appendChild(td_spec);
+                }
+                let tr_add = document.createElement("tr");
+                table_child_2.appendChild(tr_add);
+                let td_add = document.createElement("td");
+                tr_add.appendChild(td_add);
+                let add_name = name.split(" ")[1];
+                add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
+                // let div_add = document.createElement("div");
+                // div_add.setAttribute("id", add_name + "Add");
+                // div_add.setAttribute("class", "quick-add");
+                // div_add.innerHTML = "quick add";
+                // td_add.appendChild(div_add);
+
+                // Now back to our filling of the table
+                document.getElementById(prefix + "name").innerHTML = name;
+                document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
+                document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
+                document.getElementById(prefix + "pic").src = doc.data().picture;
+            } else {
+                console.log("error");
+            }
+        })
+    })
+}
+
+
+

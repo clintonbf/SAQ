@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="303cadf4-80b5-4cc7-8a36-d62637a5dfc5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAQ_db_functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/SAQ_db_functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chair.html" beforeDir="false" afterPath="$PROJECT_DIR$/chair.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase_config.js" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saq_catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/saq_catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/userLogin.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +49,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.shopping_cart.html">
+  <component name="RunManager" selected="JavaScript Debug.chair.html">
+    <configuration name="chair.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/SAQ/chair.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="saq_catalog.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/SAQ/saq_catalog.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="shopping_cart.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/SAQ/shopping_cart.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -52,6 +64,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.chair.html" />
+        <item itemvalue="JavaScript Debug.saq_catalog.html" />
         <item itemvalue="JavaScript Debug.shopping_cart.html" />
         <item itemvalue="Node.js.firebase_config.js" />
       </list>
@@ -68,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575312141036</updated>
       <workItem from="1575312143639" duration="16938000" />
+      <workItem from="1575350479705" duration="6803000" />
     </task>
     <servers />
   </component>
@@ -79,7 +94,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
