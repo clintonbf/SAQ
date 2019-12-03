@@ -94,10 +94,59 @@ function insert_sales() {
     }
 }
 
-
+// Display user greeting on pages
 function displayUser(){
     let usergreet = JSON.parse(localStorage.getItem('userName'));
     console.log(usergreet);
     document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
     document.getElementById('login-nav').innerHTML = "" + usergreet;
+}
+
+// Create chairs chosen
+function chairsInCart(chair_info, multiple_amount) {
+    let div_tag = document.createElement('div');
+    div_tag.setAttribute('class', 'cart-div');
+    document.body.appendChild(div_tag);
+    let main_table = document.createElement('table');
+    main_table.setAttribute("class", "cart-table");
+    div_tag.appendChild(main_table);
+    let row = document.createElement('tr');
+    main_table.appendChild(row);
+    row.setAttribute('class', 'cart-text');
+
+
+    //Main table structure is now complete. Add all the relevant details in TDs
+    let td_name = document.createElement('td');
+    row.appendChild(td_name);
+    td_name.innerHTML = chair_info.name;
+    td_name.setAttribute('class', 'cart-item');
+    let cell_chair_price = chair_info.price;
+    let td_price = document.createElement('td');
+    row.appendChild(td_price);
+    td_price.setAttribute('class', 'cart-price');
+    td_price.innerHTML = " $" + cell_chair_price;
+
+    let chair_count = document.createElement('td');
+    chair_count.innerHTML = multiple_amount.toString();
+    row.appendChild(chair_count);
+
+    let remove_chair = document.createElement('td');
+    remove_chair.setAttribute('class', 'remove');
+    remove_chair.innerHTML = "Remove";
+    row.appendChild(remove_chair);
+}
+
+// display cart and multiples
+function displayCart() {
+    let multipleItems = 1;
+    for (let i = 0; i < cart_items.length; i++) {
+        multipleItems = 1;
+        for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
+            if ((cart_items[i] === cart_items[j])) {
+                console.log(multipleItems);
+                console.log(cart_items[i]);
+                chairsInCart(cart_items[i], multipleItems);
+            }
+        }
+    }
 }
