@@ -9,6 +9,13 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <link href="css/custom.css" rel="stylesheet">
+    <!-- Import all SAQ, FireBase and Firestore functionality -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="firebase_config.js"></script>
+    <script src="SAQ_db_functions.js"></script>
+    <!-- Imports complete -->
     <title>Checkout Page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
@@ -297,9 +304,25 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="button" >
-        <a href="last_page.html">Continue to checkout</a>
-      </button>
+
+        <script>
+          function handleFinalPurchase() {
+            console.log("Entering sale!");
+
+            /*
+            1. Write purchase to DB
+            2. Redirect user to last_page.html
+
+             */
+            location.href = "last_page.html"
+          }
+        </script>
+
+
+        <button class="button" id="purchase_confirm">Continue to checkout</button>
+          <script>document.getElementById("purchase_confirm").onclick = handleFinalPurchase;</script>
+        <!-- <a href="last_page.html">Continue to checkout</a> -->
+
       </form>
     </div>
   </div>
