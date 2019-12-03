@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Your shopping cart</title>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
@@ -106,7 +109,6 @@
     document.getElementsByClassName('remove').onclick = removeChair;
     </script>
 
-
 <!--    <div id="cart_summary">   </div>-->
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
 
@@ -128,33 +130,15 @@
                 itemCount +=1;
             }
 
-            // Print totals
-            // let summary_table = document.createElement("table");
-            // let summary_row = document.createElement("tr");
-            // summary_table.appendChild(summary_row);
-
-
-            // summary_row.appendChild(document.createElement(("td")));
-
             let total_field = document.getElementById("our-cart");
             total_field.innerHTML = "$" + cartTotal.toString();
             document.getElementById("cart-summary").appendChild(total_field);
             let displayItemCount = document.getElementById("item-count");
             displayItemCount.innerHTML = "Items:  " + itemCount.toString();
-            // document.getElementById('item-count').appendChild(displayItemCount);
-
-
-
         }
         displayCartTotal();
-    </script>
-<!--    <input id="checkout" type="button" value="Checkout">-->
-
-    <script>
         displayUser();
     </script>
-
-
 
 </body>
 </html>
