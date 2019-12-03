@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 <script>
 
+    function remove_practice(removeHandler, array) {
+        console.log(removeHandler);
+        console.log(array);
+        for(let i=0; i < array.length; i++) {
+            if (removeHandler === array[i]) {
+                array.splice(i, 1)
+                console.log(array)
+            }
+        }
+    }
+
+
+trial_array = ["hello", "howdy", "avocado", "plant", "smores"];
+remove_practice("avocado", trial_array);
+console.log(trial_array);
+
+///works
 </script>
 </body>
 </html>

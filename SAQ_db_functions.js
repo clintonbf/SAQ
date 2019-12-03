@@ -107,7 +107,7 @@ function displayUser(){
 
 // Cart Functions
 // Create chairs chosen
-function chairsInCart(chair_info, multiple_amount) {
+function chairsInCart(chair_info, multiple_amount, removeHandler) {
     let div_tag = document.createElement('div');
     div_tag.setAttribute('class', 'cart-div');
     document.body.appendChild(div_tag);
@@ -136,21 +136,47 @@ function chairsInCart(chair_info, multiple_amount) {
 
     let remove_chair = document.createElement('td');
     remove_chair.setAttribute('class', 'remove');
+    remove_chair.setAttribute('id', removeHandler + "_remove");
     remove_chair.innerHTML = "Remove";
     row.appendChild(remove_chair);
+    identifyRemoval(removeHandler + "_remove", chair_info.name);
 }
 
 // display cart and multiples
 function displayCart() {
-    let multipleItems = 1;
     for (let i = 0; i < cart_items.length; i++) {
-        multipleItems = 1;
-        for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-            if ((cart_items[i] === cart_items[j])) {
-                console.log(multipleItems);
-                console.log(cart_items[i]);
-                chairsInCart(cart_items[i], multipleItems);
-            }
+        removeHandler = cart_items[i].name;
+        chairsInCart(cart_items[i], 1, removeHandler);
+        console.log("the name is" + cart_items[i].name);
+    }
+}
+
+
+function identifyRemoval(removalid, removename) {
+    document.getElementById(removalid).addEventListener("click", function () {
+        remove(removename);
+    });
+    // document.getElementById("the Fahad_remove").addEventListener("click", function () {
+    //     remove("the Fahad")
+    // });
+    // document.getElementById("the Em_remove").addEventListener("click", function () {
+    //     remove("the Em")
+    // });
+    // document.getElementById("the Neda_remove").addEventListener("click", function () {
+    //     remove("the Neda")
+    // });
+}
+
+// sort through list
+function remove(removeHandler) {
+    let removed = false;
+    for(let i=0; i < cart_items.length; i++) {
+        if (removed === false && removeHandler === cart_items[i].name) {
+            cart_items.splice(i, 1);
+            removed = true;
+            localStorage.setItem('cartItems', JSON.stringify(cart_items));
+            console.log(cart_items);
+            document.location.reload(true);
         }
     }
 }
@@ -461,9 +487,9 @@ function catalogHighToLow() {
     }, 1500);
 }
 
-document.getElementById('our-cart').addEventListener("click", storeCart);
-function storeCart(){
-    localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
-}
+// document.getElementById('our-cart').addEventListener("click", storeCart);
+// function storeCart(){
+//     localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
+// }
 
 
