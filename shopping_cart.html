@@ -50,38 +50,36 @@
     <script>
         // Display the shopping cart contents
         
-    function chairsInCart(chair_info, multiple_amount) {
-        let div_tag = document.createElement('div');
-        div_tag.setAttribute('class', 'cart-div');
-        document.body.appendChild(div_tag);
-        let main_table = document.createElement('table');
-        main_table.setAttribute("class", "cart-table");
-        div_tag.appendChild(main_table);
-        let row = document.createElement('tr');
-        main_table.appendChild(row);
-        row.setAttribute('class', 'cart-text');
+        function chairsInCart(chair_info, multiple_amount) {
+            let div_tag = document.createElement('div');
+            div_tag.setAttribute('class', 'cart-div');
+            document.body.appendChild(div_tag);
+            let main_table = document.createElement('table');
+            main_table.setAttribute("class", "cart-table");
+            div_tag.appendChild(main_table);
+            let row = document.createElement('tr');
+            main_table.appendChild(row);
+            row.setAttribute('class', 'cart-text');
 
+            //Main table structure is now complete. Add all the relevant details in TDs
+            let td_name = document.createElement('td');
+            row.appendChild(td_name);
+            td_name.innerHTML = chair_info.name;
+            td_name.setAttribute('class', 'cart-item');
+            let cell_chair_price = chair_info.price;
+            let td_price = document.createElement('td');
+            row.appendChild(td_price);
+            td_price.setAttribute('class', 'cart-price');
+            td_price.innerHTML = " $" + cell_chair_price;
 
-        //Main table structure is now complete. Add all the relevant details in TDs
-        let td_name = document.createElement('td');
-        row.appendChild(td_name);
-        td_name.innerHTML = chair_info.name;
-        td_name.setAttribute('class', 'cart-item');
-        let cell_chair_price = chair_info.price;
-        let td_price = document.createElement('td');
-        row.appendChild(td_price);
-        td_price.setAttribute('class', 'cart-price');
-        td_price.innerHTML = " $" + cell_chair_price;
+            let chair_count = document.createElement('td');
+            chair_count.innerHTML = multiple_amount.toString();
+            row.appendChild(chair_count);
 
-        let chair_count = document.createElement('td');
-        chair_count.innerHTML = multiple_amount.toString();
-        row.appendChild(chair_count);
-
-        let remove_chair = document.createElement('td');
-        remove_chair.setAttribute('class', 'remove');
-        remove_chair.innerHTML = "Remove";
-        row.appendChild(remove_chair);
-
+            let remove_chair = document.createElement('td');
+            remove_chair.setAttribute('class', 'remove');
+            remove_chair.innerHTML = "Remove";
+            row.appendChild(remove_chair);
         }
 
         function displayCart() {
@@ -126,20 +124,11 @@
                 itemCount +=1;
             }
 
-            // Print totals
-            // let summary_table = document.createElement("table");
-            // let summary_row = document.createElement("tr");
-            // summary_table.appendChild(summary_row);
-
-
-            // summary_row.appendChild(document.createElement(("td")));
-
             let total_field = document.getElementById("our-cart");
             total_field.innerHTML = "$" + cartTotal.toString();
             document.getElementById("cart-summary").appendChild(total_field);
             let displayItemCount = document.getElementById("item-count");
             displayItemCount.innerHTML = "Items:  " + itemCount.toString();
-            // document.getElementById('item-count').appendChild(displayItemCount);
         }
         displayCartTotal();
         displayUser();
