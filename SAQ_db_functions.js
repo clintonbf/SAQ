@@ -258,9 +258,7 @@ function display_individual_chair(doc, name) {
 }
 
 
-
 //
-
 function featureHandler(chair_chosen, chair_chosen_name) {
     localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
     goToChairDetails();
