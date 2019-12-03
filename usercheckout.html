@@ -37,8 +37,9 @@
     <link href="form-validation.css" rel="stylesheet">
     <script>
             //produce an array of chair objects in the users cart
-            // let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
+            //let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
             let cart_items = JSON.parse(localStorage.getItem('cartItems'));
+            console.log(cart_items)
         </script>
   </head>
   <body class="bg-light">
@@ -276,7 +277,7 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+        <a href="last_page.html">Continue to checkout</a>
       </form>
     </div>
   </div>
