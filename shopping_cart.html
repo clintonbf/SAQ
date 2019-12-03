@@ -49,8 +49,7 @@
 </div>
     <script>
         // Display the shopping cart contents
-
-
+        
     function chairsInCart(chair_info, multiple_amount) {
         let div_tag = document.createElement('div');
         div_tag.setAttribute('class', 'cart-div');
@@ -106,7 +105,6 @@
     document.getElementsByClassName('remove').onclick = removeChair;
     </script>
 
-
 <!--    <div id="cart_summary">   </div>-->
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
 
@@ -142,19 +140,9 @@
             let displayItemCount = document.getElementById("item-count");
             displayItemCount.innerHTML = "Items:  " + itemCount.toString();
             // document.getElementById('item-count').appendChild(displayItemCount);
-
-
-
         }
         displayCartTotal();
     </script>
-<!-- <input id="checkout" type="button" value="Checkout"> -->
-
-    <script>
-        //Handler for moving to checkout page
-        // document.getElementById("checkout").onclick = function() {
-        //     window.open('usercheckout.html'); // Replace this with location to the checkout
-        // };
         displayUser();
     </script>
 
