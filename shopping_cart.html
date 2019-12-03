@@ -2,85 +2,163 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your shopping cart</title>
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>View Our Catalogue</title>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="firebase_config.js"></script>
+    <script src="SAQ_db_functions.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/custom.css" rel="stylesheet">
     <script>
         let cart_items = JSON.parse(localStorage.getItem('cartItems')); //produce an array of chair objects in the users cart
-    </script>
+    </script><!--    <script>-->
+    <!--        let chair_arr = create_chairs_array();-->
+    <!--    </script>-->
 </head>
 <body>
-<div class = "jumbotron jumbotron-fluid HeaderMain">
-    <div class = "container"><img alt = "chair-icon" src="images/home_page/iconchair.png" style = "height: 50px">
-        <h1 class="display-4" style="color: white;"> Site Title </h1></div>
-
-    <form><div class ="form-group" style="padding: 5px"><input aria-describedby="search" class="form-control" id="searchbar"
-                                                               placeholder="Search Catalouge" type="email">
-        <br><div class="container" id = "ourCart" style = "background-color: grey;"><button class="btn btn-outline-secondary" style="background-color: #3c3f41; padding: 15px; width: 100px; position: absolute; left: 70%" type = "button">
-            <a href="shopping_cart.html" style = "color: white"><p id = "cart"> Cart </p></a></button><div></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="main.html">Home</a>
+    <a id = "login-nav" class="navbar-brand" href="userLogin.html">Login</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="main.html">Home</a>
+            <a class="nav-item nav-link" href="saq_catalog.html">Catalog</a>
         </div>
-    </div></form></div>
+    </div>
+</nav>
 
+<img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
+<div class = "jumbotron jumbotron-fluid HeaderMain">
+    <a href="main.html" class="no-dec">
+        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
+            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
+            <h1 class="display-4 header-text"> Your Cart  </h1>
+            <p id = 'item-count'> Items: 2 </p>
+        </div>
+    </a>
+</div>
     <script>
         // Display the shopping cart contents
-        function displayCart() {
-            for (let i = 0; i < cart_items.length; i++) {
-                let div_tag = document.createElement('div');
-                document.body.appendChild(div_tag);
-                let main_table = document.createElement('table');
-                main_table.setAttribute("border", "solid");
-                div_tag.appendChild(main_table);
-                let row = document.createElement('tr');
-                main_table.appendChild(row);
 
-                //Main table structure is now complete. Add all the relevant details in TDs
-                let td_name = document.createElement('td');
-                row.appendChild(td_name);
-                td_name.innerHTML = cart_items[i].name;
-                let cell_chair_price = cart_items[i].price;
-                let td_price = document.createElement('td');
-                row.appendChild(td_price);
-                td_price.innerHTML = "Total: $" + cell_chair_price;
+
+    function chairsInCart(chair_info, multiple_amount) {
+        let div_tag = document.createElement('div');
+        div_tag.setAttribute('class', 'cart-div');
+        document.body.appendChild(div_tag);
+        let main_table = document.createElement('table');
+        main_table.setAttribute("class", "cart-table");
+        div_tag.appendChild(main_table);
+        let row = document.createElement('tr');
+        main_table.appendChild(row);
+        row.setAttribute('class', 'cart-text');
+
+
+        //Main table structure is now complete. Add all the relevant details in TDs
+        let td_name = document.createElement('td');
+        row.appendChild(td_name);
+        td_name.innerHTML = chair_info.name;
+        td_name.setAttribute('class', 'cart-item');
+        let cell_chair_price = chair_info.price;
+        let td_price = document.createElement('td');
+        row.appendChild(td_price);
+        td_price.setAttribute('class', 'cart-price');
+        td_price.innerHTML = " $" + cell_chair_price;
+
+        let chair_count = document.createElement('td');
+        chair_count.innerHTML = multiple_amount.toString();
+        row.appendChild(chair_count);
+
+        let remove_chair = document.createElement('td');
+        remove_chair.setAttribute('class', 'remove');
+        remove_chair.innerHTML = "Remove";
+        row.appendChild(remove_chair);
+
+        }
+
+        function displayCart() {
+            let multipleItems = 0;
+            for (let i = 0; i < cart_items.length; i++) {
+                multipleItems = 0;
+                for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
+                    if (cart_items[i] === cart_items[j]) {
+                        multipleItems += 1; // add for each multiple
+                        chairsInCart(cart_items[i], multipleItems);
+                    }
+                }
             }
         }
 
         displayCart();
+
+    function removeChair() {
+        console.log("removed");
+    }
+    document.getElementsByClassName('remove').onclick = removeChair;
     </script>
 
-    <div id="cart_summary">   </div>
 
+<!--    <div id="cart_summary">   </div>-->
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+
+    <form class="form-inline">
+        <button class="btn btn-sm btn-outline-secondary" type="button">
+            <a id ="our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
+            <p id="cart-summary"> Total:  </p>
+        </button>
+    </form>
+</nav>
     <script>
         // Sum total price of all chairs in your cart
         function displayCartTotal() {
             let cartTotal = 0;
+            let itemCount = 0;
 
             for (let i = 0; i < cart_items.length; i++) {
                 cartTotal += cart_items[i].price;
+                itemCount +=1;
             }
 
             // Print totals
-            let summary_table = document.createElement("table");
-            let summary_row = document.createElement("tr");
-            summary_table.appendChild(summary_row);
+            // let summary_table = document.createElement("table");
+            // let summary_row = document.createElement("tr");
+            // summary_table.appendChild(summary_row);
 
-            summary_row.appendChild(document.createElement(("td")));
 
-            let total_field = document.createElement("td");
-            summary_row.appendChild(total_field);
+            // summary_row.appendChild(document.createElement(("td")));
+
+            let total_field = document.getElementById("our-cart");
             total_field.innerHTML = "$" + cartTotal.toString();
+            document.getElementById("cart-summary").appendChild(total_field);
+            let displayItemCount = document.getElementById("item-count");
+            displayItemCount.innerHTML = "Items:  " + itemCount.toString();
+            // document.getElementById('item-count').appendChild(displayItemCount);
 
-            document.getElementById("cart_summary").appendChild(summary_table);
+
+
         }
         displayCartTotal();
     </script>
-    <input id="checkout" type="button" value="Checkout">
+<!--    <input id="checkout" type="button" value="Checkout">-->
 
     <script>
         //Handler for moving to checkout page
-        document.getElementById("checkout").onclick = function() {
-            window.open('usercheckout.html'); // Replace this with location to the checkout
-        };
-    </script> 
+        // document.getElementById("checkout").onclick = function() {
+        //     window.open('usercheckout.html'); // Replace this with location to the checkout
+        // };
+        displayUser();
+    </script>
+
+
+
 </body>
 </html>
