@@ -197,7 +197,7 @@ function display_individual_chair(doc, name) {
                 chair_image.setAttribute("id", prefix + "pic");
                 document.getElementById("chair-feature-image").appendChild(chair_image);
                 let div_tag = document.createElement("div");
-                div_tag.setAttribute("class", "container catalog-div");
+                div_tag.setAttribute("class", "container feature-div");
                 div_tag.setAttribute("id", prefix + "goto");
                 document.body.appendChild(div_tag);
                 let table_parent = document.createElement("table");
@@ -240,6 +240,7 @@ function display_individual_chair(doc, name) {
                 // td_add.appendChild(div_add);
 
                 // Now back to our filling of the table
+                document.getElementById("feature-chair").innerHTML = name;
                 document.getElementById(prefix + "name").innerHTML = name;
                 document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
                 document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
@@ -251,5 +252,22 @@ function display_individual_chair(doc, name) {
     })
 }
 
+// direct user to catalog page
+function gotoCatalog() {
+    window.location.href="saq_catalog.html";
+}
 
+//
+function featureHandler(chair_chosen, chair_chosen_name) {
+    localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
+    goToChairDetails();
+}
 
+// redirect to page that features chair
+function goToChairDetails(){
+    window.location.href = "chair.html";
+}
+
+function removeFeatureStorage(){
+    localStorage.removeItem('goto');
+}

@@ -129,7 +129,22 @@ a:hover {
     border: white solid 2px;
 }
 
+.feature-header-opposite {
+    /*jumbotron: jumbotron-fluid;*/
+    background-color: whitesmoke;
+    margin-bottom: 0;
+}
 
+.feature-text{
+    color: black;
+}
+
+.feature-div {
+    background-color: whitesmoke;
+    padding: 15px;
+    color:white;
+    border: black solid 2px;
+}
 
 
 

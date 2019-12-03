@@ -15,6 +15,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/custom.css" rel="stylesheet">
+    <script>removeFeatureStorage()</script>
 <!--    <script>-->
 <!--        let chair_arr = create_chairs_array();-->
 <!--    </script>-->
@@ -197,13 +198,29 @@ let cartCount = 0;
                     addChair("chair_5", 'the Chris');
                 });
                 document.getElementById("clint_pic").addEventListener("click", function(){
-                    handler("chair_0", "the Clint");
+                    featureHandler("chair_0", "the Clint");
+                });
+                document.getElementById("fahad_pic").addEventListener("click", function(){
+                    featureHandler("chair_1", "the Fahad");
+                });
+                document.getElementById("em_pic").addEventListener("click", function(){
+                    featureHandler("chair_2", "the Em");
+                });
+                document.getElementById("neda_pic").addEventListener("click", function(){
+                    featureHandler("chair_3", "the Neda");
+                });
+                document.getElementById("sam_pic").addEventListener("click", function(){
+                    featureHandler("chair_4", "the Sam");
+                });
+                document.getElementById("chris_pic").addEventListener("click", function(){
+                    featureHandler("chair_5", "the Chris");
                 });
             }).catch(function (error) {
                 console.log("Error displaying all items, " + error);
             });
         }
         display_catalog();
+
         function filter_by_price() {
             // Use JS to loop through the chairs_array
             // and set the CSS display:none property according to the filter-criteria and the element_id
@@ -213,7 +230,7 @@ let cartCount = 0;
         }
 
 
-        function handler(chair_chosen, chair_chosen_name) {
+        function featureHandler(chair_chosen, chair_chosen_name) {
             localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
             goToChairDetails();
 
@@ -241,6 +258,7 @@ let cartCount = 0;
     </form>
 </nav>
 <script>
+
     document.getElementById('our-cart').addEventListener("click", storeCart);
     function storeCart(){
         localStorage.setItem('cartItems', JSON.stringify(selectedChairs));

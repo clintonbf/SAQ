@@ -32,11 +32,12 @@
 </nav>
 
 <img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
-<div class = "jumbotron jumbotron-fluid HeaderMain">
+<div class = "jumbotron jumbotron-fluid feature-header-opposite">
     <a href="main.html" class="no-dec">
-        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
-            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
-            <h1 class="display-4 header-text"> Site Title </h1>
+        <div class = "container">
+            <p class = "usergreeting feature-text" id="EmRocks" style="display: inline"> Welcome </p>
+            <br>
+            <h1 id = "feature-chair" class="display-4 feature-text"> Chair Name </h1>
         </div>
     </a>
 </div>
@@ -44,6 +45,16 @@
 <div id = "chair-feature-image">
 <!--    for image-->
 </div>
+
+
+<!--<nav class="navbar fixed-bottom navbar-dark bg-dark">-->
+<!--    <form class="form-inline">-->
+<!--        <button class="btn btn-sm btn-outline-secondary" type="button">-->
+<!--            <a id = "our-cart" class="navbar-brand" href="shopping_cart.html" > Check Out </a>-->
+<!--            <p id="cart"> Cart: 0 </p>-->
+<!--        </button>-->
+<!--    </form>-->
+<!--</nav>-->
 
 <script>
 display_chair =JSON.parse(localStorage.getItem('goto'));
