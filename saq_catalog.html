@@ -49,7 +49,6 @@
 let selectedChairs = [];
 let cartCount = 0;
         // Get a prefix based on the chair name
-
         // Get a prefix based on the chair name. This is necessary for certain fields since they don't
         // all share the same name structure
         function get_prefix(chair_name) {
@@ -72,29 +71,23 @@ let cartCount = 0;
                 return 'chris_';
             }
         }
-
         // Calculate an average
         function calculate_average(arr) {
             let sum = 0;
-
             for (let i = 0; i < arr.length; i++) {
                 sum += arr[i];
             }
-
             return Math.floor(sum/arr.length);
         }
-
         // Get a chair from the DB
         function get_single_chair(chair_id) {
             let db_ref = the_db.collection("Chairs").doc(chair_id);
-
             db_ref.get().then(function(doc){
                 if (doc.exists){
                     let ratings =  doc.data().ratings;
                     let options = [doc.data().firmness,  doc.data().back_support, doc.data().arms];
                     //id, name, price, comfort_options, ratings, picture
                     let chair = new Chair(doc.data().id, doc.data().name, doc.data().price, options, ratings, doc.data().picture);
-
                     document.getElementById('chair_name').innerHTML = chair.name;
                     document.getElementById('price').innerHTML = "$" + chair.price;
                     document.getElementById('rating').innerHTML = chair.ratings;
@@ -108,7 +101,6 @@ let cartCount = 0;
                 console.log("Threw error " + error);
             });
         }
-
         function addChair(doc, name) {
             let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
@@ -125,31 +117,25 @@ let cartCount = 0;
             // })
             })
         }
-
         function display_catalog() {
             let db_ref = the_db.collection("clints_work"); // ToDo <----- replace with live Collection
-
             db_ref.get().then(function (catalog) {
                 // Create a div area and put the chair into it
                 catalog.forEach(function (doc) {
                     let name = doc.data().name;
                     let prefix = get_prefix(name);
-
                     //The following code is an attempt to auto-generate the HTML
                     let div_tag = document.createElement("div");
                     div_tag.setAttribute("class", "container catalog-div");
                     div_tag.setAttribute("id", prefix +"goto");
                     document.body.appendChild(div_tag);
-
                     let table_parent = document.createElement("table");
                     table_parent.setAttribute("class", "display-4 catalog-div-text");
                     div_tag.appendChild(table_parent);
-
                     let tr_parent = document.createElement("tr");
                     table_parent.appendChild(tr_parent);
                     let td_1 = document.createElement("td");
                     tr_parent.appendChild(td_1);
-
                     let table_child_1 = document.createElement("table");
                     table_child_1.setAttribute("class", "picture");
                     td_1.appendChild(table_child_1);
@@ -161,13 +147,11 @@ let cartCount = 0;
                     chair_image.setAttribute("class", "img-fluid catalog-images");
                     chair_image.setAttribute("id", prefix + "pic");
                     td_child_1.appendChild(chair_image);
-
                     let td_2 = document.createElement("td");
                     tr_parent.appendChild(td_2);
                     let table_child_2 = document.createElement("table");
                     //table_child_2.setAttribute("class", "chair_info");
                     td_2.appendChild(table_child_2);
-
                     let specs = [prefix + "name", prefix + "comfort_options", prefix + "price", prefix + "rating"];
                     for (let i = 0; i < specs.length; i++) {
                         let tr_spec = document.createElement("tr");
@@ -176,28 +160,23 @@ let cartCount = 0;
                         td_spec.setAttribute("id", specs[i]);
                         tr_spec.appendChild(td_spec);
                     }
-
                     let tr_add = document.createElement("tr");
                     table_child_2.appendChild(tr_add);
                     let td_add = document.createElement("td");
                     tr_add.appendChild(td_add);
-
                     let add_name = name.split(" ")[1];
                     add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
-
                     let div_add = document.createElement("div");
                     div_add.setAttribute("id", add_name + "Add");
                     div_add.setAttribute("class", "quick-add");
                     div_add.innerHTML = "quick add";
                     td_add.appendChild(div_add);
-
                     // Now back to our filling of the table
                     document.getElementById(prefix + "name").innerHTML = name;
                     document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
                     document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
                     document.getElementById(prefix + "pic").src = doc.data().picture;
                 });
-
                 document.getElementById("clintAdd").addEventListener("click", function () {
                     addChair("chair_0", 'the Clint');
                 });
@@ -219,18 +198,13 @@ let cartCount = 0;
             }).catch(function (error) {
                 console.log("Error displaying all items, " + error);
             });
-
         }
-
         display_catalog();
-
         function filter_by_price() {
             // Use JS to loop through the chairs_array
             // and set the CSS display:none property according to the filter-criteria and the element_id
-
             let min_price = document.getElementById('min_price');
             let max_price = document.getElementById('max_price');
-
             //Set a CSS display property to hidden or visible
         }
     </script>
@@ -245,18 +219,13 @@ let cartCount = 0;
 
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
-<<<<<<< HEAD
-            <a class="navbar-brand" href="usercheckout.html" > Check Out</a>
-=======
             <a id = "our-cart" class="navbar-brand" href="shopping_cart.html" > Check Out </a>
->>>>>>> 02389679bfd8ccc10c6b6e8d45e8b0b6f245e571
             <p id="cart"> Cart: 0 </p>
         </button>
     </form>
 </nav>
 <script>
     document.getElementById('our-cart').addEventListener("click", storeCart);
-
     function storeCart(){
         localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
     }
