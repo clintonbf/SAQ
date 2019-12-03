@@ -144,13 +144,36 @@ function chairsInCart(chair_info, multiple_amount) {
 function displayCart() {
     let multipleItems = 1;
     for (let i = 0; i < cart_items.length; i++) {
-        multipleItems = 1;
-        for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-            if ((cart_items[i] === cart_items[j])) {
-                console.log(multipleItems);
-                console.log(cart_items[i]);
-                chairsInCart(cart_items[i], multipleItems);
-            }
+        removeHandler = cart_items[i].name;
+        chairsInCart(cart_items[i], 1, removeHandler);
+        console.log("the name is" + cart_items[i].name);
+    }
+}
+
+
+function identifyRemoval(removalid, removename) {
+    document.getElementById(removalid).addEventListener("click", function () {
+        remove(removename);
+    });
+    // document.getElementById("the Fahad_remove").addEventListener("click", function () {
+    //     remove("the Fahad")
+    // });
+    // document.getElementById("the Em_remove").addEventListener("click", function () {
+    //     remove("the Em")
+    // });
+    // document.getElementById("the Neda_remove").addEventListener("click", function () {
+    //     remove("the Neda")
+    // });
+}
+
+// sort through list
+function remove(removeHandler) {
+    for(let i=0; i < cart_items.length; i++) {
+        if (removeHandler === cart_items[i].name) {
+            cart_items.splice(i, 1);
+            localStorage.setItem('cartItems', JSON.stringify(cart_items));
+            console.log(cart_items);
+            document.location.reload(true);
         }
     }
 }
@@ -451,19 +474,41 @@ function catalogLowToHigh() {
     createDivs();
     setTimeout(function () {
         createDivListener();
-    }, 1500);
+    }, 2000);
 }
 
 function catalogHighToLow() {
     createDivs("desc");
     setTimeout(function () {
         createDivListener();
-    }, 1500);
+    }, 2000);
 }
 
-document.getElementById('our-cart').addEventListener("click", storeCart);
-function storeCart(){
-    localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
+// document.getElementById('our-cart').addEventListener("click", storeCart);
+// function storeCart(){
+//     localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
+// }
+
+// display user information on information page
+function userInfo(){
+    let yourName = JSON.parse(localStorage.getItem('userName'));
+    let yourEmail = JSON.parse(localStorage.getItem('userEmail'));
+    document.getElementById('currentName').innerHTML = 'Username: ' + yourName;
+    document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
+//
+// function displayCart() {
+//     let multipleItems = 1;
+//     for (let i = 0; i < cart_items.length; i++) {
+//         multipleItems = 1;
+//         for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
+//             if ((cart_items[i] === cart_items[j])) {
+//                 console.log(multipleItems);
+//                 console.log(cart_items[i]);
+//                 chairsInCart(cart_items[i], multipleItems);
+//             }
+//         }
+//     }
+// }
 
