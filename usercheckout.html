@@ -337,7 +337,7 @@
             let chair_ref_array = [];
 
             for (let i = 0; i < cart_items.length; i++) {
-                total += cart_items[i].total;
+                total += cart_items[i].price;
 
                 if (cart_items[i].name.match(/Clint/) != null) {
                   chair_ref_array.push("Chairs/chair_0");
@@ -360,12 +360,12 @@
 
             }
 
-            console.log("TOTAL IS " + total);
             let sale = new Sale("Hobo", new Date(), total, chair_ref_array);  //'Hobo' is the purchaser until I get the user info...
 
             //Write the sale to Firestore
-            // insert_sale_to_firestore(sale);
+            insert_sale_to_firestore(sale);
 
+            //Finally, move to the confirmation page
             location.href = "last_page.html";
           }
         </script>
