@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Checkout example · Bootstrap</title>
+    <link href="css/custom.css" rel="stylesheet">
+    <title>Checkout Page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
 
@@ -26,6 +27,12 @@
         -ms-user-select: none;
         user-select: none;
       }
+      .grey{
+        background-color: #3c3f41;
+      }
+      .white{
+        color: white;
+      }
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -35,6 +42,7 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
+    
     <script>
             //produce an array of chair objects in the users cart
             //let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
@@ -44,10 +52,10 @@
   </head>
   <body class="bg-light">
     <div class="container">
-  <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h2>Checkout form</h2>
-    <p class="lead">This is My Website with a Small Logo down there</p>
+  <div class="py-5 text-center grey" >
+    <img  src="/images/home_page/chair_blue_bookshelf.jpeg" alt="" width="72" height="72">
+    <h2 class="white">Checkout Page</h2>
+    <p class="white">You are few steps from purchasing your chair</p>
   </div>
 
   <div class="row">
@@ -94,7 +102,7 @@
         </li>
  
         <li class="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
+          <span>Total (CAD)</span>
           <strong id = "totalis"></strong>
         </li>
       </ul>
@@ -115,7 +123,7 @@
             for (let i = 0; i < cart_items.length; i++) {
                 cartTotal += cart_items[i].price;
             }
-            document.getElementById("totalis").innerHTML = cartTotal
+            document.getElementById("totalis").innerHTML = "$"+cartTotal
             document.getElementById("badge badge-secondary badge-pill").innerHTML = cart_items.length
         }
 
@@ -199,7 +207,7 @@
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="state">State</label>
+            <label for="state">Province</label>
             <select class="custom-select d-block w-100" id="state" required>
               <option value="">Choose...</option>
               <option>British Columbia</option>
@@ -209,7 +217,7 @@
             </div>
           </div>
           <div class="col-md-3 mb-3">
-            <label for="zip">Zip</label>
+            <label for="zip">Postal Code</label>
             <input type="text" class="form-control" id="zip" placeholder="" required>
             <div class="invalid-feedback">
               Zip code required.
