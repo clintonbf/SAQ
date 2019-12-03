@@ -51,67 +51,9 @@
     </a>
 </div>
     <script>
-        // Display the shopping cart contents
-
-
-    // function chairsInCart(chair_info, multiple_amount) {
-    //     let div_tag = document.createElement('div');
-    //     div_tag.setAttribute('class', 'cart-div');
-    //     document.body.appendChild(div_tag);
-    //     let main_table = document.createElement('table');
-    //     main_table.setAttribute("class", "cart-table");
-    //     div_tag.appendChild(main_table);
-    //     let row = document.createElement('tr');
-    //     main_table.appendChild(row);
-    //     row.setAttribute('class', 'cart-text');
-    //
-    //
-    //     //Main table structure is now complete. Add all the relevant details in TDs
-    //     let td_name = document.createElement('td');
-    //     row.appendChild(td_name);
-    //     td_name.innerHTML = chair_info.name;
-    //     td_name.setAttribute('class', 'cart-item');
-    //     let cell_chair_price = chair_info.price;
-    //     let td_price = document.createElement('td');
-    //     row.appendChild(td_price);
-    //     td_price.setAttribute('class', 'cart-price');
-    //     td_price.innerHTML = " $" + cell_chair_price;
-    //
-    //     let chair_count = document.createElement('td');
-    //     chair_count.innerHTML = multiple_amount.toString();
-    //     row.appendChild(chair_count);
-    //
-    //     let remove_chair = document.createElement('td');
-    //     remove_chair.setAttribute('class', 'remove');
-    //     remove_chair.innerHTML = "Remove";
-    //     row.appendChild(remove_chair);
-    //     }
-
-        // function displayCart() {
-        //     let multipleItems = 1;
-        //     for (let i = 0; i < cart_items.length; i++) {
-        //         multipleItems = 1;
-        //         for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-        //             if ((cart_items[i] === cart_items[j])) {
-        //                 console.log(multipleItems);
-        //                 console.log(cart_items[i]);
-        //                 chairsInCart(cart_items[i], multipleItems);
-        //                 }
-        //             }
-        //         }
-        // }
-
         displayCart();
-
-    function removeChair() {
-        console.log("removed");
-    }
-    document.getElementsByClassName('remove').onclick = removeChair;
     </script>
-
-<!--    <div id="cart_summary">   </div>-->
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
-
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
             <a id ="our-cart" class="navbar-brand" href="usercheckout.html" > Check Out </a>
@@ -121,24 +63,23 @@
 </nav>
     <script>
         // Sum total price of all chairs in your cart
-        function displayCartTotal() {
-            let cartTotal = 0;
-            let itemCount = 0;
-
-            for (let i = 0; i < cart_items.length; i++) {
-                cartTotal += cart_items[i].price;
-                itemCount +=1;
-            }
-
-            let total_field = document.getElementById("our-cart");
-            total_field.innerHTML = "$" + cartTotal.toString();
-            document.getElementById("cart-summary").appendChild(total_field);
-            let displayItemCount = document.getElementById("item-count");
-            displayItemCount.innerHTML = "Items:  " + itemCount.toString();
-        }
+        // function displayCartTotal() {
+        //     let cartTotal = 0;
+        //     let itemCount = 0;
+        //
+        //     for (let i = 0; i < cart_items.length; i++) {
+        //         cartTotal += cart_items[i].price;
+        //         itemCount +=1;
+        //     }
+        //
+        //     let total_field = document.getElementById("our-cart");
+        //     total_field.innerHTML = "$" + cartTotal.toString();
+        //     document.getElementById("cart-summary").appendChild(total_field);
+        //     let displayItemCount = document.getElementById("item-count");
+        //     displayItemCount.innerHTML = "Items:  " + itemCount.toString();
+        // }
         displayCartTotal();
         displayUser();
     </script>
-
 </body>
 </html>
