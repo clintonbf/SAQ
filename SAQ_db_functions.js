@@ -136,8 +136,10 @@ function chairsInCart(chair_info, multiple_amount) {
 
     let remove_chair = document.createElement('td');
     remove_chair.setAttribute('class', 'remove');
+    remove_chair.setAttribute('id', removeHandler + "_remove");
     remove_chair.innerHTML = "Remove";
     row.appendChild(remove_chair);
+    identifyRemoval(removeHandler + "_remove", chair_info.name);
 }
 
 // display cart and multiples
@@ -155,15 +157,6 @@ function identifyRemoval(removalid, removename) {
     document.getElementById(removalid).addEventListener("click", function () {
         remove(removename);
     });
-    // document.getElementById("the Fahad_remove").addEventListener("click", function () {
-    //     remove("the Fahad")
-    // });
-    // document.getElementById("the Em_remove").addEventListener("click", function () {
-    //     remove("the Em")
-    // });
-    // document.getElementById("the Neda_remove").addEventListener("click", function () {
-    //     remove("the Neda")
-    // });
 }
 
 // sort through list
@@ -261,11 +254,12 @@ function display_individual_chair(doc, name) {
                 tr_add.appendChild(td_add);
                 let add_name = name.split(" ")[1];
                 add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
-                // let div_add = document.createElement("div");
-                // div_add.setAttribute("id", add_name + "Add");
-                // div_add.setAttribute("class", "quick-add");
-                // div_add.innerHTML = "quick add";
-                // td_add.appendChild(div_add);
+                let div_add = document.createElement("div");
+                div_add.setAttribute("id","Add");
+                div_add.setAttribute("class", "feature-add");
+                div_add.innerHTML = "Add to Cart";
+                td_add.appendChild(div_add);
+
 
                 // Now back to our filling of the table
                 document.getElementById("feature-chair").innerHTML = name;
@@ -276,10 +270,23 @@ function display_individual_chair(doc, name) {
             } else {
                 console.log("error");
             }
+        });
+
         })
-    })
 }
 
+
+function showFeaturedChair(doc, name) {
+    display_individual_chair(doc, name );
+    setTimeout(function () {
+        individual_add(doc, name);
+    }, 3000);
+}
+
+
+function individual_add(chair_document, chair_name) {
+    document.getElementById("Add").addEventListener("click", addChair(chair_document, chair_name));
+}
 
 //
 function featureHandler(chair_chosen, chair_chosen_name) {
@@ -420,6 +427,9 @@ function createDivs(order) {
             div_add.setAttribute("class", "quick-add");
             div_add.innerHTML = "quick add";
             td_add.appendChild(div_add);
+
+
+
             // Now back to our filling of the table
             document.getElementById(prefix + "name").innerHTML = name;
             document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
@@ -429,6 +439,13 @@ function createDivs(order) {
     });
 }
 
+
+function empty_div() {
+    let empty_div = document.createElement("div");
+    empty_div.setAttribute("class", "fill-div")
+    empty_div.innerHTML = "empty";
+
+}
 
 function createDivListener() {
     document.getElementById("clintAdd").addEventListener("click", function () {
@@ -470,6 +487,7 @@ function createDivListener() {
 
 }
 
+//
 function catalogLowToHigh() {
     createDivs();
     setTimeout(function () {
@@ -484,10 +502,6 @@ function catalogHighToLow() {
     }, 2000);
 }
 
-// document.getElementById('our-cart').addEventListener("click", storeCart);
-// function storeCart(){
-//     localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
-// }
 
 // display user information on information page
 function userInfo(){
@@ -497,18 +511,4 @@ function userInfo(){
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
-//
-// function displayCart() {
-//     let multipleItems = 1;
-//     for (let i = 0; i < cart_items.length; i++) {
-//         multipleItems = 1;
-//         for (let j = 0; j < cart_items.length; j++) { // loop to check for multiples
-//             if ((cart_items[i] === cart_items[j])) {
-//                 console.log(multipleItems);
-//                 console.log(cart_items[i]);
-//                 chairsInCart(cart_items[i], multipleItems);
-//             }
-//         }
-//     }
-// }
 
