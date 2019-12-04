@@ -34,9 +34,12 @@ function create_chairs_array() {
     return chair_array;
 }
 
-
+// Variable for quick-added and feature added chairs
 let selectedChairs = [];
+
+// Variable for counting chairs in cart
 let cartCount = 0;
+
 //Code for building the Chairs collection
 // Insert a chair
 function insert_chair_to_firestore(add_chair, id, collection_name){
@@ -152,14 +155,14 @@ function displayCart() {
     }
 }
 
-
+// Function of click listener and remove
 function identifyRemoval(removalid, removename) {
     document.getElementById(removalid).addEventListener("click", function () {
         remove(removename);
     });
 }
 
-// sort through list
+// Sort through list of displayed chairs, removes chosen chair and refresh page to reflect user removal
 function remove(removeHandler) {
     for(let i=0; i < cart_items.length; i++) {
         if (removeHandler === cart_items[i].name) {
@@ -275,20 +278,20 @@ function display_individual_chair(doc, name) {
         })
 }
 
-
+// Show a feature chair, set click listener for the add button
 function showFeaturedChair(doc, name) {
     display_individual_chair(doc, name );
     setTimeout(function () {
-        individual_add(doc, name);
+        individual_listener(doc, name);
     }, 3000);
 }
 
-
-function individual_add(chair_document, chair_name) {
+// Set listener for add button on featured chair page
+function individual_listener(chair_document, chair_name) {
     document.getElementById("Add").addEventListener("click", addChair(chair_document, chair_name));
 }
 
-//
+//Function to store the chair user chooses to look at and takes the user to that page
 function featureHandler(chair_chosen, chair_chosen_name) {
     localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
     goToChairDetails();
@@ -309,7 +312,7 @@ function removeFeatureStorage(){
     localStorage.removeItem('goto');
 }
 
-// Go to login page
+// Direct user to login page
 function goToLogin() {
     window.location.href="userLogin.html";
 }
@@ -331,7 +334,7 @@ function displayCartTotal() {
     displayItemCount.innerHTML = "Items:  " + itemCount.toString();
 }
 
-//Add chair to cart
+// Add chair to cart
 function addChair(doc, name) {
     let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -343,9 +346,6 @@ function addChair(doc, name) {
                 console.log("works")
             }
         })
-        //     .catch(function (error) {
-        //     console.log("Error displaying all items");
-        // })
     })
 }
 
@@ -373,6 +373,7 @@ function get_single_chair(chair_id) {
 }
 
 
+// Function creates div elements to diplay chair catalog
 function createDivs(order) {
     let db_ref = the_db.collection("clints_work").orderBy("price", order); // ToDo <----- replace with live Collection
     db_ref.get().then(function (catalog) {
@@ -428,8 +429,6 @@ function createDivs(order) {
             div_add.innerHTML = "quick add";
             td_add.appendChild(div_add);
 
-
-
             // Now back to our filling of the table
             document.getElementById(prefix + "name").innerHTML = name;
             document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
@@ -440,13 +439,7 @@ function createDivs(order) {
 }
 
 
-function empty_div() {
-    let empty_div = document.createElement("div");
-    empty_div.setAttribute("class", "fill-div")
-    empty_div.innerHTML = "empty";
-
-}
-
+// Adds listeners for objects after created
 function createDivListener() {
     document.getElementById("clintAdd").addEventListener("click", function () {
         addChair("chair_0", 'the Clint');
@@ -487,7 +480,7 @@ function createDivListener() {
 
 }
 
-//
+// displays chair catalog on page from low price to high price
 function catalogLowToHigh() {
     createDivs();
     setTimeout(function () {
@@ -495,6 +488,7 @@ function catalogLowToHigh() {
     }, 2000);
 }
 
+// displays chair catalog on page fromhigh price to low price
 function catalogHighToLow() {
     createDivs("desc");
     setTimeout(function () {
