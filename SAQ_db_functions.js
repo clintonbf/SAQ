@@ -112,15 +112,18 @@ function get_purchase_history(user) {
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-                the_db.doc(doc.data().chairs_purchased).get()
-                .then(function (doc) {
-                    if (doc.exists) {
-                        console.log("The chair: " + doc.data().name);
-                    }
-                })
-                .catch(function (err) {
-                    console.log("Error occurred when getting chair purchaser: " + err);
-                })
+                let chairs_arr = doc.data().chairs_purchased;
+                for (let i = 0; i < chairs_arr.length; i++) {
+                    the_db.doc(chairs_arr[i]).get()
+                        .then(function (d) {
+                            if (d.exists) {
+                                console.log(user + " bought: " + d.data().name);
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log("Error occurred when getting chair purchaser: " + err);
+                        })
+                }
             });
         })
         .catch(function(error) {
