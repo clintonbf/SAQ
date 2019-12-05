@@ -169,7 +169,6 @@ function remove(removeHandler) {
     }
 }
 
-
 // Functions for getting chair prefix
 function get_prefix(chair_name) {
     if (chair_name === 'the Clint') {
@@ -480,7 +479,6 @@ function catalogHighToLow() {
     createDivs("desc");
 }
 
-
 // display user information on information page
 function userInfo(){
     let yourName = JSON.parse(localStorage.getItem('userName'));
@@ -489,4 +487,15 @@ function userInfo(){
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
+function signout_clearStorage(){
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("firebaseui::rememberedAccounts");
+}
 
+function signout_listener() {
+    document.getElementById("sign-out").addEventListener("click", function(){
+        signout_clearStorage();
+        goToLogin();
+    })
+}
