@@ -83,7 +83,7 @@ function build_sales_objects() {
     let large_chair_array = create_chairs_array();
 
     sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
-    sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
+    sale_arr.push(new Sale('Emma', new Date(2019, 9, 9)), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]);
     sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
     sale_arr.push(new Sale('Callie', new Date(2018, 3, 21), 1000, ["/Chairs/chair_5"]));
 
@@ -121,6 +121,12 @@ function get_purchase_history(user) {
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 let chairs_arr = doc.data().chairs_purchased;  // loop through the purchased chairs
+                //Create a human-readable date for the purchase date
+                let the_date = doc.data().purchase_date.toDate();
+                let day = the_date.getUTCDate();
+                let month = the_date.toLocaleString('default', { month: 'short' });
+                let year = the_date.getUTCFullYear();
+                let p_date = day + " " + month + " " + year;
 
                 for (let i = 0; i < chairs_arr.length; i++) {
                     the_db.doc(chairs_arr[i]).get()
@@ -129,7 +135,7 @@ function get_purchase_history(user) {
                                 let tr = document.createElement("tr");
                                 t.appendChild(tr);
                                 let td_name = document.createElement("td");
-                                td_name.innerHTML = d.data().name;
+                                td_name.innerHTML = d.data().name + " (" + p_date  + ")";
                                 tr.appendChild(td_name);
                             }
                         })
