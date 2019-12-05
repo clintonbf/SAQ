@@ -24,7 +24,8 @@ const uiConfig = {
     tosUrl: '<your-tos-url>',
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
-// just put   in login
+
+// just put in login
 // const ui = new firebaseui.auth.AuthUI(firebase.auth());
 // ui.start('#firebaseui-auth-container', uiConfig);
 

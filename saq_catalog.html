@@ -15,36 +15,27 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/custom.css" rel="stylesheet">
-    <script>removeFeatureStorage();</script>
+    <script>removeFeatureStorage();
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="main.html">Home</a>
     <a id = "login-nav" class="navbar-brand" href="user_information.html">Login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="main.html">Home</a>
-            <a class="nav-item nav-link" href="saq_catalog.html">Catalog</a>
-        </div>
-    </div>
+    <a class="navbar-brand" href="usercheckout.html">Cart</a>
 </nav>
-
 <img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
 <div class = "jumbotron jumbotron-fluid HeaderMain">
     <a href="main.html" class="no-dec">
-        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
-            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
-            <h1 class="display-4 header-text"> Site Title </h1>
+        <div class = "container">
+            <p class = "usergreeting header-text" id="EmRocks" style="display: inline"> Welcome </p>
+            <br>
+            <h1 id = "feature-chair" class="display-4 header-text"> Flying Buttresses </h1>
         </div>
     </a>
 </div>
-
 </div>
-<nav class="navbar fixed-bottom navbar-dark bg-dark">
+<nav class="navbar fix-div navbar-dark bg-dark">
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
             <a id = "our-cart" class="navbar-brand" href="shopping_cart.html" > Check Out </a>
@@ -53,11 +44,14 @@
     </form>
 </nav>
 <script>
+    let selectedChairs = getCart();
     catalogHighToLow();
     document.getElementById('our-cart').addEventListener("click", storeCart);
+
     function storeCart(){
         localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
     }
+    storeCart();
     displayUser();
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

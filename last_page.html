@@ -8,18 +8,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Payment Succcesfull </title>
+  <!-- Import all SAQ, FireBase and Firestore functionality -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <!-- <script src="firebase_config.js"></script> -->
+  <script src="SAQ_db_functions.js"></script>
+  <!-- Imports complete -->
+  <title>Bare - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    //produce an array of chair objects in the users cart
+    //let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
+    // let cart_items = JSON.parse(localStorage.getItem('cartItems'));
+    let yourName = JSON.parse(localStorage.getItem('userName'));
+    // console.log(cart_items);
+  </script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
+      authDomain: "saq-fb.firebaseapp.com",
+      databaseURL: "https://saq-fb.firebaseio.com",
+      projectId: "saq-fb",
+      storageBucket: "saq-fb.appspot.com",
+      messagingSenderId: "351007329675",
+      appId: "1:351007329675:web:241d7fd4d85e789830b38e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // OBJECT DEFINITIONS
+    var the_db = firebase.firestore();
+  </script>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
@@ -30,7 +63,9 @@
         </ul>
       </div>
     </div>
-</nav>
+  </nav>
+
+  <!-- Page Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
@@ -47,6 +82,42 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+      function confirmPurchase() {
+      /*
+      1. Write purchase to DB
+      2. Redirect user to last_page.html
+       */
+      //Create a sale object for writing to the DB
+      let total = 0;
+      let chair_ref_array = [];
+      for (let i = 0; i < cart_items.length; i++) {
+        total += cart_items[i].price;
+        if (cart_items[i].name.match(/Clint/) != null) {
+          chair_ref_array.push("Chairs/chair_0");
+        }
+        else if(cart_items[i].name.match(/Fahad/) != null) {
+          chair_ref_array.push("Chairs/chair_1");
+        }
+        else if(cart_items[i].name.match(/Em/) != null) {
+          chair_ref_array.push("Chairs/chair_2");
+        }
+        else if(cart_items[i].name.match(/Neda/) != null) {
+          chair_ref_array.push("Chairs/chair_3");
+        }
+        else if(cart_items[i].name.match(/Sam/) != null) {
+          chair_ref_array.push("Chairs/chair_4");
+        }
+        else if(cart_items[i].name.match(/Chris/) != null) {
+          chair_ref_array.push("Chairs/chair_5");
+        }
+      }
+      let sale = new Sale(yourName, new Date(), total, chair_ref_array);
+      //Write the sale to Firestore
+      insert_sale_to_firestore(sale);
+    }
+    confirmPurchase();
+  </script>
 
 </body>
 

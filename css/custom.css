@@ -2,7 +2,7 @@
     /*jumbotron: jumbotron-fluid;*/
     background-color: black;
     margin-bottom: 0;
-    padding: 75px;
+    padding: 40px;
 }
 
 .chair-icon{
@@ -139,7 +139,6 @@ a:hover {
 }
 
 .feature-header-opposite {
-    /*jumbotron: jumbotron-fluid;*/
     background-color: whitesmoke;
     margin-bottom: 0;
 }
@@ -201,6 +200,30 @@ div.index-button:hover{
 }
 
 .feature-add{
+    position: absolute;
+    right: 40px;
+    padding: 10px;
+    border: black solid 2px;
+}
+
+.login-box{
+    position: fixed;
+    top: 20%;
+    /*color: black;*/
+    /*background-color: #3c3f41;*/
+    z-index: 2;
+    border: whitesmoke solid 2px;
+    padding: 10px;
+    /*border-radius: 100px;*/
+    color: whitesmoke;
+    font-size: x-large;
+}
+.fix-div {
+    position: sticky;
+    top: 0;
+}
+
+.sign-out-button{
     position: absolute;
     right: 40px;
     padding: 10px;

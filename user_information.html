@@ -5,56 +5,56 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Import all SAQ, FireBase and Firestore functionality -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> <!-- Firebase auth is NOT HERE -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <script src="firebase_config.js"></script>
+     <script src="firebase_config.js"></script>
     <script src="SAQ_db_functions.js"></script>
+    <!-- Imports complete -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/custom.css" rel="stylesheet">
+    <script>let yourName = JSON.parse(localStorage.getItem('userName'));</script>
 </head>
 <body>
-
 <link href="css/custom.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="main.html">Home</a>
     <a id = "login-nav" class="navbar-brand" href="user_information.html">Login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="main.html">Home<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="saq_catalog.html">Chairs</a>
-        </div>
-    </div>
+    <a class="navbar-brand" href="usercheckout.html">Cart</a>
 </nav>
 <img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
 <div class = "jumbotron jumbotron-fluid HeaderMain">
     <a href="main.html" class="no-dec">
-        <div class = "container"><img class="chair-icon" src="images/home_page/iconchair.png" alt = "chair-icon">
-            <p class = "usergreeting" id="EmRocks" style="display: inline"> Welcome </p>
-            <h1 class="display-4 header-text"> Site Title </h1>
+        <div class = "container">
+            <p class = "usergreeting header-text" id="EmRocks" style="display: inline"> Welcome </p>
+            <br>
+            <h1 id = "feature-chair" class="display-4 header-text"> Flying Buttresses </h1>
         </div>
     </a>
 </div>
-
 <div class="container user-info-div" >
     <h4 class = "display-4 header-text main-div-text"> Your Information </h4><br>
     <h4 class="display-4 cart-text" id="currentName">Name: </h4>
     <h4 class="display-4 cart-text" id="currentEmail">Email: </h4>
     <h4 class="display-4 cart-text">Purchase History: </h4>
-<!--    <div id = "sign-out" style = "border: black solid 2px"><h1 class="display-3"> Sign OUT </h1></div>-->
-</div><br>
-<div class="container bot-div"> website with chairs on it  </div>
-
+    <div id="purchase_history"></div>
+    <h4 class="display-4 cart-text">Your Last Purchase: </h4>
+    <div id="last_purchase"></div>
+</div>
+<br>
+<div id="sign-out-button">
+    Sign-Out
+</div>
+<div class="container bot-div"> Flying Buttresses </div>
 <script>
+signout_listener();
 displayUser();
 userInfo();
+
+get_purchase_history(yourName);
+get_last_purchase(yourName);
 </script>
 </body>
