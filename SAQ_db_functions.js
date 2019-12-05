@@ -156,7 +156,7 @@ function get_last_purchase(user){
     let t = document.createElement("table");
     document.getElementById("last_purchase").appendChild(t);
 
-    the_db.collection("Users").doc(user).collection("purchases").orderBy ("purchase_date", "desc").limit(1)
+    the_db.collection("Users").doc(user).collection("purchases").orderBy("purchase_date", "desc").limit(1)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
