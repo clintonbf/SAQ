@@ -197,6 +197,9 @@ function chairsInCart(chair_info, multiple_amount) {
     row.setAttribute('class', 'cart-text');
 
     //Main table structure is now complete. Add all the relevant details in TDs
+    let chair_count = document.createElement('td');
+    chair_count.innerHTML = multiple_amount.toString();
+    row.appendChild(chair_count);
     let td_name = document.createElement('td');
     row.appendChild(td_name);
     td_name.innerHTML = chair_info.name;
@@ -207,9 +210,9 @@ function chairsInCart(chair_info, multiple_amount) {
     td_price.setAttribute('class', 'cart-price');
     td_price.innerHTML = " $" + cell_chair_price;
 
-    let chair_count = document.createElement('td');
-    chair_count.innerHTML = multiple_amount.toString();
-    row.appendChild(chair_count);
+    // let chair_count = document.createElement('td');
+    // chair_count.innerHTML = multiple_amount.toString();
+    // row.appendChild(chair_count);
 
     let remove_chair = document.createElement('td');
     remove_chair.setAttribute('class', 'remove');

@@ -125,9 +125,9 @@ a:hover {
     padding: 20px;
 }
 
-.cart-price{
+.remove{
     border: black solid 2px;
-    padding: 10px;
+    padding: 5px;
 }
 
 .bgimg {
@@ -152,7 +152,6 @@ a:hover {
     height: 300px;
     padding: 25px;
     color:white;
-    border: black solid 2px;
 }
 
 .price-div-text {
@@ -201,9 +200,11 @@ div.index-button:hover{
 
 .feature-add{
     position: absolute;
-    right: 40px;
+    bottom: -300px;
+    right: 30px;
     padding: 10px;
-    border: black solid 2px;
+    background-color: #0a4961;
+    color: whitesmoke;
 }
 
 .login-box{
