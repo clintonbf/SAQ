@@ -39,13 +39,10 @@
       messagingSenderId: "351007329675",
       appId: "1:351007329675:web:241d7fd4d85e789830b38e"
     };
-
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
     // OBJECT DEFINITIONS
     var the_db = firebase.firestore();
-
   </script>
 
 </head>
@@ -91,14 +88,11 @@
       1. Write purchase to DB
       2. Redirect user to last_page.html
        */
-
       //Create a sale object for writing to the DB
       let total = 0;
       let chair_ref_array = [];
-
       for (let i = 0; i < cart_items.length; i++) {
         total += cart_items[i].price;
-
         if (cart_items[i].name.match(/Clint/) != null) {
           chair_ref_array.push("Chairs/chair_0");
         }
@@ -118,13 +112,10 @@
           chair_ref_array.push("Chairs/chair_5");
         }
       }
-
       let sale = new Sale(yourName, new Date(), total, chair_ref_array);
-
       //Write the sale to Firestore
       insert_sale_to_firestore(sale);
     }
-
     confirmPurchase();
   </script>
 
