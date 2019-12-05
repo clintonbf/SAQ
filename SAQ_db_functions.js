@@ -107,12 +107,13 @@ function displayUser(){
     document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
 
-function get_purchase_history(user, operator="<", limit=99999) {
-    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", operator, limit)
+// Get a users entire purchase history
+function get_purchase_history(user) {
+    the_db.collection("Users").doc(user).collection("purchases")
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-                let chairs_arr = doc.data().chairs_purchased;
+                let chairs_arr = doc.data().chairs_purchased;  // loop through the purchased chairs
                 for (let i = 0; i < chairs_arr.length; i++) {
                     the_db.doc(chairs_arr[i]).get()
                         .then(function (d) {
@@ -131,10 +132,29 @@ function get_purchase_history(user, operator="<", limit=99999) {
         });
 }
 
-//Retrieve a users purchase history of purchases > than a certain value
-function get_big_spender_history(user, operator="<", limit=99999){
-    console.log("Hey, " + user + ", big spender!");
-    get_purchase_history(user, operator, limit);
+//Retrieve the last chairs that the user purchased
+function get_last_purchase(user){
+    the_db.collection("Users").doc(user).collection("purchases").orderBy ("purchase_date").limit(1)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let chairs_arr = doc.data().chairs_purchased; // loop through the purchased chairs
+                for (let i = 0; i < chairs_arr.length; i++) {
+                    the_db.doc(chairs_arr[i]).get()
+                        .then(function (d) {
+                            if (d.exists) {
+                                console.log(user + "'s last purchase was: " + d.data().name);
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log("Error occurred when getting chair purchaser: " + err);
+                        })
+                }
+            });
+        })
+    .catch(function(error) {
+        console.log("Error occurred: " + error);
+    });
 }
 
 // Cart Functions
