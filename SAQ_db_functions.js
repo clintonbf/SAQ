@@ -34,7 +34,7 @@ function create_chairs_array() {
     return chair_array;
 }
 
-// Variable for quick-added and feature added chairs
+// Variable for addeding chairs
 let selectedChairs = [];
 
 // Variable for counting chairs in cart
@@ -79,13 +79,10 @@ function insert_sale_to_firestore(sale_obj) {
 //Create a set of mock-sales for bulk addition
 function build_sales_objects() {
     let sale_arr = [];
-
     let large_chair_array = create_chairs_array();
-
     sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
     sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
     sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
-
     return sale_arr;
 }
 
@@ -121,7 +118,6 @@ function chairsInCart(chair_info, multiple_amount) {
     main_table.appendChild(row);
     row.setAttribute('class', 'cart-text');
 
-
     //Main table structure is now complete. Add all the relevant details in TDs
     let td_name = document.createElement('td');
     row.appendChild(td_name);
@@ -151,6 +147,7 @@ function displayCart() {
         removeHandler = cart_items[i].name;
         chairsInCart(cart_items[i], 1, removeHandler);
     }
+    localStorage.setItem('goto', )
 }
 
 // Function of click listener and remove
@@ -270,16 +267,13 @@ function display_individual_chair(doc, name) {
                 document.getElementById(prefix + "pic").src = doc.data().picture;
             }
         });
-
+        individual_listener(doc, name);
         })
 }
 
 // Show a feature chair, set click listener for the add button
 function showFeaturedChair(doc, name) {
     display_individual_chair(doc, name );
-    setTimeout(function () {
-        individual_listener(doc, name);
-    }, 3000);
 }
 
 // Set listener for add button on featured chair page
@@ -434,7 +428,6 @@ function createDivs(order) {
         createDivListener();
     });
 }
-
 
 // Adds listeners for objects after created
 function createDivListener() {

@@ -2,7 +2,7 @@
     /*jumbotron: jumbotron-fluid;*/
     background-color: black;
     margin-bottom: 0;
-    padding: 75px;
+    padding: 40px;
 }
 
 .chair-icon{
@@ -218,4 +218,8 @@ div.index-button:hover{
     /*border-radius: 100px;*/
     color: whitesmoke;
     font-size: x-large;
+}
+.fix-div {
+    position: sticky;
+    top: 0;
 }
