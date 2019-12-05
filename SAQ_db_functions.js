@@ -34,11 +34,14 @@ function create_chairs_array() {
     return chair_array;
 }
 
-// Variable for addeding chairs
-let selectedChairs = [];
+// // Variable for adding chairs
+// let selectedChairs = [];
 
 // Variable for counting chairs in cart
 let cartCount = 0;
+
+//
+let cart_items = JSON.parse(localStorage.getItem('cartItems'));
 
 //Code for building the Chairs collection
 // Insert a chair
@@ -217,9 +220,9 @@ function chairsInCart(chair_info, multiple_amount) {
 function displayCart() {
     for (let i = 0; i < cart_items.length; i++) {
         removeHandler = cart_items[i].name;
-        chairsInCart(cart_items[i], 1, removeHandler);
+        chairsInCart(cart_items[i], 0, removeHandler);
     }
-    localStorage.setItem('goto', )
+    // localStorage.setItem('cartItems', cart_items);
 }
 
 // Function of click listener and remove
@@ -338,7 +341,7 @@ function display_individual_chair(doc, name) {
                 document.getElementById(prefix + "pic").src = doc.data().picture;
             }
         });
-
+        individual_listener(doc, name);
         })
 }
 
@@ -382,7 +385,7 @@ function goToLogin() {
 function displayCartTotal() {
     let cartTotal = 0;
     let itemCount = 0;
-
+    // let cart_items = JSON.parse(localStorage.getItem('cartItems'));
     for (let i = 0; i < cart_items.length; i++) {
         cartTotal += cart_items[i].price;
         itemCount +=1;
@@ -392,11 +395,23 @@ function displayCartTotal() {
     total_field.innerHTML = "$" + cartTotal.toString();
     document.getElementById("cart-summary").appendChild(total_field);
     let displayItemCount = document.getElementById("item-count");
-    displayItemCount.innerHTML = "Items:  " + itemCount.toString();
+    displayItemCount.innerHTML = "Items Added:  " + itemCount.toString();
 }
 
+function getCart(){
+let selectedChairs = JSON.parse(localStorage.getItem('cartItems'));
+if (selectedChairs === null){
+    return []
+} else {
+    return JSON.parse(localStorage.getItem('cartItems'));
+}
+}
+
+// let selectedChairs = localStorage.setItem('cartItems');
 // Add chair to cart
 function addChair(doc, name) {
+    // Variable for adding chairs
+    // let selectedChairs = getCart();
     let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             if (doc.data().name === name) {
@@ -561,11 +576,13 @@ function userInfo(){
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
+
 function signout_clearStorage(){
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
     localStorage.removeItem("firebaseui::rememberedAccounts");
 }
+
 
 function signout_listener() {
     document.getElementById("sign-out").addEventListener("click", function(){
