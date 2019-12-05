@@ -107,8 +107,8 @@ function displayUser(){
     document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
 
-function get_purchase_history(user) {
-    the_db.collection("Users").doc(user).collection("purchases")
+function get_purchase_history(user, operator="<", limit=99999) {
+    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", operator, limit)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -134,13 +134,13 @@ function get_purchase_history(user) {
 }
 
 //Retrieve a users purchase history of purchases > than a certain value
-function get_big_spender_history(user, limit){
-    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", ">", limit)
+function get_big_spender_history(user, operator="<", limit=99999){
+    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", operator, limit)
     // the_db.collection("Users").doc(user).collection("purchases")
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-              console.log("Data: " + doc.data().purchase_date);
+              console.log("Chair was purchased on: " + doc.data().purchase_date);
             });
         })
     .catch(function(error) {
