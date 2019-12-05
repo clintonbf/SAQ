@@ -24,6 +24,7 @@
     //produce an array of chair objects in the users cart
     //let cart_items = JSON.parse(localStorage.getItem('shopping_cart'));
     let cart_items = JSON.parse(localStorage.getItem('cartItems'));
+    let yourName = JSON.parse(localStorage.getItem('userName'));
     console.log(cart_items);
   </script>
 
@@ -118,7 +119,7 @@
         }
       }
 
-      let sale = new Sale("Hobo", new Date(), total, chair_ref_array);  //'Hobo' is the purchaser until I get the user info...
+      let sale = new Sale(yourName, new Date(), total, chair_ref_array);
 
       //Write the sale to Firestore
       insert_sale_to_firestore(sale);
