@@ -34,9 +34,12 @@ function create_chairs_array() {
     return chair_array;
 }
 
-
+// Variable for quick-added and feature added chairs
 let selectedChairs = [];
+
+// Variable for counting chairs in cart
 let cartCount = 0;
+
 //Code for building the Chairs collection
 // Insert a chair
 function insert_chair_to_firestore(add_chair, id, collection_name){
@@ -107,7 +110,7 @@ function displayUser(){
 
 // Cart Functions
 // Create chairs chosen
-function chairsInCart(chair_info, multiple_amount, removeHandler) {
+function chairsInCart(chair_info, multiple_amount) {
     let div_tag = document.createElement('div');
     div_tag.setAttribute('class', 'cart-div');
     document.body.appendChild(div_tag);
@@ -144,6 +147,7 @@ function chairsInCart(chair_info, multiple_amount, removeHandler) {
 
 // display cart and multiples
 function displayCart() {
+    let multipleItems = 1;
     for (let i = 0; i < cart_items.length; i++) {
         removeHandler = cart_items[i].name;
         chairsInCart(cart_items[i], 1, removeHandler);
@@ -151,29 +155,18 @@ function displayCart() {
     }
 }
 
-
+// Function of click listener and remove
 function identifyRemoval(removalid, removename) {
     document.getElementById(removalid).addEventListener("click", function () {
         remove(removename);
     });
-    // document.getElementById("the Fahad_remove").addEventListener("click", function () {
-    //     remove("the Fahad")
-    // });
-    // document.getElementById("the Em_remove").addEventListener("click", function () {
-    //     remove("the Em")
-    // });
-    // document.getElementById("the Neda_remove").addEventListener("click", function () {
-    //     remove("the Neda")
-    // });
 }
 
-// sort through list
+// Sort through list of displayed chairs, removes chosen chair and refresh page to reflect user removal
 function remove(removeHandler) {
-    let removed = false;
     for(let i=0; i < cart_items.length; i++) {
-        if (removed === false && removeHandler === cart_items[i].name) {
+        if (removeHandler === cart_items[i].name) {
             cart_items.splice(i, 1);
-            removed = true;
             localStorage.setItem('cartItems', JSON.stringify(cart_items));
             console.log(cart_items);
             document.location.reload(true);
@@ -264,11 +257,12 @@ function display_individual_chair(doc, name) {
                 tr_add.appendChild(td_add);
                 let add_name = name.split(" ")[1];
                 add_name = add_name.charAt(0).toLowerCase() + add_name.slice(1);
-                // let div_add = document.createElement("div");
-                // div_add.setAttribute("id", add_name + "Add");
-                // div_add.setAttribute("class", "quick-add");
-                // div_add.innerHTML = "quick add";
-                // td_add.appendChild(div_add);
+                let div_add = document.createElement("div");
+                div_add.setAttribute("id","Add");
+                div_add.setAttribute("class", "feature-add");
+                div_add.innerHTML = "Add to Cart";
+                td_add.appendChild(div_add);
+
 
                 // Now back to our filling of the table
                 document.getElementById("feature-chair").innerHTML = name;
@@ -279,12 +273,25 @@ function display_individual_chair(doc, name) {
             } else {
                 console.log("error");
             }
+        });
+
         })
-    })
 }
 
+// Show a feature chair, set click listener for the add button
+function showFeaturedChair(doc, name) {
+    display_individual_chair(doc, name );
+    setTimeout(function () {
+        individual_listener(doc, name);
+    }, 3000);
+}
 
-//
+// Set listener for add button on featured chair page
+function individual_listener(chair_document, chair_name) {
+    document.getElementById("Add").addEventListener("click", addChair(chair_document, chair_name));
+}
+
+//Function to store the chair user chooses to look at and takes the user to that page
 function featureHandler(chair_chosen, chair_chosen_name) {
     localStorage.setItem('goto', JSON.stringify([chair_chosen, chair_chosen_name]));
     goToChairDetails();
@@ -305,7 +312,7 @@ function removeFeatureStorage(){
     localStorage.removeItem('goto');
 }
 
-// Go to login page
+// Direct user to login page
 function goToLogin() {
     window.location.href="userLogin.html";
 }
@@ -327,7 +334,7 @@ function displayCartTotal() {
     displayItemCount.innerHTML = "Items:  " + itemCount.toString();
 }
 
-//Add chair to cart
+// Add chair to cart
 function addChair(doc, name) {
     let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -339,9 +346,6 @@ function addChair(doc, name) {
                 console.log("works")
             }
         })
-        //     .catch(function (error) {
-        //     console.log("Error displaying all items");
-        // })
     })
 }
 
@@ -369,6 +373,7 @@ function get_single_chair(chair_id) {
 }
 
 
+// Function creates div elements to diplay chair catalog
 function createDivs(order) {
     let db_ref = the_db.collection("clints_work").orderBy("price", order); // ToDo <----- replace with live Collection
     db_ref.get().then(function (catalog) {
@@ -423,6 +428,7 @@ function createDivs(order) {
             div_add.setAttribute("class", "quick-add");
             div_add.innerHTML = "quick add";
             td_add.appendChild(div_add);
+
             // Now back to our filling of the table
             document.getElementById(prefix + "name").innerHTML = name;
             document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
@@ -433,6 +439,7 @@ function createDivs(order) {
 }
 
 
+// Adds listeners for objects after created
 function createDivListener() {
     document.getElementById("clintAdd").addEventListener("click", function () {
         addChair("chair_0", 'the Clint');
@@ -473,23 +480,29 @@ function createDivListener() {
 
 }
 
+// displays chair catalog on page from low price to high price
 function catalogLowToHigh() {
     createDivs();
     setTimeout(function () {
         createDivListener();
-    }, 1500);
+    }, 2000);
 }
 
+// displays chair catalog on page fromhigh price to low price
 function catalogHighToLow() {
     createDivs("desc");
     setTimeout(function () {
         createDivListener();
-    }, 1500);
+    }, 2000);
 }
 
-// document.getElementById('our-cart').addEventListener("click", storeCart);
-// function storeCart(){
-//     localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
-// }
+
+// display user information on information page
+function userInfo(){
+    let yourName = JSON.parse(localStorage.getItem('userName'));
+    let yourEmail = JSON.parse(localStorage.getItem('userEmail'));
+    document.getElementById('currentName').innerHTML = 'Username: ' + yourName;
+    document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
+}
 
 
