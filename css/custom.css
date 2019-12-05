@@ -152,7 +152,6 @@ a:hover {
     height: 300px;
     padding: 25px;
     color:white;
-    border: black solid 2px;
 }
 
 .price-div-text {
@@ -203,7 +202,8 @@ div.index-button:hover{
     position: absolute;
     right: 40px;
     padding: 10px;
-    border: black solid 2px;
+    background-color: #0a4961;
+    color: whitesmoke;
 }
 
 .login-box{
