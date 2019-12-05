@@ -9,48 +9,21 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> <!-- Firebase auth is NOT HERE -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <!-- <script src="firebase_config.js"></script> -->
+     <script src="firebase_config.js"></script>
     <script src="SAQ_db_functions.js"></script>
     <!-- Imports complete -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/custom.css" rel="stylesheet">
+    <script>let yourName = JSON.parse(localStorage.getItem('userName'));</script>
 </head>
 <body>
-<script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
-        authDomain: "saq-fb.firebaseapp.com",
-        databaseURL: "https://saq-fb.firebaseio.com",
-        projectId: "saq-fb",
-        storageBucket: "saq-fb.appspot.com",
-        messagingSenderId: "351007329675",
-        appId: "1:351007329675:web:241d7fd4d85e789830b38e"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // OBJECT DEFINITIONS
-    var the_db = firebase.firestore();
-</script>
-
 <link href="css/custom.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="main.html">Home</a>
     <a id = "login-nav" class="navbar-brand" href="user_information.html">Login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="main.html">Home<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="saq_catalog.html">Chairs</a>
-        </div>
-    </div>
+    <a class="navbar-brand" href="usercheckout.html">Cart</a>
 </nav>
 <img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
 <div class = "jumbotron jumbotron-fluid HeaderMain">
@@ -70,20 +43,17 @@
     <div id="purchase_history"></div>
     <h4 class="display-4 cart-text">Your Last Purchase: </h4>
     <div id="last_purchase"></div>
-<!--    <div id = "sign-out" style = "border: black solid 2px"><h1 class="display-3"> Sign OUT </h1></div>-->
 </div>
 <br>
-<div id="sign-out">
+<div id="sign-out" class = "container sign-out-button">
     Sign-Out
 </div>
-<div class="container bot-div"> Flying Buttresses </div>
+
 <script>
 signout_listener();
 displayUser();
 userInfo();
-let yourName = JSON.parse(localStorage.getItem('userName'));
 get_purchase_history(yourName);
 get_last_purchase(yourName);
 </script>
-
 </body>

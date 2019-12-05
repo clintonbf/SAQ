@@ -34,11 +34,11 @@ function create_chairs_array() {
     return chair_array;
 }
 
-// Variable for addeding chairs
-let selectedChairs = [];
-
 // Variable for counting chairs in cart
 let cartCount = 0;
+
+// Declare cart as the the local storage
+let cart_items = JSON.parse(localStorage.getItem('cartItems'));
 
 //Code for building the Chairs collection
 // Insert a chair
@@ -225,7 +225,6 @@ function displayCart() {
         removeHandler = cart_items[i].name;
         chairsInCart(cart_items[i], 1, removeHandler);
     }
-    localStorage.setItem('goto', )
 }
 
 // Function of click listener and remove
@@ -344,7 +343,7 @@ function display_individual_chair(doc, name) {
                 document.getElementById(prefix + "pic").src = doc.data().picture;
             }
         });
-
+        individual_listener(doc, name);
         })
 }
 
@@ -388,7 +387,7 @@ function goToLogin() {
 function displayCartTotal() {
     let cartTotal = 0;
     let itemCount = 0;
-
+    // let cart_items = JSON.parse(localStorage.getItem('cartItems'));
     for (let i = 0; i < cart_items.length; i++) {
         cartTotal += cart_items[i].price;
         itemCount +=1;
@@ -398,11 +397,23 @@ function displayCartTotal() {
     total_field.innerHTML = "$" + cartTotal.toString();
     document.getElementById("cart-summary").appendChild(total_field);
     let displayItemCount = document.getElementById("item-count");
-    displayItemCount.innerHTML = "Items:  " + itemCount.toString();
+    displayItemCount.innerHTML = "Items Added:  " + itemCount.toString();
+}
+
+// get the cart from local storage
+function getCart(){
+let selectedChairs = JSON.parse(localStorage.getItem('cartItems'));
+if (selectedChairs === null){
+    return []
+} else {
+    return JSON.parse(localStorage.getItem('cartItems'));
+}
 }
 
 // Add chair to cart
 function addChair(doc, name) {
+    // Variable for adding chairs
+    // let selectedChairs = getCart();
     let dbRef = the_db.collection("Chairs").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             if (doc.data().name === name) {
@@ -558,7 +569,6 @@ function catalogHighToLow() {
     createDivs("desc");
 }
 
-
 // display user information on information page
 function userInfo(){
     let yourName = JSON.parse(localStorage.getItem('userName'));
@@ -567,12 +577,14 @@ function userInfo(){
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
+// clears local storage of user information
 function signout_clearStorage(){
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
     localStorage.removeItem("firebaseui::rememberedAccounts");
 }
 
+// create listener for sign-out button
 function signout_listener() {
     document.getElementById("sign-out").addEventListener("click", function(){
         signout_clearStorage();

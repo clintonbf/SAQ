@@ -208,14 +208,10 @@ div.index-button:hover{
 
 .login-box{
     position: fixed;
-    /*right: 20%;*/
-    top: 30%;
-    /*color: black;*/
-    /*background-color: #3c3f41;*/
+    top: 20%;
     z-index: 2;
     border: whitesmoke solid 2px;
     padding: 10px;
-    /*border-radius: 100px;*/
     color: whitesmoke;
     font-size: x-large;
 }
@@ -223,3 +219,14 @@ div.index-button:hover{
     position: sticky;
     top: 0;
 }
+
+.sign-out-button{
+    position: sticky;
+    bottom: 0;
+    padding: 5px;
+    border: grey solid 2px;
+    background-color: grey;
+    color: whitesmoke;
+    text-align: center;
+}
+
