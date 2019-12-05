@@ -112,16 +112,26 @@ function displayUser(){
 
 // Get a users entire purchase history
 function get_purchase_history(user) {
+    //Create the basis of the table
+    let t = document.createElement("table");
+    document.getElementById("purchase_history").appendChild(t);
+
+
     the_db.collection("Users").doc(user).collection("purchases")
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 let chairs_arr = doc.data().chairs_purchased;  // loop through the purchased chairs
+
                 for (let i = 0; i < chairs_arr.length; i++) {
                     the_db.doc(chairs_arr[i]).get()
                         .then(function (d) {
                             if (d.exists) {
-                                console.log(user + " bought: " + d.data().name);
+                                let tr = document.createElement("tr");
+                                t.appendChild(tr);
+                                let td_name = document.createElement("td");
+                                td_name.innerHTML = d.data().name;
+                                tr.appendChild(td_name);
                             }
                         })
                         .catch(function (err) {
@@ -137,6 +147,10 @@ function get_purchase_history(user) {
 
 //Retrieve the last chairs that the user purchased
 function get_last_purchase(user){
+    //Create the basis of the table
+    let t = document.createElement("table");
+    document.getElementById("last_purchase").appendChild(t);
+
     the_db.collection("Users").doc(user).collection("purchases").orderBy ("purchase_date").limit(1)
         .get()
         .then(function(querySnapshot) {
@@ -146,7 +160,11 @@ function get_last_purchase(user){
                     the_db.doc(chairs_arr[i]).get()
                         .then(function (d) {
                             if (d.exists) {
-                                console.log(user + "'s last purchase was: " + d.data().name);
+                                let tr = document.createElement("tr");
+                                t.appendChild(tr);
+                                let td_name = document.createElement("td");
+                                td_name.innerHTML = d.data().name;
+                                tr.appendChild(td_name);
                             }
                         })
                         .catch(function (err) {
@@ -223,7 +241,6 @@ function remove(removeHandler) {
         }
     }
 }
-
 
 // Functions for getting chair prefix
 function get_prefix(chair_name) {
@@ -420,7 +437,6 @@ function get_single_chair(chair_id) {
         });
 }
 
-
 // Function creates div elements to diplay chair catalog
 function createDivs(order) {
     let db_ref = the_db.collection("clints_work").orderBy("price", order); // ToDo <----- replace with live Collection
@@ -486,7 +502,6 @@ function createDivs(order) {
         createDivListener();
     });
 }
-
 
 // Adds listeners for objects after created
 function createDivListener() {

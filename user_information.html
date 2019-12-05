@@ -5,19 +5,37 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Import all SAQ, FireBase and Firestore functionality -->
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> <!-- Firebase auth is NOT HERE -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
-    <script src="firebase_config.js"></script>
+    <!-- <script src="firebase_config.js"></script> -->
     <script src="SAQ_db_functions.js"></script>
+    <!-- Imports complete -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/custom.css" rel="stylesheet">
 </head>
 <body>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
+        authDomain: "saq-fb.firebaseapp.com",
+        databaseURL: "https://saq-fb.firebaseio.com",
+        projectId: "saq-fb",
+        storageBucket: "saq-fb.appspot.com",
+        messagingSenderId: "351007329675",
+        appId: "1:351007329675:web:241d7fd4d85e789830b38e"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // OBJECT DEFINITIONS
+    var the_db = firebase.firestore();
+</script>
 
 <link href="css/custom.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,6 +67,9 @@
     <h4 class="display-4 cart-text" id="currentName">Name: </h4>
     <h4 class="display-4 cart-text" id="currentEmail">Email: </h4>
     <h4 class="display-4 cart-text">Purchase History: </h4>
+    <div id="purchase_history"></div>
+    <h4 class="display-4 cart-text">Your Last Purchase: </h4>
+    <div id="last_purchase"></div>
 <!--    <div id = "sign-out" style = "border: black solid 2px"><h1 class="display-3"> Sign OUT </h1></div>-->
 </div><br>
 <div class="container bot-div"> website with chairs on it  </div>
@@ -56,5 +77,9 @@
 <script>
 displayUser();
 userInfo();
+let yourName = JSON.parse(localStorage.getItem('userName'));
+get_purchase_history("Callie");
+get_last_purchase("Callie");
 </script>
+
 </body>
