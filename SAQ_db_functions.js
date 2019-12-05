@@ -63,7 +63,8 @@ function insert_chair_to_firestore(add_chair, id, collection_name){
 
 //Insert a sale
 function insert_sale_to_firestore(sale_obj) {
-    the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
+    the_db.collection("Users").doc(sale_obj.buyer).collection("purchases").doc().set({
+    // the_db.collection("Users").doc().collection(sale_obj.buyer).doc().set({
         chairs_purchased: sale_obj.chairs,
         purchase_date: sale_obj.date,
         purchase_total: sale_obj.total
@@ -80,9 +81,12 @@ function insert_sale_to_firestore(sale_obj) {
 function build_sales_objects() {
     let sale_arr = [];
     let large_chair_array = create_chairs_array();
+
     sale_arr.push(new Sale('Callie', new Date(), 800, "/Chairs/chair_4"));
     sale_arr.push(new Sale('Emma', new Date(2019, 9, 9), 3725, ["/Chairs/chair_0", "/Chairs/chair_3"]));
     sale_arr.push(new Sale('Joe', new Date(2019, 10, 15), 1000, ["/Chairs/chair_5"]));
+    sale_arr.push(new Sale('Callie', new Date(2018, 3, 21), 1000, ["/Chairs/chair_5"]));
+
     return sale_arr;
 }
 
@@ -103,6 +107,74 @@ function displayUser(){
     console.log(usergreet);
     document.getElementById('EmRocks').innerHTML = "Welcome " + usergreet;
     document.getElementById('login-nav').innerHTML = "" + usergreet;
+}
+
+// Get a users entire purchase history and print them to a table
+function get_purchase_history(user) {
+    //Create the basis of the table
+    let t = document.createElement("table");
+    document.getElementById("purchase_history").appendChild(t);
+
+
+    the_db.collection("Users").doc(user).collection("purchases")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let chairs_arr = doc.data().chairs_purchased;  // loop through the purchased chairs
+
+                for (let i = 0; i < chairs_arr.length; i++) {
+                    the_db.doc(chairs_arr[i]).get()
+                        .then(function (d) {
+                            if (d.exists) {
+                                let tr = document.createElement("tr");
+                                t.appendChild(tr);
+                                let td_name = document.createElement("td");
+                                td_name.innerHTML = d.data().name;
+                                tr.appendChild(td_name);
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log("Error occurred when getting chair purchaser: " + err);
+                        })
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log("Error occurred when getting collection of purchases: " + error);
+        });
+}
+
+//Retrieve the last chairs that the user purchased and print them to a table
+function get_last_purchase(user){
+    //Create the basis of the table
+    let t = document.createElement("table");
+    document.getElementById("last_purchase").appendChild(t);
+
+    the_db.collection("Users").doc(user).collection("purchases").orderBy ("purchase_date", "desc").limit(1)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let chairs_arr = doc.data().chairs_purchased; // loop through the purchased chairs
+                for (let i = 0; i < chairs_arr.length; i++) {
+                    the_db.doc(chairs_arr[i]).get()
+                        .then(function (d) {
+                            if (d.exists) {
+                                let tr = document.createElement("tr");
+                                t.appendChild(tr);
+                                let td_name = document.createElement("td");
+                                td_name.innerHTML = d.data().name;
+                                tr.appendChild(td_name);
+                            }
+                        })
+                        .catch(function (err) {
+                            console.log("Error occurred when getting chair purchaser: " + err);
+                        })
+                }
+            });
+        })
+    .catch(function(error) {
+        console.log("Error occurred: " + error);
+    });
 }
 
 // Cart Functions
@@ -266,7 +338,7 @@ function display_individual_chair(doc, name) {
                 document.getElementById(prefix + "pic").src = doc.data().picture;
             }
         });
-        individual_listener(doc, name);
+
         })
 }
 
@@ -428,6 +500,7 @@ function createDivs(order) {
     });
 }
 
+
 // Adds listeners for objects after created
 function createDivListener() {
     document.getElementById("clintAdd").addEventListener("click", function () {
@@ -478,6 +551,7 @@ function catalogLowToHigh() {
 function catalogHighToLow() {
     createDivs("desc");
 }
+
 
 // display user information on information page
 function userInfo(){
