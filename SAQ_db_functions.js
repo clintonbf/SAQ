@@ -129,28 +129,12 @@ function get_purchase_history(user, operator="<", limit=99999) {
         .catch(function(error) {
             console.log("Error occurred when getting collection of purchases: " + error);
         });
-
-    let p_history = []; // This will be an array of Chair objects.... maybe
 }
 
 //Retrieve a users purchase history of purchases > than a certain value
 function get_big_spender_history(user, operator="<", limit=99999){
-    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", operator, limit)
-    // the_db.collection("Users").doc(user).collection("purchases")
-        .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-              console.log("Chair was purchased on: " + doc.data().purchase_date);
-            });
-        })
-    .catch(function(error) {
-        console.log("Error occurred: " + error);
-    });
-
-    let p_history = []; // This will be an array of Chair objects.... maybe
-
-    //Demonstrate a database query employing a WHERE clause
-
+    console.log("Hey, " + user + ", big spender!");
+    get_purchase_history(user, operator, limit);
 }
 
 // Cart Functions
