@@ -220,9 +220,8 @@ function chairsInCart(chair_info, multiple_amount) {
 function displayCart() {
     for (let i = 0; i < cart_items.length; i++) {
         removeHandler = cart_items[i].name;
-        chairsInCart(cart_items[i], 0, removeHandler);
+        chairsInCart(cart_items[i], 1, removeHandler);
     }
-    // localStorage.setItem('cartItems', cart_items);
 }
 
 // Function of click listener and remove
@@ -585,7 +584,7 @@ function signout_clearStorage(){
 
 
 function signout_listener() {
-    document.getElementById("sign-out").addEventListener("click", function(){
+    document.getElementById("sign-out-button").addEventListener("click", function(){
         signout_clearStorage();
         goToLogin();
     })

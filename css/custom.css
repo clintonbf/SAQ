@@ -208,8 +208,7 @@ div.index-button:hover{
 
 .login-box{
     position: fixed;
-    /*right: 20%;*/
-    top: 30%;
+    top: 20%;
     /*color: black;*/
     /*background-color: #3c3f41;*/
     z-index: 2;
@@ -222,4 +221,11 @@ div.index-button:hover{
 .fix-div {
     position: sticky;
     top: 0;
+}
+
+.sign-out-button{
+    position: absolute;
+    right: 40px;
+    padding: 10px;
+    border: black solid 2px;
 }
