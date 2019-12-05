@@ -110,7 +110,7 @@ function displayUser(){
     document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
 
-// Get a users entire purchase history
+// Get a users entire purchase history and print them to a table
 function get_purchase_history(user) {
     //Create the basis of the table
     let t = document.createElement("table");
@@ -145,7 +145,7 @@ function get_purchase_history(user) {
         });
 }
 
-//Retrieve the last chairs that the user purchased
+//Retrieve the last chairs that the user purchased and print them to a table
 function get_last_purchase(user){
     //Create the basis of the table
     let t = document.createElement("table");

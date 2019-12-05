@@ -362,17 +362,18 @@
             let sale = new Sale("Hobo", new Date(), total, chair_ref_array);  //'Hobo' is the purchaser until I get the user info...
 
             //Write the sale to Firestore
-            insert_sale_to_firestore(sale);
+            // insert_sale_to_firestore(sale);
 
             //Finally, move to the confirmation page
-            // location.href = "last_page.html";
+            location.href = "last_page.html";
           }
         </script>
 
       </form>
       <button class="button" id="purchase_confirm">Confirm purchase</button>
-      <script>document.getElementById("purchase_confirm").onclick = confirmPurchase;</script>
-      <!-- <a href="last_page.html">Continue to checkout</a> -->
+<!--      <script>document.getElementById("purchase_confirm").onclick = confirmPurchase;</script>-->
+      <script>document.getElementById("purchase_confirm").onclick = function() {location.href="last_page.html";}</script>
+       <a href="last_page.html">Continue to checkout</a>
 
 <!--      </form>-->
     </div>
