@@ -200,7 +200,8 @@ div.index-button:hover{
 
 .feature-add{
     position: absolute;
-    right: 40px;
+    bottom: -300px;
+    right: 30px;
     padding: 10px;
     background-color: #0a4961;
     color: whitesmoke;
