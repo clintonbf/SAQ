@@ -147,11 +147,9 @@ function chairsInCart(chair_info, multiple_amount) {
 
 // display cart and multiples
 function displayCart() {
-    let multipleItems = 1;
     for (let i = 0; i < cart_items.length; i++) {
         removeHandler = cart_items[i].name;
         chairsInCart(cart_items[i], 1, removeHandler);
-        console.log("the name is" + cart_items[i].name);
     }
 }
 
@@ -270,8 +268,6 @@ function display_individual_chair(doc, name) {
                 document.getElementById(prefix + "price").innerHTML = '$' + doc.data().price;
                 document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
                 document.getElementById(prefix + "pic").src = doc.data().picture;
-            } else {
-                console.log("error");
             }
         });
 
@@ -435,6 +431,7 @@ function createDivs(order) {
             document.getElementById(prefix + "rating").innerHTML = "Average rating: " + calculate_average(doc.data().ratings);
             document.getElementById(prefix + "pic").src = doc.data().picture;
         });
+        createDivListener();
     });
 }
 
@@ -483,17 +480,11 @@ function createDivListener() {
 // displays chair catalog on page from low price to high price
 function catalogLowToHigh() {
     createDivs();
-    setTimeout(function () {
-        createDivListener();
-    }, 2000);
 }
 
-// displays chair catalog on page fromhigh price to low price
+// displays chair catalog on page from high price to low price
 function catalogHighToLow() {
     createDivs("desc");
-    setTimeout(function () {
-        createDivListener();
-    }, 2000);
 }
 
 
