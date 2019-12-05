@@ -34,13 +34,10 @@ function create_chairs_array() {
     return chair_array;
 }
 
-// // Variable for adding chairs
-// let selectedChairs = [];
-
 // Variable for counting chairs in cart
 let cartCount = 0;
 
-//
+// Declare cart as the the local storage
 let cart_items = JSON.parse(localStorage.getItem('cartItems'));
 
 //Code for building the Chairs collection
@@ -397,6 +394,7 @@ function displayCartTotal() {
     displayItemCount.innerHTML = "Items Added:  " + itemCount.toString();
 }
 
+// get the cart from local storage
 function getCart(){
 let selectedChairs = JSON.parse(localStorage.getItem('cartItems'));
 if (selectedChairs === null){
@@ -406,7 +404,6 @@ if (selectedChairs === null){
 }
 }
 
-// let selectedChairs = localStorage.setItem('cartItems');
 // Add chair to cart
 function addChair(doc, name) {
     // Variable for adding chairs
@@ -566,7 +563,6 @@ function catalogHighToLow() {
     createDivs("desc");
 }
 
-
 // display user information on information page
 function userInfo(){
     let yourName = JSON.parse(localStorage.getItem('userName'));
@@ -575,16 +571,16 @@ function userInfo(){
     document.getElementById('currentEmail').innerHTML = 'Email: ' + yourEmail;
 }
 
-
+// clears local storage of user information
 function signout_clearStorage(){
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
     localStorage.removeItem("firebaseui::rememberedAccounts");
 }
 
-
+// create listener for sign-out button
 function signout_listener() {
-    document.getElementById("sign-out-button").addEventListener("click", function(){
+    document.getElementById("sign-out").addEventListener("click", function(){
         signout_clearStorage();
         goToLogin();
     })
