@@ -107,16 +107,37 @@ function displayUser(){
     document.getElementById('login-nav').innerHTML = "" + usergreet;
 }
 
-//Retrieve a users purchase history from the Database
-function get_users_history(user){
-    let today = new Date();
-    let limit = today.subtract(30, 'days');
-
-    the_db.collection("Users").doc(user).collection("purchases").where("purchase_date", ">", limit)
+function get_purchase_history(user) {
+    the_db.collection("Users").doc(user).collection("purchases")
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-              console.log(doc.data());
+                the_db.doc(doc.data().chairs_purchased).get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        console.log("The chair: " + doc.data().name);
+                    }
+                })
+                .catch(function (err) {
+                    console.log("Error occurred when getting chair purchaser: " + err);
+                })
+            });
+        })
+        .catch(function(error) {
+            console.log("Error occurred when getting collection of purchases: " + error);
+        });
+
+    let p_history = []; // This will be an array of Chair objects.... maybe
+}
+
+//Retrieve a users purchase history of purchases > than a certain value
+function get_big_spender_history(user, limit){
+    the_db.collection("Users").doc(user).collection("purchases").where("purchase_total", ">", limit)
+    // the_db.collection("Users").doc(user).collection("purchases")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              console.log("Data: " + doc.data().purchase_date);
             });
         })
     .catch(function(error) {

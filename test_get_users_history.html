@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing users history</title>
+    <!-- Import all SAQ, FireBase and Firestore functionality -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <!-- <script src="firebase_config.js"></script> -->
+    <script src="SAQ_db_functions.js"></script>
+    <!-- Imports complete -->
+</head>
+
+<body>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCcaat9ekOpu0m7qZTJ6gblV65DIBeWEbQ",
+            authDomain: "saq-fb.firebaseapp.com",
+            databaseURL: "https://saq-fb.firebaseio.com",
+            projectId: "saq-fb",
+            storageBucket: "saq-fb.appspot.com",
+            messagingSenderId: "351007329675",
+            appId: "1:351007329675:web:241d7fd4d85e789830b38e"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // OBJECT DEFINITIONS
+        var the_db = firebase.firestore();
+    </script>
+
+    <script>
+        get_purchase_history('Callie');
+        // get_big_spender_history("Callie", 800);
+    </script>
+</body>
+</html>
