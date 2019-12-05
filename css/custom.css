@@ -139,7 +139,6 @@ a:hover {
 }
 
 .feature-header-opposite {
-    /*jumbotron: jumbotron-fluid;*/
     background-color: whitesmoke;
     margin-bottom: 0;
 }
@@ -150,7 +149,8 @@ a:hover {
 
 .feature-div {
     background-color: whitesmoke;
-    padding: 15px;
+    height: 300px;
+    padding: 25px;
     color:white;
     border: black solid 2px;
 }
@@ -191,6 +191,31 @@ div.index-button:hover{
     border: whitesmoke solid 1px;
     /*border-radius: 100px;*/
     padding: 15px;
+    color: whitesmoke;
+    font-size: x-large;
+}
+
+.fill-div{
+    padding: 100px;
+}
+
+.feature-add{
+    position: absolute;
+    right: 40px;
+    padding: 10px;
+    border: black solid 2px;
+}
+
+.login-box{
+    position: fixed;
+    /*right: 20%;*/
+    top: 30%;
+    /*color: black;*/
+    /*background-color: #3c3f41;*/
+    z-index: 2;
+    border: whitesmoke solid 2px;
+    padding: 10px;
+    /*border-radius: 100px;*/
     color: whitesmoke;
     font-size: x-large;
 }

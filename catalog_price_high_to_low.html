@@ -5,6 +5,7 @@
     <title>View Our Catalogue</title>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
@@ -19,17 +20,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="main.html">Home</a>
-    <a id = "login-nav" class="navbar-brand" href="userLogin.html">Login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="main.html">Home</a>
-            <a class="nav-item nav-link" href="saq_catalog.html">Catalog</a>
-        </div>
-    </div>
+    <a id = "login-nav" class="navbar-brand" href="user_information.html">Login</a>
 </nav>
 <img alt="neutral_chair" class="img-fluid" src="images/home_page/chair_blue_bookshelf.jpeg">
 <div class = "jumbotron jumbotron-fluid HeaderMain">
@@ -40,6 +31,10 @@
         </div>
     </a>
 </div>
+
+<script>
+    catalogHighToLow();
+</script>
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <form class="form-inline">
         <button class="btn btn-sm btn-outline-secondary" type="button">
@@ -53,7 +48,6 @@
     function storeCart(){
         localStorage.setItem('cartItems', JSON.stringify(selectedChairs));
     }
-    catalogHighToLow();
     displayUser();
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
